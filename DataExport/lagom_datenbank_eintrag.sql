@@ -1,6 +1,6 @@
 CREATE DATABASE  IF NOT EXISTS `lagom_datenbank` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `lagom_datenbank`;
--- MySQL dump 10.13  Distrib 8.0.20, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.20, for macos10.15 (x86_64)
 --
 -- Host: localhost    Database: lagom_datenbank
 -- ------------------------------------------------------
@@ -41,7 +41,7 @@ CREATE TABLE `eintrag` (
 
 LOCK TABLES `eintrag` WRITE;
 /*!40000 ALTER TABLE `eintrag` DISABLE KEYS */;
-INSERT INTO `eintrag` VALUES (3001,'2020/05/01','Tag 1: MySQL Start','Schritt 1:','Zuerst muss man sich MySQL runterladen.','Beim Mac gibt es Sonderheiten.','Es macht Spaß!'),(3002,'2020/05/12','Meeting','Besprechung mit der Crew',NULL,'Auf Discord.','Pünktlich sein!'),(3003,'2020/05/11','Abgabe','Datenbanken',NULL,NULL,'Vorzeitig hochladen!'),(3004,'2022/03/01','Bachelorarbeit Abgeben','Bald durch!!!',NULL,'Bald ist es zu ende!','Durchhalten... '),(3005,'2020/05/31','Auslandsbewerbungsdeadline',NULL,NULL,NULL,NULL),(3010,'101.000000000000000000','Ich hab kein Bock','Ich bin ein Star holt mich hier raus','Help me, ich stehe unter Sklavenarbeit','send help','SOS call the police'),(3011,'2020/05/04','Ich hab kein Bock','Ich bin ein Star holt mich hier raus','Help me, ich stehe unter Sklavenarbeit','send help','SOS call the police'),(3012,'2020/05/04','Ich hab kein Bock',NULL,'Ich bin ein Star holt mich hier raus',NULL,NULL),(3012,'2020/05/04','Ich hab kein Bock',NULL,'Ich bin ein Star holt mich hier raus',NULL,NULL),(3012,'2020/05/04','Ich hab kein Bock',NULL,'Ich bin ein Star holt mich hier raus',NULL,NULL),(3012,'2020/05/04','Ich hab kein Bock',NULL,'Ich bin ein Star holt mich hier raus',NULL,NULL),(3012,'2020/05/04','Ich hab kein Bock',NULL,'Ich bin ein Star holt mich hier raus',NULL,NULL),(3012,'2020/05/04','Ich hab kein Bock',NULL,'Ich bin ein Star holt mich hier raus',NULL,NULL),(3012,'2020/05/04','Ich hab kein Bock',NULL,'Ich bin ein Star holt mich hier raus',NULL,NULL),(3012,'2020/05/04','Ich hab kein Bock',NULL,'Ich bin ein Star holt mich hier raus',NULL,NULL),(3012,'2020/05/04','Ich hab kein Bock',NULL,'Ich bin ein Star holt mich hier raus',NULL,NULL),(3012,'2020/05/04','Ich hab kein Bock',NULL,'Ich bin ein Star holt mich hier raus',NULL,NULL),(3013,'2020/05/04','Ich hab kein Bock',NULL,'Ich bin ein Star holt mich hier raus',NULL,NULL),(3013,'2020/05/04','Ich hab kein Bock',NULL,'Ich bin ein Star holt mich hier raus',NULL,NULL),(3013,'2020/05/04','Ich hab kein Bock',NULL,'Ich bin ein Star holt mich hier raus',NULL,NULL),(3013,'2020/05/04','Ich hab kein Bock',NULL,'Ich bin ein Star holt mich hier raus',NULL,NULL),(3013,'2020/05/04','Ich hab kein Bock',NULL,'Ich bin ein Star holt mich hier raus',NULL,NULL),(3013,'2020/05/04','Ich hab kein Bock',NULL,'Ich bin ein Star holt mich hier raus',NULL,NULL);
+INSERT INTO `eintrag` VALUES (3001,'2020/05/01','Tag 1: MySQL Start','Schritt 1:','Zuerst muss man sich MySQL runterladen.','Beim Mac gibt es Sonderheiten.','Es macht Spaß!'),(3002,'2020/05/12','Meeting','Besprechung mit der Crew',NULL,'Auf Discord.','Pünktlich sein!'),(3003,'2020/05/11','Abgabe','Datenbanken',NULL,NULL,'Vorzeitig hochladen!'),(3004,'2022/03/01','Bachelorarbeit Abgeben','Bald durch!!!',NULL,'Bald ist es zu ende!','Durchhalten... '),(3005,'2020/05/31','Auslandsbewerbungsdeadline',NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `eintrag` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-04 15:44:38
+-- Dump completed on 2020-05-04 20:11:05

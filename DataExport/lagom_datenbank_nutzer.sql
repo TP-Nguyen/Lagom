@@ -1,6 +1,6 @@
 CREATE DATABASE  IF NOT EXISTS `lagom_datenbank` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `lagom_datenbank`;
--- MySQL dump 10.13  Distrib 8.0.20, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.20, for macos10.15 (x86_64)
 --
 -- Host: localhost    Database: lagom_datenbank
 -- ------------------------------------------------------
@@ -25,13 +25,13 @@ DROP TABLE IF EXISTS `nutzer`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `nutzer` (
-  `NutzerID` int NOT NULL,
+  `NutzerID` int NOT NULL AUTO_INCREMENT,
   `Nutzername` varchar(45) DEFAULT NULL,
   `GanzerName` varchar(45) DEFAULT NULL,
   `Email` varchar(45) DEFAULT NULL,
   `Passwort` varchar(15) DEFAULT NULL,
   PRIMARY KEY (`NutzerID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `nutzer` (
 
 LOCK TABLES `nutzer` WRITE;
 /*!40000 ALTER TABLE `nutzer` DISABLE KEYS */;
-INSERT INTO `nutzer` VALUES (1,'ylitvin','Yuliya Litvin','ylitvin@stud.hs-bremen.de','12345'),(2,'tngyen','Thao Ngyen','pngyen@stud.hs-bremen.de','12345'),(3,'lobist','Lars Obist','lobst@stud.hs-bremen.de','12345'),(4,'btannert','Benjamin Tannert','btannert@stud.hs-bremen.de','12345');
+INSERT INTO `nutzer` VALUES (1,'ylitvin','Yuliya Litvin','ylitvin@stud.hs-bremen.de','12345'),(2,'tngyen','Thao Ngyen','pngyen@stud.hs-bremen.de','12345'),(3,'lobist','Lars Obist','lobst@stud.hs-bremen.de','12345'),(4,'btannert','Benjamin Tannert','btannert@stud.hs-bremen.de','12345'),(5,'Shakira',NULL,NULL,'12345');
 /*!40000 ALTER TABLE `nutzer` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-04 15:44:38
+-- Dump completed on 2020-05-04 20:11:05
