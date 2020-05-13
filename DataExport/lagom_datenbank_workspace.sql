@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `lagom_datenbank` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `lagom_datenbank`;
 -- MySQL dump 10.13  Distrib 8.0.20, for macos10.15 (x86_64)
 --
 -- Host: localhost    Database: lagom_datenbank
@@ -51,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-04 20:11:08
+-- Dump completed on 2020-05-06 15:26:30
