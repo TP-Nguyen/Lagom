@@ -34,7 +34,7 @@
 
             connection.log("connected"); 
 
-            connection.query("SELECT * FROM Nutzer", function(err, result)
+            connection.query("SELECT * FROM lagom.Nutzer", function(err, result)
             {
                 if(err) throw err; 
                 res.send(result); 
@@ -47,8 +47,8 @@
 
 
     // listen (start app with node server.js) =========================
-    app.listen(4200, function(){
-        console.log("App listening on port 4200");
+    app.listen(8080, function(){
+        console.log("App listening on port 8080");
     }); 
 
     // Seite für Leaflet: http://www.liedman.net/leaflet-routing-machine/
