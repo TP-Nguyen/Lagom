@@ -8,13 +8,13 @@
 
     // configuration ==================
 
-    app.use(express.static(path.join(_dirname, '/dist/db-web-app'))); 
+    app.use(express.static(path.join(__dirname, '/dist/db-web-app'))); 
 
     // application ---------------------------------------------------
 
     app.get('/', function(req,res)
     {
-        res.sendFile('index.html', { root: _dirname+'/dist/db-web-app'});
+        res.sendFile('index.html', { root: __dirname + '/dist/db-web-app'});
     }); 
 
     app.get('/test/', function(req, res)
