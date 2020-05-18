@@ -8,13 +8,13 @@
 
     // configuration ==================
 
-    app.use(express.static(path.join(_dirname, '/dist/db-web-app'))); 
+    app.use(express.static(path.join(__dirname, '/dist/db-web-app'))); 
 
     // application ---------------------------------------------------
 
     app.get('/', function(req,res)
     {
-        res.sendFile('index.html', { root: _dirname+'/dist/db-web-app'});
+        res.sendFile('index.html', { root: __dirname+'/dist/db-web-app'});
     }); 
 
     app.get('/test/', function(req, res)
@@ -23,7 +23,7 @@
             host: "195.37.176.178", 
             port: "20133",
             user: "Gruppe5", 
-            password: "PlrROASg,'MPyp92yVN/Q00/Y\?8g+1e", 
+            password: "PlrROASg,'MPyp92yVN/Q00/Y\\?8g+1e", 
             database: "20_Gruppe5_DB"
         });
 
@@ -32,7 +32,7 @@
             if(err) throw err; 
             console.log("connected"); 
 
-            connection.log("connected"); 
+
 
             connection.query("SELECT * FROM 20_Gruppe5_DB.Nutzer", function(err, result)
             {
