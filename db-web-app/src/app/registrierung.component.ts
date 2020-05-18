@@ -25,11 +25,7 @@ import { Component, OnInit } from '@angular/core';
 export class RegistrierungComponent {
   title = 'db-web-app';
 
-  registrierungTitel = [
-    {
-      titel: "REGISTRIERUNG"
-    }
-  ];
+  registrierungTitel = "REGISTRIERUNG"
 
   registrierungElemente = [
       {

@@ -3,36 +3,88 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 <div class="box">
 
-  <h2>{{loginTitel}}</h2>
-  <form>
-      <div *ngFor="let loginElement of loginElemente">
-        <div class="inputBox">
-          <input type="text" required="">
-          <label>{{loginElement.input}}</label>
+      <h2>{{registrierungTitel}}</h2>
+      <form>
+        <div *ngFor="let registrierungElement of registrierungElemente">
+          <div class="inputBox">
+            <input type="text" required="">
+            <label>{{registrierungElement.input}}</label>
+          </div>
         </div>
-      </div>
-      <a routerLink="/main">
-          <input id="login" type="submit" value="login">
-      </a>
-    <a routerLink="">
-        <input id="registrieren" type="submit" value="registrieren">
-    </a>
-  </form>
+      </form>
+
+  <!-- Button "login" -->
+  <!-- <a routerLink="/main"> -->
+  <a routerLink="">
+    <input id="login" type="submit" value="login">
+  </a>
+
+  <!--Button "registrieren"-->
+  <a routerLink="">
+    <input id="registrieren" type="submit" value="registrieren">
+  </a>
+
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="box"> -->
+
+  <!-- <div *ngIf="login; else registrieren"> -->
+  <!-- <div *ngIf="login; then thenLogin; else thenRegistrieren">
+    
+    <ng-template #thenLogin>
+      <h2>{{loginTitel}}</h2>
+        <form>
+          <div *ngFor="let loginElement of loginElemente">
+            <div class="inputBox">
+              <input type="text" required="">
+              <label>{{loginElement.input}}</label>
+            </div>
+          </div>
+        </form>
+    </ng-template>
+
+    <ng-template #registrieren>
+      <h2>{{registrierungTitel}}</h2>
+      <form>
+        <div *ngFor="let registrierungElement of registrierungElemente">
+          <div class="inputBox">
+            <input type="text" required="">
+            <label>{{registrierungElement.input}}</label>
+          </div>
+        </div>
+      </form>
+    </ng-template>
+
+  </div> -->
+
+  <!--Button "login"-->
+  <!-- <a routerLink="/main"> -->
+  <!-- <a routerLink="">
+    <input id="login" type="submit" value="login" (click)="login">
+  </a> -->
+
+  <!--Button "registrieren"-->
+  <!-- <a routerLink="">
+    <input id="registrieren" type="submit" value="registrieren">
+</a>
+
+</div> -->
 
 
 
