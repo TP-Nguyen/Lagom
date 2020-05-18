@@ -24,7 +24,7 @@
             port: "20133",
             user: "Gruppe5", 
             password: "PlrROASg,'MPyp92yVN/Q00/Y\?8g+1e", 
-            database: "lagom"
+            database: "20_Gruppe5_DB"
         });
 
         connection.connect(function(err)
@@ -34,7 +34,7 @@
 
             connection.log("connected"); 
 
-            connection.query("SELECT * FROM lagom.Nutzer", function(err, result)
+            connection.query("SELECT * FROM 20_Gruppe5_DB.Nutzer", function(err, result)
             {
                 if(err) throw err; 
                 res.send(result); 
