@@ -1,3 +1,18 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,4 +22,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent {
   title = 'db-web-app';
+
+      loginTitel = "LOGIN"
+
+  loginElemente = [
+    {
+      input: "Nutzername" 
+    }, 
+    {
+      input: "Passwort"
+    }
+];
+
 }

@@ -1,29 +1,13 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <div class="box">
-
-  <h2>{{loginTitel}}</h2>
+  <h2>LOGIN</h2>
   <form>
-      <div *ngFor="let loginElement of loginElemente">
-        <div class="inputBox">
+      <div class="inputBox">
           <input type="text" required="">
-          <label>{{loginElement.input}}</label>
-        </div>
+          <label>Nutzername</label>
+      </div>
+      <div class="inputBox">
+          <input type="text" required="">
+          <label>Passwort</label>
       </div>
       <a routerLink="/main">
           <input id="login" type="submit" value="login">
