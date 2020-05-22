@@ -8,13 +8,22 @@
 
     // configuration ==================
 
-    app.use(express.static(path.join(__dirname, '/dist/db-web-app'))); 
+    app.use(express.static(path.join(__dirname, '/src/app'))); 
+    // app.use(express.static(path.join(__dirname, '/dist/db-web-app'))); 
 
     // application ---------------------------------------------------
 
     app.get('/', function(req,res)
     {
-        res.sendFile('index.html', { root: __dirname + '/dist/db-web-app'});
+        res.sendFile('app.component.html', { root: __dirname + '/src/app'});
+        res.sendFile('app.component.ts', { root: __dirname + '/src/app'});
+        // res.sendFile('index.html', { root: __dirname + '/dist/db-web-app'});
+    }); 
+    app.get('/main', function(req,res)
+    {
+        res.sendFile('main.component.html', { root: __dirname + '/src/app'});
+        // res.sendFile('app.component.ts', { root: __dirname + '/src/app'});
+        // res.sendFile('index.html', { root: __dirname + '/dist/db-web-app'});
     }); 
 
     app.get('/test/', function(req, res)
