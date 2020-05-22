@@ -7,4 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent {
   title = 'db-web-app';
+  month = "";
+  days = [
+    {
+      number: "1"
+    },
+    {
+      number: "2"
+    }
+  ];
 }
