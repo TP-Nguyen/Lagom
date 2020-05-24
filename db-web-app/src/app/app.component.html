@@ -4,15 +4,15 @@
 <body
 ><div class="box">
 
-  <h2>{{registrierungTitel}}</h2>
-  <form>
-    <div *ngFor="let registrierungElement of registrierungElemente">
-      <div class="inputBox">
-        <input type="text" required="">
-        <label>{{registrierungElement.input}}</label>
-      </div>
-    </div>
-  </form>
+  <h2>{{loginTitel}}</h2>
+        <form>
+          <div *ngFor="let loginElement of loginElemente">
+            <div class="inputBox">
+              <input type="text" required="">
+              <label>{{loginElement.input}}</label>
+            </div>
+          </div>
+        </form>
 
 <!-- Button "login" -->
 <!-- <a routerLink="/main"> -->
