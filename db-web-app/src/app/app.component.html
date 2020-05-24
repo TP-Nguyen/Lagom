@@ -4,13 +4,30 @@
 <body
 ><div class="box">
 
-  <h2>{{registrierungTitel}}</h2>
+  <h2>RegistrierungTitel</h2>
   <form>
     <div *ngFor="let registrierungElement of registrierungElemente">
-      <div class="inputBox">
+
+    <div class="inputBox">
         <input type="text" required="">
-        <label>{{registrierungElement.input}}</label>
-      </div>
+        <label>Nutzername</label>
+    </div>
+
+    <div class="inputBox">
+        <input type="text" required="">
+        <label>Ganzer Name</label>
+    </div>
+
+    <div class="inputBox">
+      <input type="text" required="">
+      <label>Email</label>
+    </div>
+
+    <div class="inputBox">
+      <input type="text" required="">
+      <label>Passwort</label>
+    </div>
+
     </div>
   </form>
 
