@@ -65,7 +65,7 @@
                 if(err) throw err; 
                 res.send(result); 
             }); 
-            // console.log("Eintrag");
+            console.log("Eintrag");
             connection.end(); 
         }); 
     });
