@@ -15,6 +15,7 @@
     app.use(express.static(path.join(__dirname, '/src/app'))); 
     // app.use(express.static(path.join(__dirname, '/dist/db-web-app'))); 
 
+    //hochschul server
     var connection = mysql.createConnection({
         host: "195.37.176.178", 
         port: "20133",
@@ -22,7 +23,13 @@
         password: "PlrROASg,'MPyp92yVN/Q00/Y\\?8g+1e", 
         database: "20_Gruppe5_DB"
     });
-    
+
+    // var server = app.listen(SERVER_PORT, function (){
+    //     let host = server.address().address,
+    //         port = server.address().port;
+
+    //         console.log("Lagom", host, port)
+    // });
     // application ---------------------------------------------------
 
     app.get('/', function(req,res)
@@ -58,7 +65,8 @@
                 if(err) throw err; 
                 res.send(result); 
             }); 
-            // connection.end(); 
+            // console.log("Eintrag");
+            connection.end(); 
         }); 
     });
 

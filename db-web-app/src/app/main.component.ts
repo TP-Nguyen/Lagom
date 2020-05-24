@@ -27,10 +27,11 @@ export class MainComponent {
 
   Eintraege: Observable<Eintrag[]>;
 
-  ngOnInit(): void {
+  getEintrag(): void {
     this.Eintraege = this.MainService.getEintrag();
 
     this.Eintraege.subscribe(data => {});
+    console.log("Eintrag");
     }
 
 }
