@@ -1,6 +1,6 @@
 
 
-<!-- <div class="box">
+<div class="box">
 
     <h2>{{registrierungTitel}}</h2>
     <form>
@@ -12,47 +12,17 @@
       </div>
     </form>
 
-Button "login"
-<a routerLink="/main">
+<!-- Button "login" -->
+<!-- <a routerLink="/main"> -->
 <a routerLink="">
   <input id="login" type="submit" value="login">
 </a>
 
-Button "registrieren"
+<!--Button "registrieren"-->
 <a routerLink="">
   <input id="registrieren" type="submit" value="registrieren">
 </a>
 
-</div> -->
-
-
-<div class="box"></div>
-  <h2>RegistrierungTitel</h2>
-    <form>
-      <div *ngFor="let registrierungElement of registrierungElemente">
-
-      <div class="inputBox">
-          <input [(ngModel)]="Nutzername" type="text" required="">
-          <label>Nutzername</label>
-      </div>
-
-      <div class="inputBox">
-          <input [(ngModel)]="GanzerName" type="text" required="">
-          <label>Ganzer Name</label>
-      </div>
-
-      <div class="inputBox">
-        <input [(ngModel)]="Email" type="text" required="">
-        <label>Email</label>
-      </div>
-
-      <div class="inputBox">
-        <input [(ngModel)]="Passwort" type="text" required="">
-        <label>Passwort</label>
-      </div>
-
-      </div>
-    </form>
 </div>
 
 
