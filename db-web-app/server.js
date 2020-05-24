@@ -39,20 +39,28 @@
     {
         connection.connect(function(err)
         {
-            if(err) throw err; 
-            console.log("connected");
-
+            // if(err) throw err; 
+            // console.log("connected");
             connection.query("SELECT * FROM 20_Gruppe5_DB.Nutzer", function(err, result)
             {
                 if(err) throw err; 
                 res.send(result); 
             }); 
-
-            connection.end(); 
-
+            // connection.end(); 
         }); 
     });
-
+    app.get('/Eintrag', function(req, res)
+    {
+        connection.connect(function(err)
+        {
+            connection.query("SELECT * FROM 20_Gruppe5_DB.Eintrag", function(err, result)
+            {
+                if(err) throw err; 
+                res.send(result); 
+            }); 
+            // connection.end(); 
+        }); 
+    });
 
     // listen (start app with node server.js) =========================
     app.listen(8080, function(){
