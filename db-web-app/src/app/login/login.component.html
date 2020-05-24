@@ -1,13 +1,11 @@
-
-
 <div class="box">
 
-    <h2>{{registrierungTitel}}</h2>
+    <h2>{{loginTitel}}</h2>
     <form>
-      <div *ngFor="let registrierungElement of registrierungElemente">
+      <div *ngFor="let loginElemente of loginElemente">
         <div class="inputBox">
           <input type="text" required="">
-          <label>{{registrierungElement.input}}</label>
+          <label>{{loginElemente.input}}</label>
         </div>
       </div>
     </form>
@@ -24,6 +22,3 @@
 </a>
 
 </div>
-
-
-<router-outlet></router-outlet>
