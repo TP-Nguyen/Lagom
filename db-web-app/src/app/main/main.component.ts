@@ -28,7 +28,7 @@ export class MainComponent implements OnInit {
     this.ziele = this.mainService.getZiele();
 
     //this.nutzer = this.mainService.addNutzer(this.nutzer);
-    //this.mainService.addNutzer(neuerNutzer).subscribe(newNutzer => this.nutzer.push(newNutzer));
+    //this.mainService.addNutzer(newNutzer).subscribe(newNutzer => this.nutzer.push(newNutzer));
 
     this.todos.subscribe(data => {console.log(data);});
     console.log("Test, this.todos");
