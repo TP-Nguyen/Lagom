@@ -45,7 +45,7 @@ var server = app.listen(SERVER_PORT, function (){
         console.log("App listening at http://%s:%s", host, port)
 });
 
-app.get('/Eintrag', function (req, res) {
+app.get('/eintrag', function (req, res) {
 
     connection.query('SELECT * FROM Eintrag', function (error, results, fields) {
       if (error) throw error;
@@ -54,7 +54,7 @@ app.get('/Eintrag', function (req, res) {
     });
 });
 
-app.get('/Kalender', function (req, res) {
+app.get('/kalender', function (req, res) {
 
     connection.query('SELECT * FROM Kalender', function (error, results, fields) {
       if (error) throw error;

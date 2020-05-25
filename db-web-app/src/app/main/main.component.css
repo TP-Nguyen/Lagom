@@ -33,7 +33,7 @@ root{
     justify-content: center;
     clear: both;
     color: #fff;
-/*         background: #333;*/
+        /* background: #333; */
     border-bottom: 1px solid #333;
 }
 #navbar ul{

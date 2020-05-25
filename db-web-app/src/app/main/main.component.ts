@@ -4,26 +4,27 @@ import { Observable, from } from 'rxjs';
 import{Eintrag} from '../model/eintrag';
 
 @Component({
-  selector: 'app-main',
+  // selector: 'app-main', //Hier richtig?
+  selector: 'app-root', 
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css']
 })
-export class MainComponent {
+export class MainComponent implements OnInit {
 
-  constructor(private MainService: MainService) { }
+  constructor(private mainService: MainService) { }
 
-  Eintraege: Observable<Eintrag[]>;
+  eintraege: Observable<Eintrag[]>;
 
   ngOnInit(): void {
-    console.log("Eintrag");
-    this.Eintraege = this.MainService.getEintrag();
+    this.eintraege = this.mainService.getEintraege();
 
-    this.Eintraege.subscribe(data => { 
+    this.eintraege.subscribe(data => {
       console.log(data);});
-      console.log("Eintrag");
-      console.log(this.Eintraege);
 
-    }
+
+    console.log("Test, this.eintraege");
+    console.log(this.eintraege);
+  }
 
   title = 'db-web-app';
   month = "monat";
