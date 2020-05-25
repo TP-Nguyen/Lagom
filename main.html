@@ -13,11 +13,11 @@
          max-width: 100vw;
          height: 80vh;
          display: grid;
-         grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));
+         grid-template-columns: repeat(auto-fill, minmax(300px, 500px));
          grid-template-rows: minmax(100px, auto);
          grid-auto-flow: dense;
          grid-gap: 3px; 
-         margin: 0;
+         margin: 0 30px;
      }
      navbar{
          position: absolute;
@@ -113,7 +113,6 @@
         justify-content: center;
         align-items: center;
      }
-     
      #Kalender .content .month .day:hover{
 /*         background:  dodgerblue;*/
          background-color:rgba(192,192,192,0.8);
@@ -148,6 +147,83 @@
          grid-row: span 3;
      }
     
+     .list{
+         height: 80%;
+         overflow: auto;
+         width: 100%;
+         box-sizing: border-box;
+         margin: 0;
+         position: absolute;
+     }
+     .ziel{
+         background-color:rgba(0,0,0,0.5);
+         width: calc(100% - 15px);
+         border-left: 5px solid dodgerblue;
+         padding: 3px 5px;
+         margin-bottom: 3px;
+         text-align: left;
+     }
+     .ziel:hover{
+         background-color:rgba(192,192,192,0.8);
+     }
+     
+     .content{         
+         width: 100%;
+         height: 100%;
+         display: block;
+         box-sizing: border-box;
+         position: relative;}
+     
+     #ToDo .content .list .tun input{
+         position: absolute;
+         opacity: 0;
+         cursor: pointer;
+         height: 25px;
+         width: 455px;
+         margin: 0;
+     }  
+     #ToDo .content .list .tun .checkmark {
+          height: 23px;
+         margin-right: 5px;
+          width: 23px;
+/*          background-color: #eee;*/
+/*         background-color:rgba(192,192,192,0.8);*/
+         border: 1px solid dodgerblue;
+         float: left;
+    }
+     #ToDo .content .list .tun input:checked ~ .checkmark {
+          background-color: dodgerblue;
+        }
+     #ToDo .content .list .tun .checkmark:after {
+          content: "";
+          position: absolute;
+          display: none;
+        }
+     #ToDo .content .list .tun input:checked ~ .checkmark:after {
+          display: block;
+        }
+     #ToDo .content .list .tun .checkmark:after {
+          width: 5px;
+          height: 10px;
+          -webkit-transform: rotate(45deg);
+          -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
+        } 
+     #ToDo .content .list .tun{
+         height: auto;
+         width: 450px;
+         display: flex;
+         clear: both;
+         padding: 3px 5px;
+         margin-bottom: 3px;
+         text-align: left;
+         align-items: center;
+     }
+     #ToDo .content .list .tun:hover{
+         background-color:rgba(192,192,192,0.8);
+     }
+     
+     
     </style>
 </head>
 
@@ -164,6 +240,7 @@
     <div class="field" id="Tagebuch">
         <div class="content">
             <p>Tagebuch</p>
+            <div class="list"></div>
         </div>
     </div>
     
@@ -210,12 +287,86 @@
     <div class="field" id="Ziele">
         <div class="content">
             <p>Ziele</p>
+            <div class="list">
+            <!--            <div *ngFor="let Eintrag of Eintraege  | async">-->
+                <div class="ziel">
+                <h4>titel</h4>
+                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+                </div>
+                <div class="ziel">
+                <h4>titel</h4>
+                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. </p>
+                </div>
+                <div class="ziel">
+                <h4>titel</h4>
+                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. </p>
+                </div>
+                <div class="ziel">
+                <h4>titel</h4>
+                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. </p>
+                </div>
+                <div class="ziel">
+                <h4>titel</h4>
+                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. </p>
+                </div>
+                <div class="ziel">
+                <h4>titel</h4>
+                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. </p>
+                </div>
+                <div class="ziel">
+                <h4>titel</h4>
+                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. </p>
+                </div>
+            </div>
         </div>
     </div>
     
     <div class="field" id="ToDo">
         <div class="content">
             <p>ToDo</p>
+            <div class="list">
+<!--            *ngFor -->
+                <div class="tun">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <label>Lorem ipsum dolor sit amet, consetetur sadipscing elitr</label>
+                </div>
+                <div class="tun">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <label>Lorem ipsum dolor sit amet, consetetur sadipscing elitr</label>
+                </div>
+                <div class="tun">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <label>Lorem ipsum dolor sit amet, consetetur sadipscing elitr</label>
+                </div>
+                <div class="tun">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <label>Lorem ipsum dolor sit amet, consetetur sadipscing elitr</label>
+                </div>
+                <div class="tun">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <label>Lorem ipsum dolor sit amet, consetetur sadipscing elitr</label>
+                </div>
+                <div class="tun">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <label>Lorem ipsum dolor sit amet, consetetur sadipscing elitr</label>
+                </div>
+                <div class="tun">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <label>Lorem ipsum dolor sit amet, consetetur sadipscing elitr</label>
+                </div>
+                <div class="tun">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>                    
+                    <label>Lorem ipsum dolor sit amet, consetetur sadipscing elitr</label>
+                </div>
+            </div>
         </div>
     </div>
     
@@ -223,18 +374,21 @@
     <div class="field" id="Erinnerung">
         <div class="content">
             <p>Erinnerung</p>
+            <div class="list"></div>
         </div>
     </div>
     
     <div class="field" id="Galerie">
         <div class="content">
             <p>Galerie</p>
+            <div class="list"></div>
         </div>
     </div> 
     
     <div class="field" id="Motivation">
         <div class="content">
             <p>Motivation</p>
+            {{motivation.slogan}}
         </div>
     </div>
 </div>       

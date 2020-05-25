@@ -30,12 +30,9 @@
 
     //         console.log("Lagom", host, port)
     // });
+
     // application ---------------------------------------------------
 
-    app.get('/', function(req,res)
-    {
-        res.sendFile('app.component.html', { root: __dirname + '/src/app'});
-    }); 
     app.get('/main', function(req,res)
     {
         res.sendFile('main.component.html', { root: __dirname + '/src/app'});
@@ -65,10 +62,14 @@
                 if(err) throw err; 
                 res.send(result); 
             }); 
-            console.log("Eintrag");
             connection.end(); 
         }); 
     });
+
+    // app.get('/', function(req,res)
+    // {
+    //     res.sendFile('app.component.html', { root: __dirname + '/src/app'});
+    // });
 
     // listen (start app with node server.js) =========================
     app.listen(8080, function(){

@@ -13,6 +13,10 @@
         <div class="field" id="Tagebuch">
             <div class="content">
                 <p>Tagebuch</p>
+                <div class="list">
+                    <!-- *ngFor="let x of x" -->
+                    <!-- {{...}} -->
+                </div>
             </div>
         </div>
         
@@ -28,8 +32,12 @@
         <div class="field" id="Ziele">
             <div class="content">
                 <p>Ziele</p>
-                <div id="ziel" *ngFor="let Eintrag of Eintraege  | async">
-                {{Eintrag.Titel}}
+                <div class="list" *ngFor="let Eintrag of Eintraege">
+                        <!-- *ngFor="let x of x" -->
+                    <div class="ziel">
+                        <h4>{{Eintrag.titel}}</h4>
+                        <p><!-- {{...}} --></p>
+                        </div>    
                 </div>
             </div>
         </div>
@@ -37,6 +45,14 @@
         <div class="field" id="ToDo">
             <div class="content">
                 <p>ToDo</p>
+                <div class="list" >
+                <!-- *ngFor="let x of x" -->
+                    <div class="do">
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                        <label><!-- {{...}} --></label>
+                    </div>
+                </div>
             </div>
         </div>
         
@@ -44,20 +60,23 @@
         <div class="field" id="Erinnerung">
             <div class="content">
                 <p>Erinnerung</p>
+                <div class="list"></div>
             </div>
         </div>
         
         <div class="field" id="Galerie">
             <div class="content">
                 <p>Galerie</p>
+                <div class="list"></div>
             </div>
         </div> 
         
         <div class="field" id="Motivation">
             <div class="content">
                 <p>Motivation</p>
+                <!-- {{motivation.slogan}} -->
             </div>
         </div>
     </div>       
     </body>
-    <router-outlet></router-outlet>
+    <!-- <router-outlet></router-outlet> -->

@@ -151,3 +151,78 @@ root{
     grid-column: span 1;
     grid-row: span 3;
 }
+
+.list{
+    height: 80%;
+    overflow: auto;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    position: absolute;
+}
+.ziel{
+    background-color:rgba(0,0,0,0.5);
+    width: calc(100% - 15px);
+    border-left: 5px solid dodgerblue;
+    padding: 3px 5px;
+    margin-bottom: 3px;
+    text-align: left;
+}
+.ziel:hover{
+    background-color:rgba(192,192,192,0.8);
+}
+
+.content{         
+    width: 100%;
+    height: 100%;
+    display: block;
+    box-sizing: border-box;
+    position: relative;}
+
+#ToDo .content .list .do input{
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 25px;
+    width: 455px;
+    margin: 0;
+}  
+#ToDo .content .list .do .checkmark {
+    height: 23px;
+    margin-right: 5px;
+    width: 23px;
+    border: 1px solid dodgerblue;
+    float: left;
+}
+#ToDo .content .list .do input:checked ~ .checkmark {
+    background-color: dodgerblue;
+   }
+#ToDo .content .list .do .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+   }
+#ToDo .content .list .do input:checked ~ .checkmark:after {
+     display: block;
+   }
+#ToDo .content .list .do .checkmark:after {
+    width: 5px;
+    height: 10px;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+   } 
+#ToDo .content .list .do{
+    height: auto;
+    width: 450px;
+    display: flex;
+    clear: both;
+    padding: 3px 5px;
+    margin-bottom: 3px;
+    text-align: left;
+    align-items: center;
+}
+#ToDo .content .list .do:hover{
+    background-color:rgba(192,192,192,0.8);
+}
+

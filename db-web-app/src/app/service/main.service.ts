@@ -1,8 +1,8 @@
-import { APIConfig } from './APIconfig';
+import { APIConfig } from '../APIconfig';
 import { HttpClient , HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { Eintrag } from './eintrag';
+import { Eintrag } from '../model/eintrag';
 
 
 @Injectable({
@@ -12,7 +12,7 @@ import { Eintrag } from './eintrag';
 export class MainService {
     constructor(private http: HttpClient) {}
 
-    private readonly EintragUrl = APIConfig.URL + ':' + APIConfig.PORT + '/main';
+    private readonly EintragUrl = APIConfig.URL + ':' + APIConfig.PORT + '/Eintrag';
 
     getEintrag(): Observable<Eintrag[]> {
         return this.http.get<Eintrag[]>(this.EintragUrl)
@@ -29,6 +29,6 @@ export class MainService {
 
    
     // Make the HTTP request:
-  //  this.http.get('http://localhost:port/assets/data.json')
-    //         .subscribe(data => console.log(data));
+    //  this.http.get('http://localhost:port/assets/data.json')
+            // .subscribe(data => console.log(data));
 }
