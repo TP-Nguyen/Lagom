@@ -9,8 +9,16 @@ var cors = require('cors');
 var app = express();
 var index;
 app.use(cors());
-// var bodyParser = require('body-parser')
-// app.use(express.bodyParser());
+
+var bodyParser = require('body-parser'); 
+
+ // parse application/x-www-form-urlencoded
+ app.use(bodyParser.urlencoded({ extended: false }))
+ // parse application/json
+ app.use(bodyParser.json())
+
+
+//app.use(express.bodyParser());
 //  app.use(app.router);
 // parse application/x-www-form-urlencoded
 // app.use(bodyParser.urlencoded({ extended: false }))
