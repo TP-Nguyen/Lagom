@@ -53,6 +53,9 @@ var server = app.listen(SERVER_PORT, function (){
         console.log("App listening at http://%s:%s", host, port)
 });
 
+
+// GET-Anfragen 
+
 app.get('/eintrag', function (req, res) {
 
     connection.query('SELECT * FROM Eintrag', function (error, results, fields) {
@@ -97,20 +100,24 @@ app.get('/nutzer', function (req, res) {
 
 });
 });
+ 
 
+// POST-Methoden
 
 app.post('/nutzer', function(request, response){
   console.log('request body: '); 
   console.dir(request.body); 
 
-  const nutzerID = request.body.NutzerID; //oder kommt hier direkt die gesetzte ID hin? 
+  //const nutzerID = request.body.NutzerID; //oder kommt hier direkt die gesetzte ID hin? sollte man den Primaerschluessel ueberhaupt hier erwaehnen? 
   const nutzername = request.body.Nutzername; 
   const ganzerName = request.body.GanzerName; 
   const email = request.body.Email; 
   const passwort = request.body.Passwort; 
 
-  const sql = "INSERT INTO Nutzer (NutzerID, Nutzername, GanzerName, Email, Passwort)" + "VALUES (?, ?, ?, ?, ?)"; 
-  const values = [nutzerID, nutzername, ganzerName, email, passwort];
+  //const sql = "INSERT INTO Nutzer (NutzerID, Nutzername, GanzerName, Email, Passwort)" + "VALUES (?, ?, ?, ?, ?)";
+  //const values = [nutzerID, nutzername, ganzerName, email, passwort];
+  const sql = "INSERT INTO Nutzer (Nutzername, GanzerName, Email, Passwort)" + "VALUES (?, ?, ?, ?, ?)";
+  const values = [nutzername, ganzerName, email, passwort];
 
     pool.query(sql, values, function(error, results, fields) {
       if (error) throw error; 
