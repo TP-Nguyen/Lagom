@@ -23,8 +23,8 @@
         <div class="field" id="Kalender">
             <div class="content">
                 <h3>{{month}}</h3>
-                <div class="month" *ngFor="let day of days">       
-                        <div class="day">{{day.number}}</div>
+                <div class="month" >       
+                    <div class="day" *ngFor="let day of days">{{day.number}}</div>
                 </div>
             </div>
         </div>
@@ -32,9 +32,8 @@
         <div class="field" id="Ziele">
             <div class="content">
                 <p>Ziele</p>
-                <div class="list" *ngFor="let eintrag of eintraege | async">
-                        <!-- *ngFor="let x of x" -->
-                    <!-- <div class="ziel"> -->
+                <div class="list">
+                    <div class="ziel" *ngFor="let eintrag of eintraege | async">
                         <!-- <h4>{{eintrag.Titel}}</h4> -->
                         <p>{{eintrag.Datum}}</p>
                         <p>{{eintrag.Titel}}</p>
@@ -42,7 +41,7 @@
                         <p>{{eintrag.Text}}</p>
                         <p>{{eintrag.Notiz}}</p>
                         <p>{{eintrag.Anmerkung}}</p>
-                    <!-- </div>     -->
+                    </div>    
                 </div>
             </div>
         </div>

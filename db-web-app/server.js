@@ -48,7 +48,16 @@ var server = app.listen(SERVER_PORT, function (){
 app.get('/eintrag', function (req, res) {
 
     connection.query('SELECT * FROM Eintrag', function (error, results, fields) {
-      if (error) throw error;
+    if (error) throw error;
+      res.send(results);
+
+    });
+});
+
+app.get('/ziel', function (req, res) {
+
+    connection.query('SELECT * FROM Eintrag natural join Ziel', function (error, results, fields) { 
+    if (error) throw error;
       res.send(results);
 
     });
