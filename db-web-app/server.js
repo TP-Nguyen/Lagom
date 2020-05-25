@@ -89,6 +89,35 @@ app.get('/kalender', function (req, res) {
   });
 });
 
+app.get('/nutzer', function (req, res) {
+
+  connection.query('SELECT * FROM Nutzer', function (error, results, fields) {
+    if (error) throw error;
+    res.send(results);
+
+});
+});
+
+
+app.post('/nutzer', function(request, response){
+  console.log('request body: '); 
+  console.dir(request.body); 
+
+  const nutzerID = request.body.NutzerID; //oder kommt hier direkt die gesetzte ID hin? 
+  const nutzername = request.body.Nutzername; 
+  const ganzerName = request.body.GanzerName; 
+  const email = request.body.Email; 
+  const passwort = request.body.Passwort; 
+
+  const sql = "INSERT INTO Nutzer (NutzerID, Nutzername, GanzerName, Email, Passwort)" + "VALUES (?, ?, ?, ?, ?)"; 
+  const values = [nutzerID, nutzername, ganzerName, email, passwort];
+
+    pool.query(sql, values, function(error, results, fields) {
+      if (error) throw error; 
+      response.send(results); 
+    }); 
+}); 
+
 // app.post('/tugend', function (request, response) {
 //     console.log('request body: ');
 //     console.dir(request.body);
