@@ -54,6 +54,15 @@ app.get('/eintrag', function (req, res) {
     });
 });
 
+app.get('/todo', function (req, res) {
+
+    connection.query('SELECT * FROM Eintrag natural join ToDo', function (error, results, fields) { 
+    if (error) throw error;
+      res.send(results);
+
+    });
+});
+
 app.get('/ziel', function (req, res) {
 
     connection.query('SELECT * FROM Eintrag natural join Ziel', function (error, results, fields) { 

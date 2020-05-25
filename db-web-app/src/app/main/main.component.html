@@ -50,11 +50,15 @@
             <div class="content">
                 <p>ToDo</p>
                 <div class="list" >
-                <!-- *ngFor="let x of x" -->
-                    <div class="do">
+                    <div class="do" *ngFor="let todo of todos | async ">
                         <input type="checkbox">
                         <span class="checkmark"></span>
-                        <label><!-- {{...}} --></label>
+                        <label>{{todo.Datum}}</label>
+                        <label>{{todo.Titel}}</label>
+                        <label>{{todo.Untertitel}}</label>
+                        <label>{{todo.Text}}</label>
+                        <label>{{todo.Notiz}}</label>
+                        <label>{{todo.Anmerkung}}</label>
                     </div>
                 </div>
             </div>

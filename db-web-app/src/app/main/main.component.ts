@@ -3,6 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Observable, from } from 'rxjs';
 import{Eintrag} from '../model/eintrag';
 import{Ziel} from '../model/ziel';
+import{Todo} from '../model/todo';
 
 @Component({
   // selector: 'app-main', //Hier richtig?
@@ -15,14 +16,18 @@ export class MainComponent implements OnInit {
   constructor(private mainService: MainService) { }
 
   ziele: Observable<Ziel[]>;
+  todos: Observable<Todo[]>;
 
   ngOnInit(): void {
+
+    this.todos = this.mainService.getTodos();
     this.ziele = this.mainService.getZiele();
 
-    this.ziele.subscribe(data => {
-      console.log(data);});
+    this.todos.subscribe(data => {console.log(data);});
+    console.log("Test, this.todos");
+    console.log(this.todos);
 
-
+    this.ziele.subscribe(data => {console.log(data);});
     console.log("Test, this.ziele");
     console.log(this.ziele);
   }
