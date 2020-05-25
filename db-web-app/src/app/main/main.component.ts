@@ -4,6 +4,7 @@ import { Observable, from } from 'rxjs';
 import{Eintrag} from '../model/eintrag';
 import{Ziel} from '../model/ziel';
 import{Todo} from '../model/todo';
+import{Nutzer} from '../model/nutzer';
 
 @Component({
   // selector: 'app-main', //Hier richtig?
@@ -18,10 +19,16 @@ export class MainComponent implements OnInit {
   ziele: Observable<Ziel[]>;
   todos: Observable<Todo[]>;
 
+  //nutzer: Observable<Nutzer>; 
+  nutzerListe: Observable<Nutzer[]>; 
+
   ngOnInit(): void {
 
     this.todos = this.mainService.getTodos();
     this.ziele = this.mainService.getZiele();
+
+    //this.nutzer = this.mainService.addNutzer(this.nutzer);
+    //this.mainService.addNutzer(neuerNutzer).subscribe(newNutzer => this.nutzer.push(newNutzer));
 
     this.todos.subscribe(data => {console.log(data);});
     console.log("Test, this.todos");

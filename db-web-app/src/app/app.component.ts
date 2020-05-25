@@ -2,6 +2,7 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 // import { AppComponent } from './app.component';
 // import { HttpClientModule }    from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
+import {Nutzer} from '../app/model/nutzer'; 
 
 @Component({
   selector: 'app-root',
@@ -43,7 +44,7 @@ registrierungElemente = [
       input: "Passwort"
     }
   ];
-  
+
   ngOnInit() {
   }
 //thenLogin: TemplateRef<any>|null =  null;
