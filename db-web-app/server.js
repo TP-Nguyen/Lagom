@@ -1,5 +1,4 @@
 // server.js
-
 const SERVER_PORT = 8080;
 
 var express = require('express');
@@ -7,10 +6,10 @@ var path = require('path');
 var mysql = require('mysql');
 var cors = require('cors');
 
-// var bodyParser = require('body-parser')
 var app = express();
 var index;
 app.use(cors());
+// var bodyParser = require('body-parser')
 // app.use(express.bodyParser());
 //  app.use(app.router);
 // parse application/x-www-form-urlencoded
@@ -27,7 +26,7 @@ app.get('/', function(req,res)
 
 app.get('/main', function(req,res)
 {
-    res.sendFile('main.component.html', { root: __dirname + '/src/app'});
+    res.sendFile('main.component.html', { root: __dirname + '/src/app/main'});
 }); 
 
  //hochschul server
@@ -38,16 +37,7 @@ app.get('/main', function(req,res)
     password: "PlrROASg,'MPyp92yVN/Q00/Y\\?8g+1e", 
     database: "20_Gruppe5_DB"
 });
-
-
-
-
-
-
-
-
-
-    
+   
 var server = app.listen(SERVER_PORT, function (){
     let host = server.address().address,
         port = server.address().port;
@@ -72,3 +62,26 @@ app.get('/Kalender', function (req, res) {
 
   });
 });
+
+// app.post('/tugend', function (request, response) {
+//     console.log('request body: ');
+//     console.dir(request.body);
+
+//     const name = request.body.name;
+//     const beschreibung = request.body.beschreibung;
+//     const wert = request.body.wert;
+//     const benoetigteWdh = request.body.benoetigteWdh;
+//     const aeltesterID = 7;
+//     const kategorieID = request.body.kategorieID;
+//     const sql = "INSERT INTO fantasy_score_db.tugend (name, beschreibung, wert, benoetigteWdh, aeltesterID, kategorieID) " +
+//       "VALUES (?, ?, ?, ?, ?, ?)";
+//     const values = [name, beschreibung, wert, benoetigteWdh, aeltesterID, kategorieID];
+//    // pool.query( "INSERT INTO fantasy_score_db.tugend (name, beschreibung, wert, benoetigteWdh, aeltesterID, kategorieID) " +
+//     //  "VALUES ([name], [beschreibung], [wert], [benoetigteWdh], [aeltesterID], [kategorieID])",
+//     pool.query( sql, values,
+//       function (error, results, fields) {
+//       if (error) throw error;
+//       response.send(results);
+
+//     });
+//   });
