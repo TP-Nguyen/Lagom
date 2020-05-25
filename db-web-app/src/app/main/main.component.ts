@@ -2,6 +2,7 @@ import { MainService } from '../service/main.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { Observable, from } from 'rxjs';
 import{Eintrag} from '../model/eintrag';
+import{Ziel} from '../model/ziel';
 
 @Component({
   // selector: 'app-main', //Hier richtig?
@@ -13,17 +14,17 @@ export class MainComponent implements OnInit {
 
   constructor(private mainService: MainService) { }
 
-  eintraege: Observable<Eintrag[]>;
+  ziele: Observable<Ziel[]>;
 
   ngOnInit(): void {
-    this.eintraege = this.mainService.getEintraege();
+    this.ziele = this.mainService.getZiele();
 
-    this.eintraege.subscribe(data => {
+    this.ziele.subscribe(data => {
       console.log(data);});
 
 
-    console.log("Test, this.eintraege");
-    console.log(this.eintraege);
+    console.log("Test, this.ziele");
+    console.log(this.ziele);
   }
 
   title = 'db-web-app';

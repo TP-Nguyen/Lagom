@@ -3,6 +3,7 @@ import { HttpClient , HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Eintrag } from '../model/eintrag';
+import { Ziel } from '../model/ziel';
 
 
 @Injectable({
@@ -12,10 +13,10 @@ import { Eintrag } from '../model/eintrag';
 export class MainService {
     constructor(private http: HttpClient) {}
 
-    private readonly eintragUrl = APIConfig.URL + ':' + APIConfig.PORT + '/eintrag';
+    private readonly zielUrl = APIConfig.URL + ':' + APIConfig.PORT + '/ziel';
 
-    getEintraege(): Observable<Eintrag[]> {
-        return this.http.get<Eintrag[]>(this.eintragUrl)
+    getZiele(): Observable<Ziel[]> {
+        return this.http.get<Ziel[]>(this.zielUrl)
     }
 
     // Make the HTTP request:

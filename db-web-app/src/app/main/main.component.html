@@ -33,14 +33,14 @@
             <div class="content">
                 <p>Ziele</p>
                 <div class="list">
-                    <div class="ziel" *ngFor="let eintrag of eintraege | async">
+                    <div class="ziel" *ngFor="let ziel of ziele | async">
                         <!-- <h4>{{eintrag.Titel}}</h4> -->
-                        <p>{{eintrag.Datum}}</p>
-                        <p>{{eintrag.Titel}}</p>
-                        <p>{{eintrag.Untertitel}}</p>
-                        <p>{{eintrag.Text}}</p>
-                        <p>{{eintrag.Notiz}}</p>
-                        <p>{{eintrag.Anmerkung}}</p>
+                        <p>{{ziel.Datum}}</p>
+                        <p>{{ziel.Titel}}</p>
+                        <p>{{ziel.Untertitel}}</p>
+                        <p>{{ziel.Text}}</p>
+                        <p>{{ziel.Notiz}}</p>
+                        <p>{{ziel.Anmerkung}}</p>
                     </div>    
                 </div>
             </div>
