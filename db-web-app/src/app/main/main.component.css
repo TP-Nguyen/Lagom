@@ -210,6 +210,9 @@ root{
     border: 1px solid dodgerblue;
     float: left;
 }
+#ToDo .content .list .do input:checked ~ label{
+    text-decoration: line-through;
+}
 #ToDo .content .list .do input:checked ~ .checkmark {
     background-color: dodgerblue;
 }
@@ -240,4 +243,21 @@ root{
 }
 #ToDo .content .list .do:hover{
     background-color:rgba(192,192,192,0.8);
+}
+
+.delete{
+    background-color: red;
+    height: inherit;
+    min-height: 50px;
+    width: 50px;
+    float: right;
+    cursor: pointer;
+}
+.update{
+    background-color: green;
+    height: inherit;
+    min-height: 50px;
+    width: 50px;
+    float: right;
+    cursor: pointer;
 }

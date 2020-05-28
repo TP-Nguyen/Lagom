@@ -16,6 +16,7 @@
                 <div class="list">
                     <div class="ziel" *ngFor="let tagebuch of tagebuch | async">
                         <!-- <h4>{{eintrag.Titel}}</h4> -->
+                        <div class="update" (click)='update' ><span >/</span></div>
                         <p>{{tagebuch.Datum}}</p>
                         <p>{{tagebuch.Titel}}</p>
                         <p>{{tagebuch.Untertitel}}</p>
@@ -53,6 +54,7 @@
                 <p>Ziele</p>
                 <div class="list">
                     <div class="ziel" *ngFor="let ziel of ziele | async">
+                        <div class="delete" (click)='delete'><span >X</span></div>
                         <!-- <h4>{{eintrag.Titel}}</h4> -->
                         <p>{{ziel.Datum}}</p>
                         <p>{{ziel.Titel}}</p>
@@ -60,6 +62,7 @@
                         <p>{{ziel.Text}}</p>
                         <p>{{ziel.Notiz}}</p>
                         <p>{{ziel.Anmerkung}}</p>
+
                     </div>    
                 </div>
             </div>

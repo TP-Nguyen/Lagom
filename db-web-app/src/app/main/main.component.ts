@@ -73,6 +73,22 @@ export class MainComponent implements OnInit {
     console.log("Test, this.kalender");
     console.log(this.kalender);
   }
+  // public ziel$ :Ziel;
+  // constructor{
+  //   this.ziel$ = {
+  //     EintragID  : 
+  //     Datum : ziel.Datum,
+  //     Titel : ziel.Titel,
+  //     Untertitel : ziel.Untertitel,
+  //     Text : ziel.Text,
+  //     Notiz : ziel.Notiz,
+  //     Anmerkung : ziel.Anmerkung
+  //   }
+  // }
+  // public deleteZiel(event?: any): void{
+  //   console.log(this.ziel$.id);
+  // }
+  // public update
 
   title = 'db-web-app';
   month = "monat";
