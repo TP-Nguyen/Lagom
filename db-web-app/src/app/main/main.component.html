@@ -11,33 +11,39 @@
     </div>
     <div id="container">
         <div class="field" id="Tagebuch">
-            <p>Tagebuch</p>
-            <div class="ziel" *ngFor="let tagebuch of tagebuch | async">
-                <!-- <h4>{{eintrag.Titel}}</h4> -->
-                <p>{{tagebuch.Datum}}</p>
-                <p>{{tagebuch.Titel}}</p>
-                <p>{{tagebuch.Untertitel}}</p>
-                <p>{{tagebuch.Text}}</p>
-                <p>{{tagebuch.Notiz}}</p>
-                <p>{{tagebuch.Anmerkung}}</p>
-            </div>
+            <div class="content">
+                <p>Tagebuch</p>
+                <div class="list">
+                    <div class="ziel" *ngFor="let tagebuch of tagebuch | async">
+                        <!-- <h4>{{eintrag.Titel}}</h4> -->
+                        <p>{{tagebuch.Datum}}</p>
+                        <p>{{tagebuch.Titel}}</p>
+                        <p>{{tagebuch.Untertitel}}</p>
+                        <p>{{tagebuch.Text}}</p>
+                        <p>{{tagebuch.Notiz}}</p>
+                        <p>{{tagebuch.Anmerkung}}</p>
+                    </div>
+                </div>
+            </div>    
         </div>
         
         <div class="field" id="Kalender">
             <div class="content">
                 <h3>{{month}}</h3>
-                <div class="month" >       
+                <div class="month">       
                     <div class="day" *ngFor="let day of days">{{day.number}}</div>
                 </div>
-                <div class="ziel" *ngFor="let kalender of kalender | async">
-                    <!-- <h4>{{eintrag.Titel}}</h4> -->
-                    <p>{{kalender.Datum}}</p>
-                    <p>{{kalender.Uhrzeit}}</p>
-                    <p>{{kalender.Titel}}</p>
-                    <p>{{kalender.Untertitel}}</p>
-                    <p>{{kalender.Text}}</p>
-                    <p>{{kalender.Notiz}}</p>
-                    <p>{{kalender.Anmerkung}}</p>
+                <div class="list">
+                    <div class="ziel" *ngFor="let kalender of kalender | async">
+                        <!-- <h4>{{eintrag.Titel}}</h4> -->
+                        <p>{{kalender.Datum}}</p>
+                        <p>{{kalender.Uhrzeit}}</p>
+                        <p>{{kalender.Titel}}</p>
+                        <p>{{kalender.Untertitel}}</p>
+                        <p>{{kalender.Text}}</p>
+                        <p>{{kalender.Notiz}}</p>
+                        <p>{{kalender.Anmerkung}}</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -77,14 +83,13 @@
             </div>
         </div>
         
-        
         <div class="field" id="Erinnerung">
             <div class="content">
                 <p>Erinnerung</p>
                 <div class="list">
                     <div class="ziel" *ngFor="let erinnerung of erinnerungen | async ">
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
+                        <!-- <input type="checkbox"> -->
+                        <!-- <span class="checkmark"></span> -->
                         <label>{{erinnerung.Datum}}</label>
                         <label>{{erinnerung.Uhrzeit}}</label>
                         <label>{{erinnerung.Titel}}</label>
@@ -110,9 +115,11 @@
         <div class="field" id="Motivation">
             <div class="content">
                 <p>Motivation</p>
-                <div class="ziel" *ngFor="let motivation of motivationen | async">
-                    <p>{{motivation.Text}}</p>
-                </div>
+                <div class="list">
+                    <div class="ziel" *ngFor="let motivation of motivationen | async">
+                        <p>{{motivation.Text}}</p>
+                    </div>
+                </div>    
             </div>
         </div>
     </div>       
