@@ -38,57 +38,85 @@ app.get('/main', function(req,res)
 }); 
 
  //hochschul server
- const connection = mysql.createConnection({
-    host: "195.37.176.178", 
-    port: "20133",
-    user: "Gruppe5", 
-    password: "PlrROASg,'MPyp92yVN/Q00/Y\\?8g+1e", 
-    database: "20_Gruppe5_DB"
+const connection = mysql.createConnection({
+  host: "195.37.176.178", 
+  port: "20133",
+  user: "Gruppe5", 
+  password: "PlrROASg,'MPyp92yVN/Q00/Y\\?8g+1e", 
+  database: "20_Gruppe5_DB"
 });
    
 var server = app.listen(SERVER_PORT, function (){
-    let host = server.address().address,
-        port = server.address().port;
+  let host = server.address().address,
+      port = server.address().port;
 
-        console.log("App listening at http://%s:%s", host, port)
+      console.log("App listening at http://%s:%s", host, port)
 });
 
 
 // GET-Anfragen 
 
 app.get('/eintrag', function (req, res) {
+  connection.query('SELECT * FROM Eintrag', function (error, results, fields) {
+  if (error) throw error;
+    res.send(results);
 
-    connection.query('SELECT * FROM Eintrag', function (error, results, fields) {
-    if (error) throw error;
-      res.send(results);
-
-    });
+  });
 });
 
 app.get('/todo', function (req, res) {
-
     connection.query('SELECT * FROM Eintrag natural join ToDo', function (error, results, fields) { 
     if (error) throw error;
       res.send(results);
-
     });
 });
 
 app.get('/ziel', function (req, res) {
-
     connection.query('SELECT * FROM Eintrag natural join Ziel', function (error, results, fields) { 
     if (error) throw error;
       res.send(results);
-
     });
 });
 
 app.get('/kalender', function (req, res) {
-
-    connection.query('SELECT * FROM Kalender', function (error, results, fields) {
+    connection.query('SELECT * FROM Eintrag natural join Kalender', function (error, results, fields) {
       if (error) throw error;
       res.send(results);
+  });
+});
 
+app.get('/erinnerung', function (req, res) {
+  connection.query('SELECT * FROM Eintrag natural join Erinnerung', function (error, results, fields) {
+    if (error) throw error;
+    res.send(results);
+  });
+});
+
+app.get('/tagebuch', function (req, res) {
+  connection.query('SELECT * FROM Eintrag natural join Tagebuch', function (error, results, fields) {
+    if (error) throw error;
+    res.send(results);
+  });
+});
+
+app.get('/motivation', function (req, res) {
+  connection.query('SELECT * FROM Motivation', function (error, results, fields) {
+    if (error) throw error;
+    res.send(results);
+  });
+});
+
+app.get('/nutzer', function (req, res) {
+  connection.query('SELECT * FROM Nutzer', function (error, results, fields) {
+    if (error) throw error;
+    res.send(results);
+  });
+});
+
+app.get('/galerie', function (req, res) {
+  connection.query('SELECT * FROM Galerie', function (error, results, fields) {
+    if (error) throw error;
+    res.send(results);
   });
 });
 

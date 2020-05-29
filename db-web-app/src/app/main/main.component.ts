@@ -4,7 +4,12 @@ import { Observable, from } from 'rxjs';
 import{Eintrag} from '../model/eintrag';
 import{Ziel} from '../model/ziel';
 import{Todo} from '../model/todo';
-import{Nutzer} from '../model/nutzer';
+import{Erinnerung} from '../model/erinnerung';
+import { Galerie } from '../model/galerie';
+import { Motivation } from '../model/motivation';
+import { Nutzer } from '../model/nutzer';
+import { Tagebuch } from '../model/tagebuch';
+import { Kalender } from '../model/kalender';
 
 @Component({
   // selector: 'app-main', //Hier richtig?
@@ -18,6 +23,12 @@ export class MainComponent implements OnInit {
 
   ziele: Observable<Ziel[]>;
   todos: Observable<Todo[]>;
+  erinnerungen: Observable<Erinnerung[]>;
+  galerien: Observable<Galerie[]>;
+  motivationen: Observable<Motivation[]>;
+  nutzer: Observable<Nutzer[]>;
+  tagebuch: Observable<Tagebuch[]>;
+  kalender: Observable<Kalender[]>;
 
   //nutzer: Observable<Nutzer>; 
   nutzerListe: Observable<Nutzer[]>; 
@@ -26,6 +37,12 @@ export class MainComponent implements OnInit {
 
     this.todos = this.mainService.getTodos();
     this.ziele = this.mainService.getZiele();
+    this.erinnerungen = this.mainService.getErinnerungen();
+    this.galerien = this.mainService.getGalerien();
+    this.motivationen = this.mainService.getMotivationen();
+    this.nutzer = this.mainService.getNutzer();
+    this.tagebuch = this.mainService.getTagebuch();
+    this.kalender = this.mainService.getKalender();
 
     //this.nutzer = this.mainService.addNutzer(this.nutzer);
     //this.mainService.addNutzer(newNutzer).subscribe(newNutzer => this.nutzer.push(newNutzer));
@@ -37,7 +54,47 @@ export class MainComponent implements OnInit {
     this.ziele.subscribe(data => {console.log(data);});
     console.log("Test, this.ziele");
     console.log(this.ziele);
+
+    this.erinnerungen.subscribe(data => {console.log(data);});
+    console.log("Test, this.erinnerungen");
+    console.log(this.erinnerungen);
+
+    this.galerien.subscribe(data => {console.log(data);});
+    console.log("Test, this.galerien");
+    console.log(this.galerien);
+
+    this.motivationen.subscribe(data => {console.log(data);});
+    console.log("Test, this.motivationen");
+    console.log(this.motivationen);
+
+    this.tagebuch.subscribe(data => {console.log(data);});
+    console.log("Test, this.tagebuch");
+    console.log(this.tagebuch);
+
+    this.nutzer.subscribe(data => {console.log(data);});
+    console.log("Test, this.nutzer");
+    console.log(this.nutzer);
+
+    this.kalender.subscribe(data => {console.log(data);});
+    console.log("Test, this.kalender");
+    console.log(this.kalender);
   }
+  // public ziel$ :Ziel;
+  // constructor{
+  //   this.ziel$ = {
+  //     EintragID  : 
+  //     Datum : ziel.Datum,
+  //     Titel : ziel.Titel,
+  //     Untertitel : ziel.Untertitel,
+  //     Text : ziel.Text,
+  //     Notiz : ziel.Notiz,
+  //     Anmerkung : ziel.Anmerkung
+  //   }
+  // }
+  // public deleteZiel(event?: any): void{
+  //   console.log(this.ziel$.id);
+  // }
+  // public update
 
   title = 'db-web-app';
   month = "monat";

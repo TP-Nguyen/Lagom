@@ -5,8 +5,12 @@ import { Injectable } from '@angular/core';
 import { Eintrag } from '../model/eintrag';
 import { Ziel } from '../model/ziel';
 import { Todo } from '../model/todo';
+import { Erinnerung } from '../model/erinnerung';
+import { Galerie } from '../model/galerie';
+import { Motivation } from '../model/motivation';
 import { Nutzer } from '../model/nutzer';
-
+import { Tagebuch } from '../model/tagebuch';
+import { Kalender } from '../model/kalender';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +21,13 @@ export class MainService {
 
     private readonly zielUrl = APIConfig.URL + ':' + APIConfig.PORT + '/ziel';
     private readonly todoUrl = APIConfig.URL + ':' + APIConfig.PORT + '/todo';
+    private readonly erinnerungUrl = APIConfig.URL + ':' + APIConfig.PORT + '/erinnerung';
+    private readonly galerieUrl = APIConfig.URL + ':' + APIConfig.PORT + '/galerie';
+    private readonly motivationUrl = APIConfig.URL + ':' + APIConfig.PORT + '/motivation';
+    private readonly nutzerUrl = APIConfig.URL + ':' + APIConfig.PORT + '/nutzer';
+    private readonly tagebuchUrl = APIConfig.URL + ':' + APIConfig.PORT + '/tagebuch';
+    private readonly kalenderUrl = APIConfig.URL + ':' + APIConfig.PORT + '/kalender';
+    
 
     private nutzerUrl = 'api/nutzer'; 
 
@@ -28,6 +39,30 @@ export class MainService {
 
     getTodos(): Observable<Todo[]> {
         return this.http.get<Todo[]>(this.todoUrl)
+    }
+
+    getErinnerungen(): Observable<Erinnerung[]> {
+        return this.http.get<Erinnerung[]>(this.erinnerungUrl)
+    }
+
+    getGalerien(): Observable<Galerie[]> {
+        return this.http.get<Galerie[]>(this.galerieUrl)
+    }
+
+    getMotivationen(): Observable<Motivation[]> {
+        return this.http.get<Motivation[]>(this.motivationUrl)
+    }
+
+    getNutzer(): Observable<Nutzer[]> {
+        return this.http.get<Nutzer[]>(this.nutzerUrl)
+    }
+
+    getTagebuch(): Observable<Tagebuch[]> {
+        return this.http.get<Tagebuch[]>(this.tagebuchUrl)
+    }
+
+    getKalender(): Observable<Kalender[]> {
+        return this.http.get<Kalender[]>(this.kalenderUrl)
     }
 
 
