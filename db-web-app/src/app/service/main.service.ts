@@ -25,7 +25,7 @@ export class MainService {
     private readonly erinnerungUrl = APIConfig.URL + ':' + APIConfig.PORT + '/erinnerung';
     private readonly galerieUrl = APIConfig.URL + ':' + APIConfig.PORT + '/galerie';
     private readonly motivationUrl = APIConfig.URL + ':' + APIConfig.PORT + '/motivation';
-    private readonly nutzerUrl = APIConfig.URL + ':' + APIConfig.PORT + '/nutzer';
+    // private readonly nutzerUrl = APIConfig.URL + ':' + APIConfig.PORT + '/nutzer';
     private readonly tagebuchUrl = APIConfig.URL + ':' + APIConfig.PORT + '/tagebuch';
     private readonly kalenderUrl = APIConfig.URL + ':' + APIConfig.PORT + '/kalender';
     
