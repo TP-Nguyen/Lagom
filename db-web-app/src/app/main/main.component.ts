@@ -40,12 +40,9 @@ export class MainComponent implements OnInit {
     this.erinnerungen = this.mainService.getErinnerungen();
     this.galerien = this.mainService.getGalerien();
     this.motivationen = this.mainService.getMotivationen();
-    this.nutzer = this.mainService.getNutzer();
+    this.nutzer = this.mainService.getNutzerListe();
     this.tagebuch = this.mainService.getTagebuch();
     this.kalender = this.mainService.getKalender();
-
-    //this.nutzer = this.mainService.addNutzer(this.nutzer);
-    //this.mainService.addNutzer(newNutzer).subscribe(newNutzer => this.nutzer.push(newNutzer));
 
     this.todos.subscribe(data => {console.log(data);});
     console.log("Test, this.todos");
@@ -91,10 +88,11 @@ export class MainComponent implements OnInit {
   //     Anmerkung : ziel.Anmerkung
   //   }
   // }
-  // public deleteZiel(event?: any): void{
-  //   console.log(this.ziel$.id);
-  // }
-  // public update
+  public delete(event?: any): void{
+    // console.log(this.ziel$.id);
+  }
+  public update(event?: any): void{
+  }
 
   title = 'db-web-app';
   month = "monat";

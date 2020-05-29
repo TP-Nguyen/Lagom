@@ -11,6 +11,7 @@ import { Motivation } from '../model/motivation';
 import { Nutzer } from '../model/nutzer';
 import { Tagebuch } from '../model/tagebuch';
 import { Kalender } from '../model/kalender';
+import { catchError, retry } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +30,8 @@ export class MainService {
     private readonly kalenderUrl = APIConfig.URL + ':' + APIConfig.PORT + '/kalender';
     
 
-    private nutzerUrl = 'api/nutzer'; 
+    //private addNutzerUrl = 'api/nutzer';
+    private addNutzerUrl = '../model/nutzer';
 
     httpOptions = { headers: new HttpHeaders({'Content-Type': 'application/json'}) }; 
 
@@ -53,7 +55,7 @@ export class MainService {
         return this.http.get<Motivation[]>(this.motivationUrl)
     }
 
-    getNutzer(): Observable<Nutzer[]> {
+    getNutzerListe(): Observable<Nutzer[]> {
         return this.http.get<Nutzer[]>(this.nutzerUrl)
     }
 
@@ -66,9 +68,23 @@ export class MainService {
     }
 
 
+    // addNutzer(newNutzer: Nutzer): Observable<Nutzer> {
+    //     //return this.http.post(this.nutzerUrl, newNutzer, this.httpOptions)
+    //     return this.http.post<Nutzer>(this.addNutzerUrl, newNutzer, this.httpOptions)
+    // }
+
     addNutzer(newNutzer: Nutzer): Observable<Nutzer> {
-        //return this.http.post(this.nutzerUrl, newNutzer, this.httpOptions)
-        return this.http.post<Nutzer>(this.nutzerUrl, newNutzer, this.httpOptions)
+        console.log('in service add services');
+        console.dir(newNutzer);
+        console.log(newNutzer.Nutzername);
+        return this.http.post<Nutzer>(this.addNutzerUrl, 
+            {
+                "nutzerID": newNutzer.NutzerID, 
+                "nutzername": newNutzer.Nutzername, 
+                "ganzername": newNutzer.GanzerName, 
+                "email": newNutzer.Email, 
+                "passwort": newNutzer.Passwort
+            }, this.httpOptions)
     }
 
     // Make the HTTP request:

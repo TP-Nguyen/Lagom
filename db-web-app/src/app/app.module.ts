@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import {FormsModule} from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+//import { AuthService } from './services/auth.service';
 
 import { HttpClientModule }    from '@angular/common/http';
 
@@ -32,8 +34,10 @@ const routes: Routes = [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [], //[AuthService]
   bootstrap: [AppComponent]
 })
 export class AppModule { }

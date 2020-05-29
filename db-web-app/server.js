@@ -17,14 +17,6 @@ var bodyParser = require('body-parser');
  // parse application/json
  app.use(bodyParser.json())
 
-
-//app.use(express.bodyParser());
-//  app.use(app.router);
-// parse application/x-www-form-urlencoded
-// app.use(bodyParser.urlencoded({ extended: false }))
-// parse application/json
-// app.use(bodyParser.json())
-
 app.use(express.static(path.join(__dirname, '/dist/db-web-app'))); 
 
 app.get('/', function(req,res)
@@ -132,22 +124,19 @@ app.get('/nutzer', function (req, res) {
 
 // POST-Methoden
 
-app.post('/nutzer', function(request, response){
+app.post('/nutzer', function (request, response){
   console.log('request body: '); 
   console.dir(request.body); 
 
-  //const nutzerID = request.body.NutzerID; //oder kommt hier direkt die gesetzte ID hin? sollte man den Primaerschluessel ueberhaupt hier erwaehnen? 
   const nutzername = request.body.Nutzername; 
   const ganzerName = request.body.GanzerName; 
   const email = request.body.Email; 
   const passwort = request.body.Passwort; 
 
-  //const sql = "INSERT INTO Nutzer (NutzerID, Nutzername, GanzerName, Email, Passwort)" + "VALUES (?, ?, ?, ?, ?)";
-  //const values = [nutzerID, nutzername, ganzerName, email, passwort];
   const sql = "INSERT INTO Nutzer (Nutzername, GanzerName, Email, Passwort)" + "VALUES (?, ?, ?, ?, ?)";
   const values = [nutzername, ganzerName, email, passwort];
 
-    pool.query(sql, values, function(error, results, fields) {
+    connection.query(sql, values, function(error, results, fields) {
       if (error) throw error; 
       response.send(results); 
     }); 
