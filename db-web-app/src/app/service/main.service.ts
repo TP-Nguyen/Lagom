@@ -78,7 +78,7 @@ export class MainService {
         console.log('in service add services');
         console.dir(newNutzer);
         console.log(newNutzer.Nutzername);
-        return this.http.post<Nutzer>(this.addNutzerUrl, 
+        return this.http.post<Nutzer>(this.nutzerUrl, 
             {
                 "NutzerID": newNutzer.NutzerID, 
                 "Nutzername": newNutzer.Nutzername, 
