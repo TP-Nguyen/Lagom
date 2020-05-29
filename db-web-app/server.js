@@ -133,7 +133,7 @@ app.post('/nutzer', function (request, response){
   const email = request.body.Email; 
   const passwort = request.body.Passwort; 
 
-  const sql = "INSERT INTO Nutzer (Nutzername, GanzerName, Email, Passwort)" + "VALUES (?, ?, ?, ?, ?)";
+  const sql = "INSERT INTO Nutzer (Nutzername, GanzerName, Email, Passwort)" + "VALUES (?, ?, ?, ?)";
   const values = [nutzername, ganzerName, email, passwort];
 
     connection.query(sql, values, function(error, results, fields) {
