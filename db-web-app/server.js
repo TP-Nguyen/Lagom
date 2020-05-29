@@ -128,13 +128,13 @@ app.post('/nutzer', function (request, response){
   console.log('request body: '); 
   console.dir(request.body); 
 
-  const nutzername = request.body.Nutzername; 
-  const ganzerName = request.body.GanzerName; 
-  const email = request.body.Email; 
-  const passwort = request.body.Passwort; 
+  const Nutzername = request.body.Nutzername; 
+  const GanzerName = request.body.GanzerName; 
+  const Email = request.body.Email; 
+  const Passwort = request.body.Passwort; 
 
-  const sql = "INSERT INTO Nutzer (Nutzername, GanzerName, Email, Passwort)" + "VALUES (?, ?, ?, ?)";
-  const values = [nutzername, ganzerName, email, passwort];
+  const sql = "INSERT INTO Nutzer (Nutzername, Ganzername, Email, Passwort)" + "VALUES (?, ?, ?, ?)";
+  const values = [Nutzername, GanzerName, Email, Passwort];
 
     connection.query(sql, values, function(error, results, fields) {
       if (error) throw error; 

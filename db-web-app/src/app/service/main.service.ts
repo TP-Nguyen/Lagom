@@ -79,11 +79,11 @@ export class MainService {
         console.log(newNutzer.Nutzername);
         return this.http.post<Nutzer>(this.nutzerUrl, 
             {
-                "nutzerID": newNutzer.NutzerID, 
-                "nutzername": newNutzer.Nutzername, 
-                "ganzername": newNutzer.GanzerName, 
-                "email": newNutzer.Email, 
-                "passwort": newNutzer.Passwort
+                "NutzerID": newNutzer.NutzerID, 
+                "Nutzername": newNutzer.Nutzername, 
+                "GanzerName": newNutzer.GanzerName, 
+                "Email": newNutzer.Email, 
+                "Passwort": newNutzer.Passwort
             }, this.httpOptions)
     }
 
