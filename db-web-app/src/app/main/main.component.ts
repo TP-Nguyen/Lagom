@@ -89,11 +89,11 @@ export class MainComponent implements OnInit {
   //     Text : ziel.Text,
   //     Notiz : ziel.Notiz,
   //     Anmerkung : ziel.Anmerkung
-  //   }
+  //   }this.ziel$.id
   // }
-  // public deleteZiel(event?: any): void{
-  //   console.log(this.ziel$.id);
-  // }
+  public deleteZiel(event?: any): void{
+    console.log("iwas");
+  }
   // public update
 
   title = 'db-web-app';
