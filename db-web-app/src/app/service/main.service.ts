@@ -31,7 +31,8 @@ export class MainService {
     
 
     //private addNutzerUrl = 'api/nutzer';
-    private addNutzerUrl = '../model/nutzer';
+    // private addNutzerUrl = '../nutzer';
+    private readonly addNutzerUrl = APIConfig.URL + ':' + APIConfig.PORT + '/addNutzer';
 
     httpOptions = { headers: new HttpHeaders({'Content-Type': 'application/json'}) }; 
 
@@ -77,7 +78,7 @@ export class MainService {
         console.log('in service add services');
         console.dir(newNutzer);
         console.log(newNutzer.Nutzername);
-        return this.http.post<Nutzer>(this.nutzerUrl, 
+        return this.http.post<Nutzer>(this.addNutzerUrl, 
             {
                 "nutzerID": newNutzer.NutzerID, 
                 "nutzername": newNutzer.Nutzername, 
