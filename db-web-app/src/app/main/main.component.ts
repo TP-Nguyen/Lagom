@@ -89,18 +89,11 @@ export class MainComponent implements OnInit {
   //   }
   // }
   
-  // delete(hero: Hero): void {
-  //   this.heroes = this.heroes.filter(h => h !== hero);
-  //   this.heroService.deleteHero(hero).subscribe();
-  // }
-  
   public delete(zielEintrag: Eintrag): void{
-    // console.log(this.ziel$.id);
-    
-    // this.ziele = this.ziele.filter(h => h !== zielEintrag); 
     this.mainService.deleteZielEintrag(zielEintrag).subscribe(); 
   }
   public update(event?: any): void{
+    // this.mainService.updateZielEintrag(zielEintrag).subscribe(); 
   }
 
   title = 'db-web-app';

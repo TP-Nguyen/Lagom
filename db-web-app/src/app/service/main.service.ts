@@ -92,34 +92,18 @@ export class MainService {
             }, this.httpOptions)
     }
 
-    deleteZielEintrag (zielEintrag: Eintrag | number): Observable<Eintrag> {
-        const eintragId = typeof zielEintrag === 'number' ? zielEintrag : zielEintrag.EintragID; 
-        // const url = '${this.zieleUrl}/${zielId}'; 
-        // const url = this.zielUrl.concat("/").concat(eintragId); 
-        const url = `${this.zielUrl}/${eintragId}`;
-        // const returnDelete = this.http.delete<Eintrag>(url, this.httpOptions);
-        // console.log(returnDelete)
-        console.log(eintragId)
-        const returnDelete = this.http.delete<Eintrag>(url, this.httpOptions);
-        console.log(returnDelete); 
+
+    deleteZielEintrag (zielEintrag: Eintrag): Observable<Eintrag> {
+        const EintragID = typeof zielEintrag === 'number' ? zielEintrag : zielEintrag.EintragID; 
+        // const url = ${this.zieleUrl}/${zielId}; 
+        // const url = this.zielUrl +"delete";
+        const url = this.zielUrl +"delete/"+ EintragID;
+        console.log(EintragID);
+        console.log(url);
         return this.http.delete<Eintrag>(url, this.httpOptions);
-       
-        // eintragNummer = 'return EintragID from Ziel where ZielID = input'
-        // eintragNummer = getZielEintragId();
-        // delete from Eintrag where EintragID = eintragNummer; // server.js
+        
     }
-
-
-     // deleteHero(hero: Hero | number): Observable<Hero> {
-    //     const id = typeof hero === 'number' ? hero : hero.id;
-    //     const url = `${this.heroesUrl}/${id}`;
-    
-    //     return this.http.delete<Hero>(url, this.httpOptions).pipe(
-    //       tap(_ => this.log(`deleted hero id=${id}`)),
-    //       catchError(this.handleError<Hero>('deleteHero'))
-    //     );
-    //   }
-
-
-    
+    // Make the HTTP request:
+    //  this.http.get('http://localhost:port/assets/data.json')
+            // .subscribe(data => console.log(data));
 }
