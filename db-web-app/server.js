@@ -123,44 +123,41 @@ app.get('/nutzer', function (req, res) {
  
 
 // POST-Methoden
-
-app.post('/addNutzer', function (request, response){
+app.post('/addNutzer', function (req, res) {
   console.log('request body: '); 
-  console.dir(request.body); 
+  console.dir(req.body); 
 
-  const Nutzername = request.body.Nutzername; 
-  const GanzerName = request.body.GanzerName; 
-  const Email = request.body.Email; 
-  const Passwort = request.body.Passwort; 
+  const Nutzername = req.body.Nutzername; 
+  const GanzerName = req.body.GanzerName; 
+  const Email = req.body.Email; 
+  const Passwort = req.body.Passwort; 
 
   const sql = "INSERT INTO Nutzer (Nutzername, Ganzername, Email, Passwort)" + "VALUES (?, ?, ?, ?)";
   const values = [Nutzername, GanzerName, Email, Passwort];
 
     connection.query(sql, values, function(error, results, fields) {
       if (error) throw error; 
-      response.send(results); 
+      res.send(results); 
     }); 
 }); 
 
-// app.post('/tugend', function (request, response) {
-//     console.log('request body: ');
-//     console.dir(request.body);
+// Delete-Methoden
 
-//     const name = request.body.name;
-//     const beschreibung = request.body.beschreibung;
-//     const wert = request.body.wert;
-//     const benoetigteWdh = request.body.benoetigteWdh;
-//     const aeltesterID = 7;
-//     const kategorieID = request.body.kategorieID;
-//     const sql = "INSERT INTO fantasy_score_db.tugend (name, beschreibung, wert, benoetigteWdh, aeltesterID, kategorieID) " +
-//       "VALUES (?, ?, ?, ?, ?, ?)";
-//     const values = [name, beschreibung, wert, benoetigteWdh, aeltesterID, kategorieID];
-//    // pool.query( "INSERT INTO fantasy_score_db.tugend (name, beschreibung, wert, benoetigteWdh, aeltesterID, kategorieID) " +
-//     //  "VALUES ([name], [beschreibung], [wert], [benoetigteWdh], [aeltesterID], [kategorieID])",
-//     pool.query( sql, values,
-//       function (error, results, fields) {
-//       if (error) throw error;
-//       response.send(results);
+app.delete('/zieldelete/:EintragID', function (req, res) {
+  const sql = " DELETE FROM Ziel WHERE EintragID = ?";
+  const sql2 = "DELETE FROM Eintrag WHERE EintragID = ?";
+  const values =[req.params.EintragID];
+  connection.query(sql , values, function(error, results, fields) {});
+  connection.query(sql2, values, function(error, results, fields) {});
+  console.log("delete");
 
-//     });
-//   });
+}); 
+
+app.get('/ziel/:EintragID', function (req, res) { 
+  console.log('request body: '+ req.params.EintragID); 
+  // id = request.param.EintragId;
+  connection.query('SELECT * FROM Eintrag natural join Ziel WHERE EintragID = ?', req.params.EintragID, function (error, results, fields) { 
+  if (error) throw error;
+    res.send(results);
+  });
+});

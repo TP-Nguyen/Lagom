@@ -88,6 +88,17 @@ export class MainService {
             }, this.httpOptions)
     }
 
+
+    deleteZielEintrag (zielEintrag: Eintrag): Observable<Eintrag> {
+        const EintragID = typeof zielEintrag === 'number' ? zielEintrag : zielEintrag.EintragID; 
+        // const url = ${this.zieleUrl}/${zielId}; 
+        // const url = this.zielUrl +"delete";
+        const url = this.zielUrl +"delete/"+ EintragID;
+        console.log(EintragID);
+        console.log(url);
+        return this.http.delete<Eintrag>(url, this.httpOptions);
+        
+    }
     // Make the HTTP request:
     //  this.http.get('http://localhost:port/assets/data.json')
             // .subscribe(data => console.log(data));
