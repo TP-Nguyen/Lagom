@@ -88,10 +88,12 @@ export class MainComponent implements OnInit {
   //     Anmerkung : ziel.Anmerkung
   //   }
   // }
-  public delete(event?: any): void{
-    // console.log(this.ziel$.id);
+  
+  public delete(zielEintrag: Eintrag): void{
+    this.mainService.deleteZielEintrag(zielEintrag).subscribe(); 
   }
   public update(event?: any): void{
+    // this.mainService.updateZielEintrag(zielEintrag).subscribe(); 
   }
 
   title = 'db-web-app';
