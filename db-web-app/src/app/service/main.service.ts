@@ -104,10 +104,11 @@ export class MainService {
 
 
     deleteZielEintrag (zielEintrag: Eintrag): Observable<Eintrag> {
-        const zielId = typeof zielEintrag === 'number' ? zielEintrag : zielEintrag.EintragID; 
+        const eintragId = typeof zielEintrag === 'number' ? zielEintrag : zielEintrag.EintragID; 
         const url = '${this.zieleUrl}/${zielId}'; 
         const returnDelete = this.http.delete<Eintrag>(url, this.httpOptions);
         console.log(returnDelete)
+        console.log(eintragId)
         return this.http.delete<Eintrag>(url, this.httpOptions);
         // eintragNummer = 'return EintragID from Ziel where ZielID = input'
         // eintragNummer = getZielEintragId();
