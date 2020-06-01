@@ -92,7 +92,25 @@ export class MainService {
             }, this.httpOptions)
     }
 
-    // deleteHero(hero: Hero | number): Observable<Hero> {
+    deleteZielEintrag (zielEintrag: Eintrag | number): Observable<Eintrag> {
+        const eintragId = typeof zielEintrag === 'number' ? zielEintrag : zielEintrag.EintragID; 
+        // const url = '${this.zieleUrl}/${zielId}'; 
+        // const url = this.zielUrl.concat("/").concat(eintragId); 
+        const url = `${this.zielUrl}/${eintragId}`;
+        // const returnDelete = this.http.delete<Eintrag>(url, this.httpOptions);
+        // console.log(returnDelete)
+        console.log(eintragId)
+        const returnDelete = this.http.delete<Eintrag>(url, this.httpOptions);
+        console.log(returnDelete); 
+        return this.http.delete<Eintrag>(url, this.httpOptions);
+       
+        // eintragNummer = 'return EintragID from Ziel where ZielID = input'
+        // eintragNummer = getZielEintragId();
+        // delete from Eintrag where EintragID = eintragNummer; // server.js
+    }
+
+
+     // deleteHero(hero: Hero | number): Observable<Hero> {
     //     const id = typeof hero === 'number' ? hero : hero.id;
     //     const url = `${this.heroesUrl}/${id}`;
     
@@ -103,19 +121,5 @@ export class MainService {
     //   }
 
 
-    deleteZielEintrag (zielEintrag: Eintrag): Observable<Eintrag> {
-        const eintragId = typeof zielEintrag === 'number' ? zielEintrag : zielEintrag.EintragID; 
-        const url = '${this.zieleUrl}/${zielId}'; 
-        const returnDelete = this.http.delete<Eintrag>(url, this.httpOptions);
-        console.log(returnDelete)
-        console.log(eintragId)
-        return this.http.delete<Eintrag>(url, this.httpOptions);
-        // eintragNummer = 'return EintragID from Ziel where ZielID = input'
-        // eintragNummer = getZielEintragId();
-        // delete from Eintrag where EintragID = eintragNummer; // server.js
-    }
-
-    // Make the HTTP request:
-    //  this.http.get('http://localhost:port/assets/data.json')
-            // .subscribe(data => console.log(data));
+    
 }

@@ -146,11 +146,23 @@ app.post('/addNutzer', function (request, response) {
 // Delete-Methoden
 
 app.delete('/deleteZielEintrag', function (request, response) {
-  connection.query('DELETE FROM Eintrag WHERE Eintrag natural join Ziel')
-  // connection.query('DELETE FROM posts WHERE title = "wrong„‘, function (error, results, fields) {
-  // }); 
-  eintragNummer = connection.query('RETURN EintragID FROM Ziel WHERE ZielID = input')
-  connection.query('DELETE FROM Eintrag WHERE EintragID = eintragNummer')
+  // connection.query('DELETE FROM Eintrag WHERE Eintrag natural join Ziel')
+  // // connection.query('DELETE FROM posts WHERE title = "wrong„‘, function (error, results, fields) {
+  // // }); 
+  // eintragNummer = connection.query('RETURN EintragID FROM Ziel WHERE ZielID = input')
+  // connection.query('DELETE FROM Eintrag WHERE EintragID = eintragNummer')
+
+  console.log('request body: '); 
+  console.dir(request.body); 
+
+  const EintragID = request.body.EintragID; 
+
+  const sql = "DELETE FROM Eintrag WHERE EintragID = EintragID" + "DELETE FROM Ziel WHERE EintragID = EintragID";
+  
+  connection.query(sql, values, function(error, results, fields) {
+    if (error) throw error; 
+    response.send(results);
+  });
 }); 
 
 
