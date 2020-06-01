@@ -88,8 +88,17 @@ export class MainComponent implements OnInit {
   //     Anmerkung : ziel.Anmerkung
   //   }
   // }
-  public delete(event?: any): void{
+  
+  // delete(hero: Hero): void {
+  //   this.heroes = this.heroes.filter(h => h !== hero);
+  //   this.heroService.deleteHero(hero).subscribe();
+  // }
+  
+  public delete(zielEintrag: Eintrag): void{
     // console.log(this.ziel$.id);
+    
+    // this.ziele = this.ziele.filter(h => h !== zielEintrag); 
+    this.mainService.deleteZielEintrag(zielEintrag).subscribe(); 
   }
   public update(event?: any): void{
   }

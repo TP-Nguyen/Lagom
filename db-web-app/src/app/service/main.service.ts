@@ -68,6 +68,10 @@ export class MainService {
         return this.http.get<Kalender[]>(this.kalenderUrl)
     }
 
+    // getZielEintragId(): Observable<Ziel> {
+    //     return this.http.get<Ziel>(ziel.EintragID)
+    // }
+
 
     // addNutzer(newNutzer: Nutzer): Observable<Nutzer> {
     //     //return this.http.post(this.nutzerUrl, newNutzer, this.httpOptions)
@@ -86,6 +90,28 @@ export class MainService {
                 "Email": newNutzer.Email, 
                 "Passwort": newNutzer.Passwort
             }, this.httpOptions)
+    }
+
+    // deleteHero(hero: Hero | number): Observable<Hero> {
+    //     const id = typeof hero === 'number' ? hero : hero.id;
+    //     const url = `${this.heroesUrl}/${id}`;
+    
+    //     return this.http.delete<Hero>(url, this.httpOptions).pipe(
+    //       tap(_ => this.log(`deleted hero id=${id}`)),
+    //       catchError(this.handleError<Hero>('deleteHero'))
+    //     );
+    //   }
+
+
+    deleteZielEintrag (zielEintrag: Eintrag): Observable<Eintrag> {
+        const zielId = typeof zielEintrag === 'number' ? zielEintrag : zielEintrag.EintragID; 
+        const url = '${this.zieleUrl}/${zielId}'; 
+        const returnDelete = this.http.delete<Eintrag>(url, this.httpOptions);
+        console.log(returnDelete)
+        return this.http.delete<Eintrag>(url, this.httpOptions);
+        // eintragNummer = 'return EintragID from Ziel where ZielID = input'
+        // eintragNummer = getZielEintragId();
+        // delete from Eintrag where EintragID = eintragNummer; // server.js
     }
 
     // Make the HTTP request:

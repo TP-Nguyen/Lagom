@@ -124,7 +124,7 @@ app.get('/nutzer', function (req, res) {
 
 // POST-Methoden
 
-app.post('/addNutzer', function (request, response){
+app.post('/addNutzer', function (request, response) {
   console.log('request body: '); 
   console.dir(request.body); 
 
@@ -142,25 +142,15 @@ app.post('/addNutzer', function (request, response){
     }); 
 }); 
 
-// app.post('/tugend', function (request, response) {
-//     console.log('request body: ');
-//     console.dir(request.body);
 
-//     const name = request.body.name;
-//     const beschreibung = request.body.beschreibung;
-//     const wert = request.body.wert;
-//     const benoetigteWdh = request.body.benoetigteWdh;
-//     const aeltesterID = 7;
-//     const kategorieID = request.body.kategorieID;
-//     const sql = "INSERT INTO fantasy_score_db.tugend (name, beschreibung, wert, benoetigteWdh, aeltesterID, kategorieID) " +
-//       "VALUES (?, ?, ?, ?, ?, ?)";
-//     const values = [name, beschreibung, wert, benoetigteWdh, aeltesterID, kategorieID];
-//    // pool.query( "INSERT INTO fantasy_score_db.tugend (name, beschreibung, wert, benoetigteWdh, aeltesterID, kategorieID) " +
-//     //  "VALUES ([name], [beschreibung], [wert], [benoetigteWdh], [aeltesterID], [kategorieID])",
-//     pool.query( sql, values,
-//       function (error, results, fields) {
-//       if (error) throw error;
-//       response.send(results);
+// Delete-Methoden
 
-//     });
-//   });
+app.delete('/deleteZielEintrag', function (request, response) {
+  connection.query('DELETE FROM Eintrag WHERE Eintrag natural join Ziel')
+  // connection.query('DELETE FROM posts WHERE title = "wrong„‘, function (error, results, fields) {
+  // }); 
+  eintragNummer = connection.query('RETURN EintragID FROM Ziel WHERE ZielID = input')
+  connection.query('DELETE FROM Eintrag WHERE EintragID = eintragNummer')
+}); 
+
+
