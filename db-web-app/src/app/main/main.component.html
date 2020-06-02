@@ -64,7 +64,6 @@
                         <p>{{ziel.Text}}</p>
                         <p>{{ziel.Notiz}}</p>
                         <p>{{ziel.Anmerkung}}</p>
-
                     </div>    
                 </div>
             </div>
@@ -95,6 +94,7 @@
                 <p>Erinnerung</p>
                 <div class="list">
                     <div class="listcontent" *ngFor="let erinnerung of erinnerungen | async ">
+                        <div class="delete" (click)="deleteErinnerung(erinnerung)"><span >X</span></div> 
                         <!-- <input type="checkbox"> -->
                         <!-- <span class="checkmark"></span> -->
                         <p>{{erinnerung.Datum}}</p>

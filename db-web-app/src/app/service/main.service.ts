@@ -121,5 +121,13 @@ export class MainService {
         console.log(url);
         return this.http.delete<Eintrag>(url, this.httpOptions); 
     }
+
+    deleteErinnerungEintrag (erinnerungEintrag: Eintrag): Observable<Eintrag> {
+        const EintragID = typeof erinnerungEintrag === 'number' ? erinnerungEintrag : erinnerungEintrag.EintragID; 
+        const url = this.erinnerungUrl +"Delete/"+ EintragID;
+        console.log(EintragID);
+        console.log(url);
+        return this.http.delete<Eintrag>(url, this.httpOptions); 
+    }
    
 }

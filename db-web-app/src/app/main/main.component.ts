@@ -105,6 +105,9 @@ export class MainComponent implements OnInit {
     this.mainService.deleteToDoEintrag(todoEintrag).subscribe(); 
   }
 
+  public deleteErinnerung(erinnerungEintrag: Eintrag): void{
+    this.mainService.deleteErinnerungEintrag(erinnerungEintrag).subscribe(); 
+  }
   
 
   public update(event?: any): void{
