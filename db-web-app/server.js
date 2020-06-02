@@ -143,13 +143,23 @@ app.post('/addNutzer', function (req, res) {
 
 // Delete-Methoden
 
-app.delete('/zieldelete/:EintragID', function (req, res) {
+app.delete('/zielDelete/:EintragID', function (req, res) {
   const sql = " DELETE FROM Ziel WHERE EintragID = ?";
   const sql2 = "DELETE FROM Eintrag WHERE EintragID = ?";
   const values =[req.params.EintragID];
   connection.query(sql , values, function(error, results, fields) {});
   connection.query(sql2, values, function(error, results, fields) {});
-  console.log("delete");
+  console.log("deleteZiel");
+
+}); 
+
+app.delete('/kalenderDelete/:EintragID', function (req, res) {
+  const sql = " DELETE FROM Kalender WHERE EintragID = ?";
+  const sql2 = "DELETE FROM Eintrag WHERE EintragID = ?";
+  const values =[req.params.EintragID];
+  connection.query(sql , values, function(error, results, fields) {});
+  connection.query(sql2, values, function(error, results, fields) {});
+  console.log("deleteKalender");
 
 }); 
 

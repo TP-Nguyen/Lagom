@@ -36,6 +36,7 @@
                 </div>
                 <div class="list">
                     <div class="listcontent" *ngFor="let kalender of kalender | async">
+                        <div class="delete" (click)="deleteKalender(kalender)"><span >X</span></div>
                         <!-- <h4>{{eintrag.Titel}}</h4> -->
                         <p>{{kalender.Datum}}</p>
                         <p>{{kalender.Uhrzeit}}</p>
@@ -54,7 +55,7 @@
                 <p>Ziele</p>
                 <div class="list">
                     <div class="listcontent" *ngFor="let ziel of ziele | async">
-                        <div class="delete" (click)="delete(ziel)"><span >X</span></div>
+                        <div class="delete" (click)="deleteZiel(ziel)"><span >X</span></div>
                         <!-- <h4>{{eintrag.Titel}}</h4> -->
                         <p>{{ziel.Datum}}</p>
                         <p>{{ziel.Titel}}</p>

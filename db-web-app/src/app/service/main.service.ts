@@ -93,7 +93,18 @@ export class MainService {
         const EintragID = typeof zielEintrag === 'number' ? zielEintrag : zielEintrag.EintragID; 
         // const url = ${this.zieleUrl}/${zielId}; 
         // const url = this.zielUrl +"delete";
-        const url = this.zielUrl +"delete/"+ EintragID;
+        const url = this.zielUrl +"Delete/"+ EintragID;
+        console.log(EintragID);
+        console.log(url);
+        return this.http.delete<Eintrag>(url, this.httpOptions);
+        
+    }
+
+    deleteKalenderEintrag (kalenderEintrag: Eintrag): Observable<Eintrag> {
+        const EintragID = typeof kalenderEintrag === 'number' ? kalenderEintrag : kalenderEintrag.EintragID; 
+        // const url = ${this.zieleUrl}/${zielId}; 
+        // const url = this.zielUrl +"delete";
+        const url = this.kalenderUrl +"Delete/"+ EintragID;
         console.log(EintragID);
         console.log(url);
         return this.http.delete<Eintrag>(url, this.httpOptions);
