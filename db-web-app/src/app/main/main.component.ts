@@ -96,6 +96,11 @@ export class MainComponent implements OnInit {
   public deleteKalender(kalenderEintrag: Eintrag): void{
     this.mainService.deleteKalenderEintrag(kalenderEintrag).subscribe(); 
   }
+
+  public deleteTagebuch(tagebuchEintrag: Eintrag): void{
+    this.mainService.deleteTagebuchEintrag(tagebuchEintrag).subscribe(); 
+  }
+
   public update(event?: any): void{
     // this.mainService.updateZielEintrag(zielEintrag).subscribe(); 
   }

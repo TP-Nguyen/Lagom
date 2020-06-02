@@ -141,6 +141,16 @@ app.post('/addNutzer', function (req, res) {
     }); 
 }); 
 
+//Ein spezifisches Getten
+app.get('/ziel/:EintragID', function (req, res) { 
+  console.log('request body: '+ req.params.EintragID); 
+  // id = request.param.EintragId;
+  connection.query('SELECT * FROM Eintrag natural join Ziel WHERE EintragID = ?', req.params.EintragID, function (error, results, fields) { 
+  if (error) throw error;
+    res.send(results);
+  });
+});
+
 // Delete-Methoden
 
 app.delete('/zielDelete/:EintragID', function (req, res) {
@@ -150,7 +160,6 @@ app.delete('/zielDelete/:EintragID', function (req, res) {
   connection.query(sql , values, function(error, results, fields) {});
   connection.query(sql2, values, function(error, results, fields) {});
   console.log("deleteZiel");
-
 }); 
 
 app.delete('/kalenderDelete/:EintragID', function (req, res) {
@@ -160,14 +169,15 @@ app.delete('/kalenderDelete/:EintragID', function (req, res) {
   connection.query(sql , values, function(error, results, fields) {});
   connection.query(sql2, values, function(error, results, fields) {});
   console.log("deleteKalender");
-
 }); 
 
-app.get('/ziel/:EintragID', function (req, res) { 
-  console.log('request body: '+ req.params.EintragID); 
-  // id = request.param.EintragId;
-  connection.query('SELECT * FROM Eintrag natural join Ziel WHERE EintragID = ?', req.params.EintragID, function (error, results, fields) { 
-  if (error) throw error;
-    res.send(results);
-  });
-});
+app.delete('/tagebuchDelete/:EintragID', function (req, res) {
+  const sql = " DELETE FROM Tagebuch WHERE EintragID = ?";
+  const sql2 = "DELETE FROM Eintrag WHERE EintragID = ?";
+  const values =[req.params.EintragID];
+  connection.query(sql , values, function(error, results, fields) {});
+  connection.query(sql2, values, function(error, results, fields) {});
+  console.log("deleteTagebuch");
+}); 
+
+
