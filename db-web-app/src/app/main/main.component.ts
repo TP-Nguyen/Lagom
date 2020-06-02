@@ -101,6 +101,12 @@ export class MainComponent implements OnInit {
     this.mainService.deleteTagebuchEintrag(tagebuchEintrag).subscribe(); 
   }
 
+  public deleteToDo(todoEintrag: Eintrag): void{
+    this.mainService.deleteToDoEintrag(todoEintrag).subscribe(); 
+  }
+
+  
+
   public update(event?: any): void{
     // this.mainService.updateZielEintrag(zielEintrag).subscribe(); 
   }

@@ -113,5 +113,13 @@ export class MainService {
         console.log(url);
         return this.http.delete<Eintrag>(url, this.httpOptions); 
     }
+
+    deleteToDoEintrag (todoEintrag: Eintrag): Observable<Eintrag> {
+        const EintragID = typeof todoEintrag === 'number' ? todoEintrag : todoEintrag.EintragID; 
+        const url = this.todoUrl +"Delete/"+ EintragID;
+        console.log(EintragID);
+        console.log(url);
+        return this.http.delete<Eintrag>(url, this.httpOptions); 
+    }
    
 }

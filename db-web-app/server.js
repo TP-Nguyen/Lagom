@@ -180,4 +180,12 @@ app.delete('/tagebuchDelete/:EintragID', function (req, res) {
   console.log("deleteTagebuch");
 }); 
 
+app.delete('/todoDelete/:EintragID', function (req, res) {
+  const sql = " DELETE FROM ToDo WHERE EintragID = ?";
+  const sql2 = "DELETE FROM Eintrag WHERE EintragID = ?";
+  const values =[req.params.EintragID];
+  connection.query(sql , values, function(error, results, fields) {});
+  connection.query(sql2, values, function(error, results, fields) {});
+  console.log("deleteToDo");
+}); 
 
