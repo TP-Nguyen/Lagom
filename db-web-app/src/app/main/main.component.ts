@@ -44,37 +44,21 @@ export class MainComponent implements OnInit {
     this.tagebuch = this.mainService.getTagebuch();
     this.kalender = this.mainService.getKalender();
 
-    this.todos.subscribe(data => {console.log(data);});
-    console.log("Test, this.todos");
-    console.log(this.todos);
+    this.todos.subscribe(data => {});
 
-    this.ziele.subscribe(data => {console.log(data);});
-    console.log("Test, this.ziele");
-    console.log(this.ziele);
+    this.ziele.subscribe(data => {});
 
-    this.erinnerungen.subscribe(data => {console.log(data);});
-    console.log("Test, this.erinnerungen");
-    console.log(this.erinnerungen);
+    this.erinnerungen.subscribe(data => {});
 
-    this.galerien.subscribe(data => {console.log(data);});
-    console.log("Test, this.galerien");
-    console.log(this.galerien);
+    this.galerien.subscribe(data => {});
 
-    this.motivationen.subscribe(data => {console.log(data);});
-    console.log("Test, this.motivationen");
-    console.log(this.motivationen);
+    this.motivationen.subscribe(data => {});
 
-    this.tagebuch.subscribe(data => {console.log(data);});
-    console.log("Test, this.tagebuch");
-    console.log(this.tagebuch);
+    this.tagebuch.subscribe(data => {});
 
-    this.nutzer.subscribe(data => {console.log(data);});
-    console.log("Test, this.nutzer");
-    console.log(this.nutzer);
+    this.nutzer.subscribe(data => {});
 
-    this.kalender.subscribe(data => {console.log(data);});
-    console.log("Test, this.kalender");
-    console.log(this.kalender);
+    this.kalender.subscribe(data => {});
   }
   
   public deleteZiel(zielEintrag: Eintrag): void{

@@ -141,8 +141,10 @@ export class MainService {
     // }
 
     getEintrag(gesuchterEintrag: Number): Observable<Eintrag> {
-        // const EintragID = typeof gesuchterEintrag === 'number' ? gesuchterEintrag : gesuchterEintrag.EintragID; 
-        const url = this.eintragUrl + gesuchterEintrag;
+        // const EintragID = typeof gesuchterEintrag === 'number' ? gesuchterEintrag : gesuchterEintrag; 
+        const EintragID = gesuchterEintrag.toString();
+        const url = this.eintragUrl +"/"+ gesuchterEintrag;
+        console.log(url);
         return this.http.get<Eintrag>(url)
     }
 

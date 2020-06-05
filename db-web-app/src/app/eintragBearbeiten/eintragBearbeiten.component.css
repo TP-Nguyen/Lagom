@@ -50,18 +50,10 @@
 }
 .inputBox label{
     position: absolute;
-    top: 0;
-    left: 0;
+    top: -18px;
     padding: 10px 0;
-    font-size: 16px;
-    color: #fff;
+    left: 0;
+    color:dodgerblue;
     pointer-events: none;
     transition: .5s;
 }
-/* .inputBox input:focus ~ label
-    {
-    top: -18px;
-    left: 0;
-    color:dodgerblue;
-    font-size: 12px;
-} */
