@@ -120,6 +120,16 @@ app.get('/nutzer', function (req, res) {
 
 });
 });
+
+//Ein spezifisches Getten
+app.get('/eintrag/:EintragID', function (req, res) { 
+  console.log('request body: '+ req.params.EintragID); 
+  // id = request.param.EintragId;
+  connection.query('SELECT * FROM Eintrag WHERE EintragID = ?', req.params.EintragID, function (error, results, fields) { 
+  if (error) throw error;
+    res.send(results);
+  });
+});
  
 
 // POST-Methoden
@@ -141,15 +151,31 @@ app.post('/nutzer', function (req, res) {
     }); 
 }); 
 
-//Ein spezifisches Getten
-app.get('/ziel/:EintragID', function (req, res) { 
+// PUT-Methode
+
+app.put('/tagebuchUpdate/:EintragID', function (req, res) {
+
   console.log('request body: '+ req.params.EintragID); 
-  // id = request.param.EintragId;
-  connection.query('SELECT * FROM Eintrag natural join Ziel WHERE EintragID = ?', req.params.EintragID, function (error, results, fields) { 
-  if (error) throw error;
-    res.send(results);
-  });
-});
+
+  console.log('request body: '); 
+  console.dir(req.body); 
+
+  const Datum = req.body.Datum; 
+  const Titel = req.body.Titel; 
+  const Untertitel = req.body.Untertitel; 
+  const Text = req.body.Text; 
+  const Notiz = req.body.Notiz; 
+  const Anmerkung = req.body.Anmerkung; 
+
+  const sql = "UPDATE Eintrag SET Datum = ?, Titel = ?, Untertitel = ?, Text = ?, Notiz = ?, Anmerkung = ? WHERE EintragID = ?" ;
+  
+  const values = [Datum, Titel, Untertitel, Text, Notiz, Anmerkung, req.params.EintragID];
+
+    connection.query(sql, values, function(error, results, fields) {
+      if (error) throw error; 
+      res.send(results); 
+    }); 
+}); 
 
 // Delete-Methoden
 

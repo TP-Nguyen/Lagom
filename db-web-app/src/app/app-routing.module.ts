@@ -5,6 +5,7 @@ import { EintragComponent } from './eintrag/eintrag.component';
 import { MainComponent } from './main/main.component'; 
 import { LoginComponent } from './login/login.component'; 
 import { RegistrierungComponent } from './registrierung/registrierung.component'; 
+import { EintragBearbeitenComponent } from './EintragBearbeiten/eintragBearbeiten.component'; 
 
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'eintrag', component: EintragComponent},
   { path: 'login', component: LoginComponent},
   { path: 'registrierung', component: RegistrierungComponent},
+  { path: 'bearbeiten/:EintragID', component: EintragBearbeitenComponent}
 ];
 
 @NgModule({

@@ -17,7 +17,11 @@
                     <div class="listcontent" *ngFor="let tagebuch of tagebuch | async">
                         <div class="delete" (click)="deleteTagebuch(tagebuch)"><span >X</span></div>
                         <!-- <h4>{{eintrag.Titel}}</h4> -->
-                        <div class="update"  ><span >/</span></div>
+                        <a routerLink="/bearbeiten/{{tagebuch.EintragID}}">
+                            <div class="update"><span >/</span></div>
+                            <!-- <div class="update"  (click)="updateTagebuch(tagebuch)"><span >/</span></div> -->
+                        </a>
+                      
                         <p>{{tagebuch.Datum}}</p>
                         <p>{{tagebuch.Titel}}</p>
                         <p>{{tagebuch.Untertitel}}</p>
