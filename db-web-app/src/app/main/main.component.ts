@@ -76,18 +76,6 @@ export class MainComponent implements OnInit {
     console.log("Test, this.kalender");
     console.log(this.kalender);
   }
-  // public ziel$ :Ziel;
-  // constructor{
-  //   this.ziel$ = {
-  //     EintragID  : 
-  //     Datum : ziel.Datum,
-  //     Titel : ziel.Titel,
-  //     Untertitel : ziel.Untertitel,
-  //     Text : ziel.Text,
-  //     Notiz : ziel.Notiz,
-  //     Anmerkung : ziel.Anmerkung
-  //   }
-  // }
   
   public deleteZiel(zielEintrag: Eintrag): void{
     this.mainService.deleteZielEintrag(zielEintrag).subscribe(); 
@@ -110,9 +98,17 @@ export class MainComponent implements OnInit {
   }
   
 
-  public update(event?: any): void{
-    // this.mainService.updateZielEintrag(zielEintrag).subscribe(); 
+  public updateTagebuch(tagebuchEintrag: Eintrag): void{
+    this.mainService.updateTagebuch(tagebuchEintrag).subscribe(); 
   }
+
+  // public bearbeiteTagebuch(tagebuchEintrag: Eintrag): void{
+  //   this.mainService.getTagebuchEintrag(tagebuchEintrag).subscribe(); 
+  // }
+
+  // public getEintrag(gesuchterEintrag : Eintrag): void{
+  //     this.mainService.getEintrag(gesuchterEintrag).subscribe;
+  // }
 
   title = 'db-web-app';
   month = "monat";

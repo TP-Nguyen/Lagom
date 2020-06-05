@@ -28,11 +28,7 @@ export class MainService {
     private readonly nutzerUrl = APIConfig.URL + ':' + APIConfig.PORT + '/nutzer';
     private readonly tagebuchUrl = APIConfig.URL + ':' + APIConfig.PORT + '/tagebuch';
     private readonly kalenderUrl = APIConfig.URL + ':' + APIConfig.PORT + '/kalender';
-    
-
-    //private addNutzerUrl = 'api/nutzer';
-    // private addNutzerUrl = '../nutzer';
-    private readonly addNutzerUrl = APIConfig.URL + ':' + APIConfig.PORT + '/addNutzer';
+    private readonly eintragUrl = APIConfig.URL + ':' + APIConfig.PORT + '/eintrag';
 
     httpOptions = { headers: new HttpHeaders({'Content-Type': 'application/json'}) }; 
 
@@ -67,12 +63,6 @@ export class MainService {
     getKalender(): Observable<Kalender[]> {
         return this.http.get<Kalender[]>(this.kalenderUrl)
     }
-
-
-    // addNutzer(newNutzer: Nutzer): Observable<Nutzer> {
-    //     //return this.http.post(this.nutzerUrl, newNutzer, this.httpOptions)
-    //     return this.http.post<Nutzer>(this.addNutzerUrl, newNutzer, this.httpOptions)
-    // }
 
     addNutzer(newNutzer: Nutzer): Observable<Nutzer> {
         console.log('in service add services');
@@ -129,5 +119,45 @@ export class MainService {
         console.log(url);
         return this.http.delete<Eintrag>(url, this.httpOptions); 
     }
+
+    updateTagebuch (tagebuchEintrag: Eintrag): Observable<Eintrag> {
+        const EintragID = typeof tagebuchEintrag === 'number' ? tagebuchEintrag : tagebuchEintrag.EintragID; 
+        const url = this.tagebuchUrl +"Update/"+ EintragID;
+        console.log(EintragID);
+        console.log(url);
+        return this.http.put<Eintrag>(url, 
+            {
+                "Datum": tagebuchEintrag.Datum, 
+                "Titel": tagebuchEintrag.Titel, 
+                "Untertitel": tagebuchEintrag.Untertitel, 
+                "Text": tagebuchEintrag.Text, 
+                "Notiz": tagebuchEintrag.Notiz,
+                "Anmerkung": tagebuchEintrag.Anmerkung
+            }, this.httpOptions)
+    }
+
+    // bearbeiteTagebuch(tagebuchEintrag: Eintrag): Observable<Eintrag> {
+  
+    // }
+
+    getEintrag(gesuchterEintrag: Number): Observable<Eintrag> {
+        // const EintragID = typeof gesuchterEintrag === 'number' ? gesuchterEintrag : gesuchterEintrag.EintragID; 
+        const url = this.eintragUrl + gesuchterEintrag;
+        return this.http.get<Eintrag>(url)
+    }
+
+    // updateTagebuch(newNutzer: Nutzer): Observable<Nutzer> {
+    //     console.log('in service add services');
+    //     console.dir(newNutzer);
+    //     console.log(newNutzer.Nutzername);
+    //     return this.http.put<Nutzer>(this.nutzerUrl, 
+    //         {
+    //             "NutzerID": newNutzer.NutzerID, 
+    //             "Nutzername": newNutzer.Nutzername, 
+    //             "GanzerName": newNutzer.GanzerName, 
+    //             "Email": newNutzer.Email, 
+    //             "Passwort": newNutzer.Passwort
+    //         }, this.httpOptions)
+    // }
    
 }
