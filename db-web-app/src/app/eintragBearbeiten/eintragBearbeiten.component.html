@@ -1,8 +1,9 @@
 <div id="overlay">
-  <div id="Eintrag">
+  <div id="Eintrag" >
       <h2>Beitrag erstellen</h2>
       <br><br>
-      <form *ngFor="let tagebuch of tagebuch | async">
+      <form >
+        <!-- *ngFor="let eintrag of eintrag | async"  *ngIf="eintrag"
         <label for="eintrag">Kategorie: </label>
         <select name="eintrag">
           <option value="ziele">Ziele</option>
@@ -10,13 +11,13 @@
           <option value="kalender">Kalender</option>
           <option value="tagebuch">Tagebuch</option>
           <option value="todo">To Do Liste</option>
-          <option value="galerie">Galerie</option>
-        </select>
+          <option value="galerie">Galerie</option> [(ngModel)]="eintrag.Datum"
+        </select> -->
           <br>
           <br>
          <div class="inputBox">
-          <input type="text" name="" required="">
-          <label>Datum</label>
+          <input type="text" name="" required="" value="" > 
+          <label>Datum {{eintrag.Datum}}</label>
           </div> 
           <div class="inputBox">
           <input type="text" name="">
