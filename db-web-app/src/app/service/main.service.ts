@@ -95,15 +95,43 @@ export class MainService {
 
     deleteZielEintrag (zielEintrag: Eintrag): Observable<Eintrag> {
         const EintragID = typeof zielEintrag === 'number' ? zielEintrag : zielEintrag.EintragID; 
-        // const url = ${this.zieleUrl}/${zielId}; 
-        // const url = this.zielUrl +"delete";
-        const url = this.zielUrl +"delete/"+ EintragID;
+        const url = this.zielUrl +"Delete/"+ EintragID;
         console.log(EintragID);
         console.log(url);
         return this.http.delete<Eintrag>(url, this.httpOptions);
         
     }
-    // Make the HTTP request:
-    //  this.http.get('http://localhost:port/assets/data.json')
-            // .subscribe(data => console.log(data));
+
+    deleteKalenderEintrag (kalenderEintrag: Eintrag): Observable<Eintrag> {
+        const EintragID = typeof kalenderEintrag === 'number' ? kalenderEintrag : kalenderEintrag.EintragID; 
+        const url = this.kalenderUrl +"Delete/"+ EintragID;
+        console.log(EintragID);
+        console.log(url);
+        return this.http.delete<Eintrag>(url, this.httpOptions); 
+    }
+
+    deleteTagebuchEintrag (tagebuchEintrag: Eintrag): Observable<Eintrag> {
+        const EintragID = typeof tagebuchEintrag === 'number' ? tagebuchEintrag : tagebuchEintrag.EintragID; 
+        const url = this.tagebuchUrl +"Delete/"+ EintragID;
+        console.log(EintragID);
+        console.log(url);
+        return this.http.delete<Eintrag>(url, this.httpOptions); 
+    }
+
+    deleteToDoEintrag (todoEintrag: Eintrag): Observable<Eintrag> {
+        const EintragID = typeof todoEintrag === 'number' ? todoEintrag : todoEintrag.EintragID; 
+        const url = this.todoUrl +"Delete/"+ EintragID;
+        console.log(EintragID);
+        console.log(url);
+        return this.http.delete<Eintrag>(url, this.httpOptions); 
+    }
+
+    deleteErinnerungEintrag (erinnerungEintrag: Eintrag): Observable<Eintrag> {
+        const EintragID = typeof erinnerungEintrag === 'number' ? erinnerungEintrag : erinnerungEintrag.EintragID; 
+        const url = this.erinnerungUrl +"Delete/"+ EintragID;
+        console.log(EintragID);
+        console.log(url);
+        return this.http.delete<Eintrag>(url, this.httpOptions); 
+    }
+   
 }

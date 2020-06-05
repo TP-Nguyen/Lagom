@@ -89,9 +89,27 @@ export class MainComponent implements OnInit {
   //   }
   // }
   
-  public delete(zielEintrag: Eintrag): void{
+  public deleteZiel(zielEintrag: Eintrag): void{
     this.mainService.deleteZielEintrag(zielEintrag).subscribe(); 
   }
+
+  public deleteKalender(kalenderEintrag: Eintrag): void{
+    this.mainService.deleteKalenderEintrag(kalenderEintrag).subscribe(); 
+  }
+
+  public deleteTagebuch(tagebuchEintrag: Eintrag): void{
+    this.mainService.deleteTagebuchEintrag(tagebuchEintrag).subscribe(); 
+  }
+
+  public deleteToDo(todoEintrag: Eintrag): void{
+    this.mainService.deleteToDoEintrag(todoEintrag).subscribe(); 
+  }
+
+  public deleteErinnerung(erinnerungEintrag: Eintrag): void{
+    this.mainService.deleteErinnerungEintrag(erinnerungEintrag).subscribe(); 
+  }
+  
+
   public update(event?: any): void{
     // this.mainService.updateZielEintrag(zielEintrag).subscribe(); 
   }

@@ -123,7 +123,7 @@ app.get('/nutzer', function (req, res) {
  
 
 // POST-Methoden
-app.post('/addNutzer', function (req, res) {
+app.post('/nutzer', function (req, res) {
   console.log('request body: '); 
   console.dir(req.body); 
 
@@ -141,19 +141,7 @@ app.post('/addNutzer', function (req, res) {
     }); 
 }); 
 
-
-// Delete-Methoden
-
-app.delete('/zieldelete/:EintragID', function (req, res) {
-  const sql = " DELETE FROM Ziel WHERE EintragID = ?";
-  const sql2 = "DELETE FROM Eintrag WHERE EintragID = ?";
-  const values =[req.params.EintragID];
-  connection.query(sql , values, function(error, results, fields) {});
-  connection.query(sql2, values, function(error, results, fields) {});
-  console.log("delete");
-
-}); 
-
+//Ein spezifisches Getten
 app.get('/ziel/:EintragID', function (req, res) { 
   console.log('request body: '+ req.params.EintragID); 
   // id = request.param.EintragId;
@@ -162,3 +150,50 @@ app.get('/ziel/:EintragID', function (req, res) {
     res.send(results);
   });
 });
+
+// Delete-Methoden
+
+app.delete('/zielDelete/:EintragID', function (req, res) {
+  const sql = " DELETE FROM Ziel WHERE EintragID = ?";
+  const sql2 = "DELETE FROM Eintrag WHERE EintragID = ?";
+  const values =[req.params.EintragID];
+  connection.query(sql , values, function(error, results, fields) {});
+  connection.query(sql2, values, function(error, results, fields) {});
+  console.log("deleteZiel");
+}); 
+
+app.delete('/kalenderDelete/:EintragID', function (req, res) {
+  const sql = " DELETE FROM Kalender WHERE EintragID = ?";
+  const sql2 = "DELETE FROM Eintrag WHERE EintragID = ?";
+  const values =[req.params.EintragID];
+  connection.query(sql , values, function(error, results, fields) {});
+  connection.query(sql2, values, function(error, results, fields) {});
+  console.log("deleteKalender");
+}); 
+
+app.delete('/tagebuchDelete/:EintragID', function (req, res) {
+  const sql = " DELETE FROM Tagebuch WHERE EintragID = ?";
+  const sql2 = "DELETE FROM Eintrag WHERE EintragID = ?";
+  const values =[req.params.EintragID];
+  connection.query(sql , values, function(error, results, fields) {});
+  connection.query(sql2, values, function(error, results, fields) {});
+  console.log("deleteTagebuch");
+}); 
+
+app.delete('/todoDelete/:EintragID', function (req, res) {
+  const sql = " DELETE FROM ToDo WHERE EintragID = ?";
+  const sql2 = "DELETE FROM Eintrag WHERE EintragID = ?";
+  const values =[req.params.EintragID];
+  connection.query(sql , values, function(error, results, fields) {});
+  connection.query(sql2, values, function(error, results, fields) {});
+  console.log("deleteToDo");
+}); 
+
+app.delete('/erinnerungDelete/:EintragID', function (req, res) {
+  const sql = " DELETE FROM Erinnerung WHERE EintragID = ?";
+  const sql2 = "DELETE FROM Eintrag WHERE EintragID = ?";
+  const values =[req.params.EintragID];
+  connection.query(sql , values, function(error, results, fields) {});
+  connection.query(sql2, values, function(error, results, fields) {});
+  console.log("deleteErinnerung");
+}); 

@@ -15,6 +15,7 @@
                 <p>Tagebuch</p>
                 <div class="list">
                     <div class="listcontent" *ngFor="let tagebuch of tagebuch | async">
+                        <div class="delete" (click)="deleteTagebuch(tagebuch)"><span >X</span></div>
                         <!-- <h4>{{eintrag.Titel}}</h4> -->
                         <div class="update"  ><span >/</span></div>
                         <p>{{tagebuch.Datum}}</p>
@@ -36,6 +37,7 @@
                 </div>
                 <div class="list">
                     <div class="listcontent" *ngFor="let kalender of kalender | async">
+                        <div class="delete" (click)="deleteKalender(kalender)"><span >X</span></div>
                         <!-- <h4>{{eintrag.Titel}}</h4> -->
                         <p>{{kalender.Datum}}</p>
                         <p>{{kalender.Uhrzeit}}</p>
@@ -54,7 +56,7 @@
                 <p>Ziele</p>
                 <div class="list">
                     <div class="listcontent" *ngFor="let ziel of ziele | async">
-                        <div class="delete" (click)="delete(ziel)"><span >X</span></div>
+                        <div class="delete" (click)="deleteZiel(ziel)"><span >X</span></div>
                         <!-- <h4>{{eintrag.Titel}}</h4> -->
                         <p>{{ziel.Datum}}</p>
                         <p>{{ziel.Titel}}</p>
@@ -62,7 +64,6 @@
                         <p>{{ziel.Text}}</p>
                         <p>{{ziel.Notiz}}</p>
                         <p>{{ziel.Anmerkung}}</p>
-
                     </div>    
                 </div>
             </div>
@@ -73,6 +74,8 @@
                 <p>ToDo</p>
                 <div class="list" >
                     <div class="do" *ngFor="let todo of todos | async ">
+                        <div class="delete" (click)="deleteToDo(todo)"><span >X</span></div> 
+                        <!-- klappt nicht mit checkbox- irgendein HTML kack -->
                         <input type="checkbox">
                         <span class="checkmark"></span>
                         <label>{{todo.Datum}}</label>
@@ -91,6 +94,7 @@
                 <p>Erinnerung</p>
                 <div class="list">
                     <div class="listcontent" *ngFor="let erinnerung of erinnerungen | async ">
+                        <div class="delete" (click)="deleteErinnerung(erinnerung)"><span >X</span></div> 
                         <!-- <input type="checkbox"> -->
                         <!-- <span class="checkmark"></span> -->
                         <p>{{erinnerung.Datum}}</p>
