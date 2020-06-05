@@ -123,7 +123,7 @@ app.get('/nutzer', function (req, res) {
  
 
 // POST-Methoden
-app.post('/addNutzer', function (req, res) {
+app.post('/nutzer', function (req, res) {
   console.log('request body: '); 
   console.dir(req.body); 
 
