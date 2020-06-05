@@ -86,9 +86,9 @@ export class MainComponent implements OnInit {
     this.mainService.updateTagebuch(tagebuchEintrag).subscribe(); 
   }
 
-  // public bearbeiteTagebuch(tagebuchEintrag: Eintrag): void{
-  //   this.mainService.getTagebuchEintrag(tagebuchEintrag).subscribe(); 
-  // }
+  public bearbeiteTagebuch(tagebuchEintrag: Eintrag): void{
+    // this.mainService.getTagebuchEintrag(tagebuchEintrag).subscribe(); 
+  }
 
   // public getEintrag(gesuchterEintrag : Eintrag): void{
   //     this.mainService.getEintrag(gesuchterEintrag).subscribe;

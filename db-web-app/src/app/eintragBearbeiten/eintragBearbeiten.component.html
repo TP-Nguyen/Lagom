@@ -1,4 +1,4 @@
-<div id="overlay">
+<div id="overlay" >
   <div id="Eintrag" >
       <h2>Beitrag erstellen</h2>
       <br><br>
@@ -11,13 +11,13 @@
           <option value="kalender">Kalender</option>
           <option value="tagebuch">Tagebuch</option>
           <option value="todo">To Do Liste</option>
-          <option value="galerie">Galerie</option> [(ngModel)]="eintrag.Datum"
+          <option value="galerie">Galerie</option> [(ngModel)]="eintrag.Datum" 
         </select> -->
           <br>
           <br>
          <div class="inputBox">
           <input type="text" name="" required="" value="" > 
-          <label>Datum {{eintrag.Datum}}</label>
+          <label>Datum {{eintrag.EintragID}}</label>
           </div> 
           <div class="inputBox">
           <input type="text" name="">
@@ -43,7 +43,7 @@
           <input type="text" name="">
           <label>Anmerkung</label>
           </div>
-        <input type="submit" value="Submit">
+        <input type="submit" value="Submit" (click)="test()">
       </form>
   </div>
 </div>

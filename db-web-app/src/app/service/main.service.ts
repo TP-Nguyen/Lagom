@@ -136,30 +136,11 @@ export class MainService {
             }, this.httpOptions)
     }
 
-    // bearbeiteTagebuch(tagebuchEintrag: Eintrag): Observable<Eintrag> {
-  
-    // }
-
     getEintrag(gesuchterEintrag: Number): Observable<Eintrag> {
-        // const EintragID = typeof gesuchterEintrag === 'number' ? gesuchterEintrag : gesuchterEintrag; 
-        const EintragID = gesuchterEintrag.toString();
+        // console.log("main service")
+        // const EintragID = gesuchterEintrag.toString();
         const url = this.eintragUrl +"/"+ gesuchterEintrag;
         console.log(url);
         return this.http.get<Eintrag>(url)
     }
-
-    // updateTagebuch(newNutzer: Nutzer): Observable<Nutzer> {
-    //     console.log('in service add services');
-    //     console.dir(newNutzer);
-    //     console.log(newNutzer.Nutzername);
-    //     return this.http.put<Nutzer>(this.nutzerUrl, 
-    //         {
-    //             "NutzerID": newNutzer.NutzerID, 
-    //             "Nutzername": newNutzer.Nutzername, 
-    //             "GanzerName": newNutzer.GanzerName, 
-    //             "Email": newNutzer.Email, 
-    //             "Passwort": newNutzer.Passwort
-    //         }, this.httpOptions)
-    // }
-   
 }
