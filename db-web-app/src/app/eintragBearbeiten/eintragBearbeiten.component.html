@@ -1,6 +1,6 @@
 <div id="overlay" >
   <div id="Eintrag" >
-      <h2>Beitrag erstellen</h2>
+      <h2>Beitrag bearbeiten</h2>
       <br><br>
       <form >
         <!-- *ngFor="let eintrag of eintrag | async"  *ngIf="eintrag"
@@ -20,27 +20,27 @@
           <label>Datum {{eintrag.EintragID}}</label>
           </div> 
           <div class="inputBox">
-          <input type="text" name="">
+          <input type="text" name=""> <!--[(ngModel)]="eintrag.Uhrzeit"-->
           <label>Uhrzeit</label>
           </div> 
           <div class="inputBox">
-          <input type="text" name="" required="">
+          <input type="text" name="" required=""> <!--[(ngModel)]="eintrag.Titel"-->
           <label>Titel</label>
           </div> 
           <div class="inputBox">
-          <input type="text" name="">
+          <input type="text" name=""> <!--[(ngModel)]="eintrag.Untertitel"-->
           <label>Untertitel</label>
           </div> 
           <div class="inputBox">
-          <input type="text" name="" required="">
+          <input type="text" name="" required=""> <!--[(ngModel)]="eintrag.Text"-->
           <label>Text</label>
           </div> 
           <div class="inputBox">
-          <input type="text" name="">
+          <input type="text" name=""> <!--[(ngModel)]="eintrag.Notiz"-->
           <label>Notiz</label>
           </div> 
           <div class="inputBox">
-          <input type="text" name="">
+          <input type="text" name=""> <!--[(ngModel)]="eintrag.Anmerkung"-->
           <label>Anmerkung</label>
           </div>
         <input type="submit" value="Submit" (click)="test()">

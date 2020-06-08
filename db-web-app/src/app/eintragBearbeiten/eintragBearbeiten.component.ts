@@ -9,7 +9,7 @@ import { Observable, from } from 'rxjs';
 import { Tagebuch } from '../model/tagebuch';
  
 @Component({
-  selector: 'app-eintrag',
+  selector: 'app-eintragBearbeiten',
   templateUrl: './eintragBearbeiten.component.html',
   styleUrls: ['./eintragBearbeiten.component.css']
 })
@@ -26,7 +26,7 @@ export class EintragBearbeitenComponent implements OnInit {
   ngOnInit():void {
     this.getEintrag();
     // console.log(this.eintrag);
-    this.test()
+    this.test();
 
     // const EintragID = +this.route.snapshot.paramMap.get('EintragID');
     // console.log(EintragID);
@@ -35,12 +35,16 @@ export class EintragBearbeitenComponent implements OnInit {
     
     // this.mainService.getEintrag(EintragID).subscribe(eintrag => this.eintrag = eintrag);
   } 
-  public test(){
-    console.log(this.eintrag);
-  }
+
   public getEintrag(){
     const EintragID = +this.route.snapshot.paramMap.get('EintragID');
     console.log(EintragID);
     this.mainService.getEintrag(EintragID).subscribe(eintrag => this.eintrag = eintrag);
+    
   }
+
+  public test(){
+    console.log(this.eintrag);
+  }
+  
 }
