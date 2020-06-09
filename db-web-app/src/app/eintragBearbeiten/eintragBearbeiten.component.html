@@ -1,49 +1,41 @@
 <div id="overlay" >
   <div id="Eintrag" >
-      <h2>Beitrag erstellen</h2>
+      <h2>Beitrag bearbeiten</h2>
       <br><br>
-      <form >
-        <!-- *ngFor="let eintrag of eintrag | async"  *ngIf="eintrag"
-        <label for="eintrag">Kategorie: </label>
-        <select name="eintrag">
-          <option value="ziele">Ziele</option>
-          <option value="erinnerung">Erinnerung</option>
-          <option value="kalender">Kalender</option>
-          <option value="tagebuch">Tagebuch</option>
-          <option value="todo">To Do Liste</option>
-          <option value="galerie">Galerie</option> [(ngModel)]="eintrag.Datum" 
-        </select> -->
+      <form *ngFor="let eintrag of eintraege" > <!-- [formGroup]="bearbeitenEintrag" (ngSubmit)="submit(bearbeitenEintrag.value)"-->
           <br>
           <br>
          <div class="inputBox">
-          <input type="text" name="" required="" value="" > 
-          <label>Datum {{eintrag.EintragID}}</label>
+           <div >
+            <input type="text" name="Datum" required="" value="" [(ngModel)]="eintrag.Datum" > <!--formControlName="Datum"-->
+            <label>Datum</label>
+        </div>
           </div> 
           <div class="inputBox">
-          <input type="text" name="">
+          <input type="text" name="Uhrzeit" [(ngModel)]="eintrag.Uhrzeit" > <!--formControlName="Uhrzeit" -->
           <label>Uhrzeit</label>
           </div> 
           <div class="inputBox">
-          <input type="text" name="" required="">
+          <input type="text" name="Titel" required="" [(ngModel)]="eintrag.Titel" ><!-- formControlName="Titel"-->
           <label>Titel</label>
           </div> 
           <div class="inputBox">
-          <input type="text" name="">
+          <input type="text" name="Untertitel" [(ngModel)]="eintrag.Untertitel" ><!-- formControlName="Untertitel"-->
           <label>Untertitel</label>
           </div> 
           <div class="inputBox">
-          <input type="text" name="" required="">
+          <input type="text" name="Text" required="" [(ngModel)]="eintrag.Text" ><!-- formControlName="Text"-->
           <label>Text</label>
           </div> 
           <div class="inputBox">
-          <input type="text" name="">
+          <input type="text" name="Notiz" [(ngModel)]="eintrag.Notiz" ><!--formControlName="Notiz" -->
           <label>Notiz</label>
           </div> 
           <div class="inputBox">
-          <input type="text" name="">
+          <input type="text" name="Anmerkung" [(ngModel)]="eintrag.Anmerkung" ><!-- formControlName="Anmerkung"-->
           <label>Anmerkung</label>
           </div>
-        <input type="submit" value="Submit" (click)="test()">
+        <input type="submit" value="bestätigen">
       </form>
   </div>
 </div>

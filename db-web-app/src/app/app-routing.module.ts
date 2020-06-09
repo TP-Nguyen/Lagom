@@ -5,8 +5,7 @@ import { EintragComponent } from './eintrag/eintrag.component';
 import { MainComponent } from './main/main.component'; 
 import { LoginComponent } from './login/login.component'; 
 import { RegistrierungComponent } from './registrierung/registrierung.component'; 
-import { EintragBearbeitenComponent } from './EintragBearbeiten/eintragBearbeiten.component'; 
-
+import { EintragBearbeitenComponent } from "./eintragBearbeiten/eintragBearbeiten.component";
 
 const routes: Routes = [
 

@@ -110,6 +110,7 @@ app.get('/galerie', function (req, res) {
     if (error) throw error;
     res.send(results);
   });
+  
 });
 
 app.get('/nutzer', function (req, res) {
@@ -125,9 +126,11 @@ app.get('/nutzer', function (req, res) {
 app.get('/eintrag/:EintragID', function (req, res) { 
   console.log('request body: '+ req.params.EintragID); 
   // id = request.param.EintragId;
-  connection.query('SELECT * FROM Eintrag WHERE EintragID = ?', req.params.EintragID, function (error, results, fields) { 
+  const sql = 'SELECT * FROM Eintrag WHERE EintragID = ?';
+  connection.query(sql, req.params.EintragID, function (error, results, fields) { 
   if (error) throw error;
     res.send(results);
+    
   });
 });
  
@@ -146,14 +149,17 @@ app.post('/nutzer', function (req, res) {
   const values = [Nutzername, GanzerName, Email, Passwort];
 
     connection.query(sql, values, function(error, results, fields) {
+      
       if (error) throw error; 
+      
       res.send(results); 
-    }); 
+    });
+    
 }); 
 
 // PUT-Methode
 
-app.put('/tagebuchUpdate/:EintragID', function (req, res) {
+app.put('/Update/:EintragID', function (req, res) {
 
   console.log('request body: '+ req.params.EintragID); 
 
@@ -175,6 +181,7 @@ app.put('/tagebuchUpdate/:EintragID', function (req, res) {
       if (error) throw error; 
       res.send(results); 
     }); 
+    
 }); 
 
 // Delete-Methoden

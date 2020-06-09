@@ -77,6 +77,8 @@
             <div class="content">
                 <p>ToDo</p>
                 <div class="list" >
+                    
+                    <!-- {{todos.Titel}}; -->
                     <div class="do" *ngFor="let todo of todos | async ">
                         <div class="delete" (click)="deleteToDo(todo)"><span >X</span></div> 
                         <!-- klappt nicht mit checkbox- irgendein HTML kack -->

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import { FormsModule} from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 //import { AuthService } from './services/auth.service';
 
@@ -11,8 +11,9 @@ import { AppComponent } from './app.component';
 import { Routes, RouterModule } from '@angular/router';
 import { EintragComponent } from './eintrag/eintrag.component';
 import { MainComponent } from './main/main.component'; 
-import { LoginComponent} from './login/login.component';
-import { RegistrierungComponent} from './registrierung/registrierung.component';
+import { LoginComponent } from './login/login.component';
+import { RegistrierungComponent } from './registrierung/registrierung.component';
+import { EintragBearbeitenComponent } from "./eintragBearbeiten/eintragBearbeiten.component";
 
 const routes: Routes = [
   { path: 'main', component: MainComponent},
@@ -27,7 +28,8 @@ const routes: Routes = [
     MainComponent,
     EintragComponent,
     LoginComponent,
-    RegistrierungComponent
+    RegistrierungComponent,
+    EintragBearbeitenComponent
     
   ],
   imports: [

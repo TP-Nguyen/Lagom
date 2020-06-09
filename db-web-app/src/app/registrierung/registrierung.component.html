@@ -2,12 +2,6 @@
 
     <h2>{{registrierungTitel}}</h2>
     <form [formGroup]="neuerNutzer" (ngSubmit)="submit(neuerNutzer.value)">
-      <!--<div *ngFor="let registrierungElement of registrierungElemente">
-        <div class="inputBox">
-          <input type="text" required="" value="{{registrierungElement.value}}">
-          <label>{{registrierungElement.input}}</label>
-        </div>
-      </div>-->
       <br>
       <br>
       <div class="inputBox">
@@ -29,20 +23,4 @@
       
       <input id="registrieren" type="submit" value="bestätigen">
     </form>
-
-    <!--{{registrierungElement.value}}-->
-
-<!-- Button "login" -->
-<!-- <a routerLink="/main"> -->
-<!--<a routerLink="/main">
-  <input id="login" type="submit" value="login">
-</a>-->
-
-<!--<p>{{nutzer.GanzerName}}</p>-->
-
-<!--Button "Registrierung bestaetigen"-->
-<!--<a routerLink="/main">-->
-  
-<!--</a>-->
-
 </div>

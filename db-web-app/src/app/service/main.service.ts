@@ -64,8 +64,15 @@ export class MainService {
         return this.http.get<Kalender[]>(this.kalenderUrl)
     }
 
+    getEintrag(gesuchterEintrag: Number): Observable<Eintrag> {
+        // console.log("main service")
+        // const EintragID = gesuchterEintrag.toString();
+        const url = this.eintragUrl +"/"+ gesuchterEintrag;
+        console.log(url);
+        return this.http.get<Eintrag>(url)
+    }
+
     addNutzer(newNutzer: Nutzer): Observable<Nutzer> {
-        console.log('in service add services');
         console.dir(newNutzer);
         console.log(newNutzer.Nutzername);
         return this.http.post<Nutzer>(this.nutzerUrl, 
@@ -75,6 +82,22 @@ export class MainService {
                 "GanzerName": newNutzer.GanzerName, 
                 "Email": newNutzer.Email, 
                 "Passwort": newNutzer.Passwort
+            }, this.httpOptions)
+    }
+
+    updateEintrag (bearbeitenEintrag: Eintrag): Observable<Eintrag> {
+        const EintragID = typeof bearbeitenEintrag === 'number' ? bearbeitenEintrag : bearbeitenEintrag.EintragID; 
+        const url = "Update/"+ EintragID;
+        console.log(EintragID);
+        console.log(url);
+        return this.http.put<Eintrag>(url, 
+            {
+                "Datum": bearbeitenEintrag.Datum, 
+                "Titel": bearbeitenEintrag.Titel, 
+                "Untertitel": bearbeitenEintrag.Untertitel, 
+                "Text": bearbeitenEintrag.Text, 
+                "Notiz": bearbeitenEintrag.Notiz,
+                "Anmerkung": bearbeitenEintrag.Anmerkung
             }, this.httpOptions)
     }
 
@@ -120,27 +143,4 @@ export class MainService {
         return this.http.delete<Eintrag>(url, this.httpOptions); 
     }
 
-    updateTagebuch (tagebuchEintrag: Eintrag): Observable<Eintrag> {
-        const EintragID = typeof tagebuchEintrag === 'number' ? tagebuchEintrag : tagebuchEintrag.EintragID; 
-        const url = this.tagebuchUrl +"Update/"+ EintragID;
-        console.log(EintragID);
-        console.log(url);
-        return this.http.put<Eintrag>(url, 
-            {
-                "Datum": tagebuchEintrag.Datum, 
-                "Titel": tagebuchEintrag.Titel, 
-                "Untertitel": tagebuchEintrag.Untertitel, 
-                "Text": tagebuchEintrag.Text, 
-                "Notiz": tagebuchEintrag.Notiz,
-                "Anmerkung": tagebuchEintrag.Anmerkung
-            }, this.httpOptions)
-    }
-
-    getEintrag(gesuchterEintrag: Number): Observable<Eintrag> {
-        // console.log("main service")
-        // const EintragID = gesuchterEintrag.toString();
-        const url = this.eintragUrl +"/"+ gesuchterEintrag;
-        console.log(url);
-        return this.http.get<Eintrag>(url)
-    }
 }
