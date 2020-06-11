@@ -102,15 +102,15 @@ export class MainService {
     // }
 
     /** PUT: update the eintrag on the server */
-  updateEintrag(eintrag: Eintrag): Observable<any> {
-    // const EintragID = typeof eintrag === 'number' ? eintrag : eintrag.EintragID; 
-    const url = this.eintragUrl +"Update";
-    // console.log(EintragID);
-    // console.log(url)
-    console.log(eintrag.Datum); //Findet der nicht
-    console.dir(eintrag);
-    return this.http.put(url, eintrag, this.httpOptions)
-  }
+    updateEintrag(eintrag: Eintrag): Observable<any> {
+        // const EintragID = typeof eintrag === 'number' ? eintrag : eintrag.EintragID; 
+        const url = this.eintragUrl +"Update";
+        // console.log(EintragID);
+        // console.log(url)
+        console.log(eintrag.Datum); //Findet der nicht
+        console.dir(eintrag);
+        return this.http.put(url, eintrag, this.httpOptions)
+    }
 
 
     deleteZielEintrag (zielEintrag: Eintrag): Observable<Eintrag> {
