@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Eintrag } from '../model/eintrag';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
+import { CompileShallowModuleMetadata } from '@angular/compiler';
 
 @Component({
   selector: 'app-eintrag',
@@ -19,7 +20,7 @@ export class EintragBearbeitenComponent implements OnInit {
       // this.bearbeitenEintrag = this.formBuilder.group({
       //   Datum=eintraege.Datum,
       //   Uhrzeit=eintraege.Datum,
-      //   Tite=eintraege.Datum,
+      //   Titel=eintraege.Datum,
       //   Untertitel=eintraege.Datum,
       //   Text=eintraege.Datum,
       //   Notiz=eintraege.Datum,
@@ -34,22 +35,27 @@ export class EintragBearbeitenComponent implements OnInit {
     console.log(this.eintraege);
   }
 
-  submit(bearbeitenEintrag){
-    const updateEintrag = new Eintrag(bearbeitenEintrag.Datum, 
-                                      bearbeitenEintrag.Uhrzeit,
-                                      bearbeitenEintrag.Titel, 
-                                      bearbeitenEintrag.Untertitel, 
-                                      bearbeitenEintrag.Text, 
-                                      bearbeitenEintrag.Notiz, 
-                                      bearbeitenEintrag.Anmerkung); 
-    console.log("newNutzer.Nutzername")
-    console.log(updateEintrag.EintragID)
+  // submit(bearbeitenEintrag){
+  //   const updateEintrag = new Eintrag(bearbeitenEintrag.Datum, 
+  //                                     bearbeitenEintrag.Uhrzeit,
+  //                                     bearbeitenEintrag.Titel, 
+  //                                     bearbeitenEintrag.Untertitel, 
+  //                                     bearbeitenEintrag.Text, 
+  //                                     bearbeitenEintrag.Notiz, 
+  //                                     bearbeitenEintrag.Anmerkung); 
+  //   console.log("newNutzer.Nutzername")
+  //   console.log(updateEintrag.EintragID)
     
-    console.log('Your data has been submitted', updateEintrag); 
+  //   console.log('Your data has been submitted', updateEintrag); 
 
-    this.mainService.updateEintrag(updateEintrag).subscribe(); 
+  //   this.mainService.updateEintrag(updateEintrag).subscribe(); 
+  // }
+
+  aktualisiereEintrag(): void {
+    this.mainService.updateEintrag(this.eintraege).subscribe();
+    console.log("UPDATE EINTRAG")
+    console.log(this.eintraege);
   }
-  
   // public bearbeiteTagebuch(tagebuchEintrag: Eintrag): void{
   //   // this.mainService.getTagebuchEintrag(tagebuchEintrag).subscribe(); 
   // }

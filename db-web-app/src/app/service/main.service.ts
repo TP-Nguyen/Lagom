@@ -85,21 +85,34 @@ export class MainService {
             }, this.httpOptions)
     }
 
-    updateEintrag (bearbeitenEintrag: Eintrag): Observable<Eintrag> {
-        const EintragID = typeof bearbeitenEintrag === 'number' ? bearbeitenEintrag : bearbeitenEintrag.EintragID; 
-        const url = "Update/"+ EintragID;
-        console.log(EintragID);
-        console.log(url);
-        return this.http.put<Eintrag>(url, 
-            {
-                "Datum": bearbeitenEintrag.Datum, 
-                "Titel": bearbeitenEintrag.Titel, 
-                "Untertitel": bearbeitenEintrag.Untertitel, 
-                "Text": bearbeitenEintrag.Text, 
-                "Notiz": bearbeitenEintrag.Notiz,
-                "Anmerkung": bearbeitenEintrag.Anmerkung
-            }, this.httpOptions)
-    }
+    // updateEintrag (bearbeitenEintrag: Eintrag): Observable<Eintrag> {
+    //     const EintragID = typeof bearbeitenEintrag === 'number' ? bearbeitenEintrag : bearbeitenEintrag.EintragID; 
+    //     const url = "Update/"+ EintragID;
+    //     console.log(EintragID);
+    //     console.log(url);
+    //     return this.http.put<Eintrag>(url, 
+    //         {
+    //             "Datum": bearbeitenEintrag.Datum, 
+    //             "Titel": bearbeitenEintrag.Titel, 
+    //             "Untertitel": bearbeitenEintrag.Untertitel, 
+    //             "Text": bearbeitenEintrag.Text, 
+    //             "Notiz": bearbeitenEintrag.Notiz,
+    //             "Anmerkung": bearbeitenEintrag.Anmerkung
+    //         }, this.httpOptions)
+    // }
+
+    /** PUT: update the eintrag on the server */
+  updateEintrag(eintrag: Eintrag): Observable<any> {
+    // const EintragID = typeof eintrag === 'number' ? eintrag : eintrag.EintragID; 
+    const url = this.eintragUrl +"Update";
+    // console.log(EintragID);
+    // console.log(url)
+    console.log(eintrag);
+    return this.http.put(url, eintrag, this.httpOptions)
+    //     .pipe(tap(_ => this.log(`updated hero id=${hero.id}`)),
+    //   catchError(this.handleError<any>('updateHero'))
+    // );
+  }
 
 
     deleteZielEintrag (zielEintrag: Eintrag): Observable<Eintrag> {
