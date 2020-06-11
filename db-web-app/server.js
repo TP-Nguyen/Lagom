@@ -148,10 +148,79 @@ app.post('/nutzer', function (req, res) {
   const sql = "INSERT INTO Nutzer (Nutzername, Ganzername, Email, Passwort)" + "VALUES (?, ?, ?, ?)";
   const values = [Nutzername, GanzerName, Email, Passwort];
 
-    connection.query(sql, values, function(error, results, fields) {
-      if (error) throw error; 
-      res.send(results); 
-    });
+  connection.query(sql, values, function(error, results, fields) {
+    if (error) throw error; 
+    res.send(results); 
+  });
+  //Muss noch mit Workspace verbunden werden --> oder workspace löschen? 
+  // Aus workspace Darkmode löschen?
+}); 
+
+app.post('/eintrag', function (req, res) {
+  console.log('request body: '); 
+  console.dir(req.body); 
+
+  const Art = Ziel; //Aus slider erfahren
+  const EintragID = 3002; //Abfragen durch vergebe ID
+  const WorkspaceID = 2000; //Abfragen durch login
+
+  // Nur wenn Errinerungen, Kalender
+  const Uhrzeit = req.body.Uhrzeit; 
+
+  //Immer
+  const Datum = req.body.Datum; 
+  const Titel = req.body.Titel; 
+  const Untertitel = req.body.Untertitel; 
+  const Text = req.body.Text;
+  const Notiz = req.body.Notiz;
+  const Anmerkung = req.body.Anmerkung;
+
+  const sql1 = "INSERT INTO Eintrag (Datum, Titel, Untertitel, Text, Notiz, Anmerkung)" + "VALUES (?, ?, ?, ?, ?, ?)";
+  const values1 = [Datum, Titel, Untertitel, Text, Notiz, Anmerkung];
+
+  if (Art == Erinnerung){
+    const sql2 = "INSERT INTO Erinnerung (WorkspaceID, EintragID, Uhrzeit)" + "VALUES (?, ?, ?)";
+    const values2 = [WorkspaceID, EintragsID, Uhrzeit]
+  }
+  if (Art == Kalender){
+    const sql2 = "INSERT INTO Kalender  (WorkspaceID, EintragID, Uhrzeit)" + "VALUES (?, ?, ?)";
+    const values2 = [WorkspaceID, EintragsID, Uhrzeit]
+  }
+  if (Art == Ziel){
+    const sql2 = "INSERT INTO Ziel  (WorkspaceID, EintragID)" + "VALUES (?, ?)";
+    const values2 = [WorkspaceID, EintragsID]
+  }
+  if (Art == Tagebuch){
+    const sql2 = "INSERT INTO Tagebuch  (WorkspaceID, EintragID)" + "VALUES (?, ?)";
+    const values2 = [WorkspaceID, EintragsID]
+  }
+  if (Art == ToDo){
+    const sql2 = "INSERT INTO ToDo  (WorkspaceID, EintragID)" + "VALUES (?, ?)";
+    const values2 = [WorkspaceID, EintragsID]
+  }
+  //KÖNNEN WIR GALERIE EINFACH LÖSCHEN?
+  if (Art == Galerie){
+
+    // HIER DANN AUCH NOCH BILD ETC EINFÜGEN
+
+    
+    const sql2 = "INSERT INTO Galerie (WorkspaceID)" + "VALUES (?)";
+    const values2 = [WorkspaceID]
+  }
+  
+
+  //WIE MACHEN WIR MOTIVATION? ADMIN ACCOUNT? ODER EINFACH KICKEN
+  
+
+  // connection.query(sql1, values1, function(error, results, fields) {
+  //   if (error) throw error; 
+  //   res.send(results); 
+  // });
+
+  // connection.query(sql2, values2, function(error, results, fields) {
+  //   if (error) throw error; 
+  //   res.send(results); 
+  // });
     
 }); 
 

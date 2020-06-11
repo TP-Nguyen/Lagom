@@ -85,6 +85,21 @@ export class MainService {
             }, this.httpOptions)
     }
 
+    addEintrag(newEintrag: Eintrag): Observable<Eintrag> {
+        console.dir(newEintrag);
+        console.log(newEintrag.Titel);
+        return this.http.post<Eintrag>(this.eintragUrl, 
+            {
+                "Datum": newEintrag.Datum, 
+                "Uhrzeit": newEintrag.Uhrzeit, 
+                "Titel": newEintrag.Titel, 
+                "Untertitel": newEintrag.Untertitel, 
+                "Text": newEintrag.Text,
+                "Notiz": newEintrag.Notiz,
+                "Anmerkung": newEintrag.Anmerkung,
+            }, this.httpOptions)
+    }
+
     // updateEintrag (bearbeitenEintrag: Eintrag): Observable<Eintrag> {
     //     const EintragID = typeof bearbeitenEintrag === 'number' ? bearbeitenEintrag : bearbeitenEintrag.EintragID; 
     //     const url = "Update/"+ EintragID;

@@ -1,45 +1,48 @@
 <div id="overlay">
   <div id="Eintrag">
-      <h2>Beitrag erstellen</h2>
+      <h2>{{erstellungsTitel}}</h2>
       <br><br>
-      <form>
+      <form [formGroup]="neuerEintrag" (ngSubmit)="submit(neuerEintrag.value)">
         <label for="eintrag">Kategorie: </label>
         <select name="eintrag">
-          <option value="ziele">Ziele</option>
+          <option value="ziel">Ziel</option>
           <option value="erinnerung">Erinnerung</option>
           <option value="kalender">Kalender</option>
           <option value="tagebuch">Tagebuch</option>
-          <option value="todo">To Do Liste</option>
+          <option value="todo">ToDo</option>
           <option value="galerie">Galerie</option>
         </select>
           <br>
           <br>
          <div class="inputBox">
-          <input type="text" name="" required="">
+          <input type="text" name="" required="" formControlName="Datum">
           <label>Datum</label>
           </div> 
-          <div class="inputBox">
-          <input type="text" name="">
+
+          <!-- Nur wenn Erinnerungen, Kalender ODER wir fügen überall Uhrzeit ein -->
+          <div class="inputBox"> 
+          <input type="text" name="" formControlName="Uhrzeit">
           <label>Uhrzeit</label>
           </div> 
+
           <div class="inputBox">
-          <input type="text" name="" required="">
+          <input type="text" name="" required="" formControlName="Titel">
           <label>Titel</label>
           </div> 
           <div class="inputBox">
-          <input type="text" name="">
+          <input type="text" name="" formControlName="Untertitel">
           <label>Untertitel</label>
           </div> 
           <div class="inputBox">
-          <input type="text" name="" required="">
+          <input type="text" name="" required="" formControlName="Text">
           <label>Text</label>
           </div> 
           <div class="inputBox">
-          <input type="text" name="">
+          <input type="text" name="" formControlName="Notiz">
           <label>Notiz</label>
           </div> 
           <div class="inputBox">
-          <input type="text" name="">
+          <input type="text" name="" formControlName="Anmerkung">
           <label>Anmerkung</label>
           </div>
           <a routerLink="/main">
