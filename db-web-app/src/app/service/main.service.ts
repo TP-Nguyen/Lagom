@@ -107,11 +107,9 @@ export class MainService {
     const url = this.eintragUrl +"Update";
     // console.log(EintragID);
     // console.log(url)
-    console.log(eintrag);
+    console.log(eintrag.Datum); //Findet der nicht
+    console.dir(eintrag);
     return this.http.put(url, eintrag, this.httpOptions)
-    //     .pipe(tap(_ => this.log(`updated hero id=${hero.id}`)),
-    //   catchError(this.handleError<any>('updateHero'))
-    // );
   }
 
 

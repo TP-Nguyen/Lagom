@@ -9,15 +9,16 @@ import { HttpClientModule }    from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { Routes, RouterModule } from '@angular/router';
-import { EintragComponent } from './eintrag/eintrag.component';
 import { MainComponent } from './main/main.component'; 
 import { LoginComponent } from './login/login.component';
 import { RegistrierungComponent } from './registrierung/registrierung.component';
 import { EintragBearbeitenComponent } from "./eintragBearbeiten/eintragBearbeiten.component";
+import { EintragErstellenComponent } from './eintragErstellen/eintragErstellen.component';
 
 const routes: Routes = [
   { path: 'main', component: MainComponent},
-  { path: 'eintrag', component: EintragComponent},
+  { path: 'eintragErstellen', component: EintragErstellenComponent},
+  { path: 'eintragBearbeiten', component: EintragBearbeitenComponent},
   { path: 'login', component: LoginComponent},
   { path: 'registierung', component: RegistrierungComponent},
 ];
@@ -26,7 +27,7 @@ const routes: Routes = [
   declarations: [
     AppComponent, 
     MainComponent,
-    EintragComponent,
+    EintragErstellenComponent,
     LoginComponent,
     RegistrierungComponent,
     EintragBearbeitenComponent

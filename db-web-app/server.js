@@ -149,9 +149,7 @@ app.post('/nutzer', function (req, res) {
   const values = [Nutzername, GanzerName, Email, Passwort];
 
     connection.query(sql, values, function(error, results, fields) {
-      
       if (error) throw error; 
-      
       res.send(results); 
     });
     
@@ -160,10 +158,8 @@ app.post('/nutzer', function (req, res) {
 // PUT-Methode
 
 app.put('/eintragUpdate', function (req, res) {
-
   // console.log('request body: '+ req.params.EintragID); 
-
-  // console.log('request body: '); 
+  console.log('request body: '); 
   console.dir(req.body); 
 
   const EintragID = req.body.EintragID;
@@ -173,13 +169,14 @@ app.put('/eintragUpdate', function (req, res) {
   const Text = req.body.Text; 
   const Notiz = req.body.Notiz; 
   const Anmerkung = req.body.Anmerkung; 
+  
+  console.log(EintragID)
 
   const sql = "UPDATE Eintrag SET Datum = ?, Titel = ?, Untertitel = ?, Text = ?, Notiz = ?, Anmerkung = ? WHERE EintragID = ?" ;
   
   const values = [Datum, Titel, Untertitel, Text, Notiz, Anmerkung, EintragID];
 
-    connection.query(sql, values, function(error, results, fields) {
-      console.log("FÜGT EIN")
+    connection.query(sql, values, function(error, results, fields) {       
       if (error) throw error; 
       res.send(results); 
     }); 

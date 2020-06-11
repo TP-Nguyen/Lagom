@@ -7,7 +7,7 @@ import { FormBuilder } from '@angular/forms';
 import { CompileShallowModuleMetadata } from '@angular/compiler';
 
 @Component({
-  selector: 'app-eintrag',
+  selector: 'app-eintragBearbeiten',
   templateUrl: './eintragBearbeiten.component.html',
   styleUrls: ['./eintragBearbeiten.component.css']
 })
@@ -53,8 +53,6 @@ export class EintragBearbeitenComponent implements OnInit {
 
   aktualisiereEintrag(): void {
     this.mainService.updateEintrag(this.eintraege).subscribe();
-    console.log("UPDATE EINTRAG")
-    console.log(this.eintraege);
   }
   // public bearbeiteTagebuch(tagebuchEintrag: Eintrag): void{
   //   // this.mainService.getTagebuchEintrag(tagebuchEintrag).subscribe(); 

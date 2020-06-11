@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Ziel } from '../model/ziel';
 import { MainService } from '../service/main.service'; 
 import { Nutzer } from '../model/nutzer'; 
 import { Observable, from } from 'rxjs';
