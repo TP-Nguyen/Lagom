@@ -29,10 +29,13 @@ export class EintragBearbeitenComponent implements OnInit {
     }
   @Input() eintraege: Eintrag;
   ngOnInit(): void {
+    this.getEintrag();
+  }
+
+  getEintrag(): void {
     const EintragID = +this.route.snapshot.paramMap.get('EintragID');
     console.log(EintragID);
-    this.mainService.getEintrag(EintragID).subscribe(res => this.eintraege = res);
-    console.log(this.eintraege);
+    this.mainService.getEintrag(EintragID).subscribe(eintraege => this.eintraege = eintraege);
   }
 
   // submit(bearbeitenEintrag){
@@ -52,6 +55,7 @@ export class EintragBearbeitenComponent implements OnInit {
   // }
 
   aktualisiereEintrag(): void {
+    // console.log(this.eintraege.Datum);
     this.mainService.updateEintrag(this.eintraege).subscribe();
   }
   // public bearbeiteTagebuch(tagebuchEintrag: Eintrag): void{

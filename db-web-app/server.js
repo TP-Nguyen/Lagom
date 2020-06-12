@@ -225,13 +225,20 @@ app.post('/eintrag', function (req, res) {
 }); 
 
 // PUT-Methode
-
-app.put('/eintragUpdate', function (req, res) {
+app.put('/eintrag', function (req, res) {
   // console.log('request body: '+ req.params.EintragID); 
   console.log('request body: '); 
   console.dir(req.body); 
 
-  const EintragID = req.body.EintragID;
+  // const EintragID = req.body.EintragID;
+  // const Datum = req.body.Datum; 
+  // const Titel = req.body.Titel; 
+  // const Untertitel = req.body.Untertitel; 
+  // const Text = req.body.Text; 
+  // const Notiz = req.body.Notiz; 
+  // const Anmerkung = req.body.Anmerkung; 
+
+  const EintragID = req.params.EintragID;
   const Datum = req.body.Datum; 
   const Titel = req.body.Titel; 
   const Untertitel = req.body.Untertitel; 
@@ -245,7 +252,7 @@ app.put('/eintragUpdate', function (req, res) {
   
   const values = [Datum, Titel, Untertitel, Text, Notiz, Anmerkung, EintragID];
 
-    connection.query(sql, values, function(error, results, fields) {       
+    connection.query(sql, values, function(error, results, fields) {   
       if (error) throw error; 
       res.send(results); 
     }); 
