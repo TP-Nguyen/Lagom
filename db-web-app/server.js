@@ -157,20 +157,24 @@ app.post('/nutzer', function (req, res) {
 }); 
 
 
-app.post('/nutzer/:Nutzername', function (req, res) {
-  console.log('request body: '); 
-  console.dir(req.body);
-
-  const Nutzername = req.body.Nutzername; 
-  const Passwort = req.body.Passwort; 
+app.get('/nutzer/:Nutzername/:Passwort', function (req, res) {
+//   console.log('request body: '); 
+//   console.dir(req.body);
+// //  
+//   const Nutzername = req.body.Nutzername; 
+//   const Passwort = req.body.Passwort;
+  const Nutzername = req.params.Nutzername; 
+  const Passwort = req.params.Passwort; 
+  console.log(Nutzername);
+  console.log(Passwort);
   
   const sql = "SELECT * FROM Nutzer WHERE Nutzername = ? AND Passwort = ?";
   const values = [Nutzername, Passwort];
-  console.log(values);
 
   connection.query(sql, values, function(error, results, fields) {
-    if (error) throw error; 
-    res.send(results); 
+    console.log(results);
+    // if (error) throw error; 
+    // res.send(results); 
   });
 }); 
 

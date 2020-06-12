@@ -100,6 +100,15 @@ export class MainService {
             }, this.httpOptions)
     }
 
+    loginNutzer (nutzer : Nutzer): Observable<Nutzer> {
+        const Nutzername = typeof nutzer === 'string' ? nutzer : nutzer.Nutzername;
+        const Passwort = typeof nutzer === 'string' ? nutzer : nutzer.Passwort;
+        const url = this.nutzerUrl + "/" + Nutzername  + "/" + Passwort; 
+        // console.log("main");
+        // console.log(nutzer); 
+        // return this.http.post<Nutzer>(url, nutzer, this.httpOptions); 
+        return this.http.get<Nutzer>(url); 
+    }
     // updateEintrag (bearbeitenEintrag: Eintrag): Observable<Eintrag> {
     //     const EintragID = typeof bearbeitenEintrag === 'number' ? bearbeitenEintrag : bearbeitenEintrag.EintragID; 
     //     const url = this.eintragUrl + "Update/" + EintragID;
@@ -169,12 +178,4 @@ export class MainService {
         console.log(url);
         return this.http.delete<Eintrag>(url, this.httpOptions); 
     }
-
-    loginNutzer (nutzer : Nutzer): Observable<Nutzer> {
-        const Nutzername = typeof nutzer === 'string' ? nutzer : nutzer.Nutzername;
-        const url = this.nutzerUrl + "/" + Nutzername; 
-        console.log(nutzer); 
-        return this.http.post<Nutzer>(url, nutzer, this.httpOptions); 
-    }
-
 }
