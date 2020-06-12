@@ -146,7 +146,7 @@ app.post('/nutzer', function (req, res) {
   const Passwort = req.body.Passwort; 
 
   const sql = "INSERT INTO Nutzer (Nutzername, Ganzername, Email, Passwort)" + "VALUES (?, ?, ?, ?)";
-  const values = [Nutzername, GanzerName, Email, Passwort];
+  // const values = [Nutzername, GanzerName, Email, Passwort];
 
   connection.query(sql, values, function(error, results, fields) {
     if (error) throw error; 
@@ -239,7 +239,7 @@ app.put('/eintragUpdate', function (req, res) {
   const Notiz = req.body.Notiz; 
   const Anmerkung = req.body.Anmerkung; 
   
-  console.log(EintragID)
+  console.log(req.body.EintragID);
 
   const sql = "UPDATE Eintrag SET Datum = ?, Titel = ?, Untertitel = ?, Text = ?, Notiz = ?, Anmerkung = ? WHERE EintragID = ?" ;
   

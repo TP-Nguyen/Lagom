@@ -64,8 +64,8 @@ export class MainService {
         return this.http.get<Kalender[]>(this.kalenderUrl)
     }
 
-    getEintrag(gesuchterEintrag: Number): Observable<Eintrag> {
-        // console.log("main service")
+    getEintrag(gesuchterEintrag: Number): Observable<any> {
+        // console.log("main service"): Observable<Eintrag> 
         // const EintragID = gesuchterEintrag.toString();
         const url = this.eintragUrl +"/"+ gesuchterEintrag;
         console.log(url);
@@ -117,22 +117,24 @@ export class MainService {
     // }
 
     /** PUT: update the eintrag on the server */
-    updateEintrag(eintrag: Eintrag): Observable<any> {
-        // const EintragID = typeof eintrag === 'number' ? eintrag : eintrag.EintragID; 
-        const url = this.eintragUrl +"Update";
+    updateEintrag(eintrag: Eintrag): Observable<Eintrag> {
+        const EintragID = typeof eintrag === 'number' ? eintrag : eintrag.EintragID; 
+        const url = this.eintragUrl +"Update";//+ eintrag.EintragID;
         // console.log(EintragID);
-        // console.log(url)
-        console.log(eintrag.Datum); //Findet der nicht
+        console.log("mainservice");
+        // console.log(eintrag.Datum); //Findet der nicht
+        console.log(url);
         console.dir(eintrag);
-        return this.http.put(url, eintrag, this.httpOptions)
+        return this.http.put<Eintrag>(url, eintrag, this.httpOptions)
     }
 
 
     deleteZielEintrag (zielEintrag: Eintrag): Observable<Eintrag> {
         const EintragID = typeof zielEintrag === 'number' ? zielEintrag : zielEintrag.EintragID; 
-        const url = this.zielUrl +"Delete/"+ EintragID;
+        const url = this.zielUrl +"Delete/";//+ EintragID;
         console.log(EintragID);
         console.log(url);
+        console.log(zielEintrag);
         return this.http.delete<Eintrag>(url, this.httpOptions);
         
     }

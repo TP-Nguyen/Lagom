@@ -28,6 +28,8 @@ export class EintragBearbeitenComponent implements OnInit {
       // }); 
     }
   @Input() eintraege: Eintrag;
+  // eintraege: Observable<Eintrag[]>;
+
   ngOnInit(): void {
     const EintragID = +this.route.snapshot.paramMap.get('EintragID');
     console.log(EintragID);
@@ -35,6 +37,18 @@ export class EintragBearbeitenComponent implements OnInit {
     console.log(this.eintraege);
   }
 
+  aktualisiereEintrag(): void {
+    // console.log(this.eintraege.EintragID);
+    // var bearbeiteneseintrag = this.eintraege.map(function(eintrag){
+    //   return this.eintraege[0];
+    // })
+    this.mainService.updateEintrag(this.eintraege).subscribe();
+    // this.mainService.updateEintrag(this.eintraege).subscribe();
+  }
+  // public bearbeiteTagebuch(tagebuchEintrag: Eintrag): void{
+  //   // this.mainService.getTagebuchEintrag(tagebuchEintrag).subscribe(); 
+  // }
+  
   // submit(bearbeitenEintrag){
   //   const updateEintrag = new Eintrag(bearbeitenEintrag.Datum, 
   //                                     bearbeitenEintrag.Uhrzeit,
@@ -51,13 +65,6 @@ export class EintragBearbeitenComponent implements OnInit {
   //   this.mainService.updateEintrag(updateEintrag).subscribe(); 
   // }
 
-  aktualisiereEintrag(): void {
-    this.mainService.updateEintrag(this.eintraege).subscribe();
-  }
-  // public bearbeiteTagebuch(tagebuchEintrag: Eintrag): void{
-  //   // this.mainService.getTagebuchEintrag(tagebuchEintrag).subscribe(); 
-  // }
-  
 } 
 
 
