@@ -102,7 +102,9 @@ export class MainService {
 
     // updateEintrag (bearbeitenEintrag: Eintrag): Observable<Eintrag> {
     //     const EintragID = typeof bearbeitenEintrag === 'number' ? bearbeitenEintrag : bearbeitenEintrag.EintragID; 
-    //     const url = "Update/"+ EintragID;
+    //     const url = this.eintragUrl + "Update/" + EintragID;
+    //     console.log("bearbeitenEintrag");
+    //     console.log(bearbeitenEintrag)
     //     console.log(EintragID);
     //     console.log(url);
     //     return this.http.put<Eintrag>(url, 
@@ -116,20 +118,19 @@ export class MainService {
     //         }, this.httpOptions)
     // }
 
-    /** PUT: update the eintrag on the server */
-    updateEintrag(eintrag: Eintrag): Observable<any> {
+    updateEintrag(eintraege: Eintrag): Observable<any> {
         // const EintragID = typeof eintrag === 'number' ? eintrag : eintrag.EintragID; 
         const url = this.eintragUrl +"Update";
         // console.log(EintragID);
         // console.log(url)
-        console.log(eintrag.Datum); //Findet der nicht
-        console.dir(eintrag);
-        return this.http.put(url, eintrag, this.httpOptions)
+        console.log(eintraege.Text); //Findet der nicht
+        console.dir(eintraege);
+        return this.http.put(this.eintragUrl, eintraege, this.httpOptions)
     }
-
 
     deleteZielEintrag (zielEintrag: Eintrag): Observable<Eintrag> {
         const EintragID = typeof zielEintrag === 'number' ? zielEintrag : zielEintrag.EintragID; 
+        console.log(zielEintrag);
         const url = this.zielUrl +"Delete/"+ EintragID;
         console.log(EintragID);
         console.log(url);
