@@ -127,14 +127,14 @@ export class MainService {
     //         }, this.httpOptions)
     // }
 
-    updateEintrag(eintraege: Eintrag): Observable<any> {
+    updateEintrag(eintraege: Eintrag): Observable<Eintrag> {
         // const EintragID = typeof eintrag === 'number' ? eintrag : eintrag.EintragID; 
         const url = this.eintragUrl +"Update";
         // console.log(EintragID);
         // console.log(url)
         console.log(eintraege.Text); //Findet der nicht
         console.dir(eintraege);
-        return this.http.put(this.eintragUrl, eintraege, this.httpOptions)
+        return this.http.put<Eintrag>(this.eintragUrl, eintraege, this.httpOptions); 
     }
 
     deleteZielEintrag (zielEintrag: Eintrag): Observable<Eintrag> {

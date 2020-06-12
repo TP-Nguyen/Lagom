@@ -260,13 +260,13 @@ app.put('/eintrag', function (req, res) {
   // const Notiz = req.body.Notiz; 
   // const Anmerkung = req.body.Anmerkung; 
 
-  const EintragID = req.params.EintragID;
-  const Datum = req.body.Datum; 
-  const Titel = req.body.Titel; 
-  const Untertitel = req.body.Untertitel; 
-  const Text = req.body.Text; 
-  const Notiz = req.body.Notiz; 
-  const Anmerkung = req.body.Anmerkung; 
+  const EintragID = req.body[0].EintragID;
+  const Datum = req.body[0].Datum; 
+  const Titel = req.body[0].Titel; 
+  const Untertitel = req.body[0].Untertitel; 
+  const Text = req.body[0].Text; 
+  const Notiz = req.body[0].Notiz; 
+  const Anmerkung = req.body[0].Anmerkung; 
   
   console.log(EintragID)
 
