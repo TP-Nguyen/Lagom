@@ -156,6 +156,14 @@ app.post('/nutzer', function (req, res) {
   // Aus workspace Darkmode löschen?
 }); 
 
+
+app.post('/nutzer/:Nutzername', function (req, res) {
+  console.log('request body: '); 
+  console.dir(req.body);
+
+  
+}); 
+
 app.post('/eintrag', function (req, res) {
   console.log('request body: '); 
   console.dir(req.body); 

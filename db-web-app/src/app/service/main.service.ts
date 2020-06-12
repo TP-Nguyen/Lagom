@@ -170,4 +170,11 @@ export class MainService {
         return this.http.delete<Eintrag>(url, this.httpOptions); 
     }
 
+    loginNutzer (nutzer : Nutzer): Observable<Nutzer> {
+        const Nutzername = typeof nutzer === 'string' ? nutzer : nutzer.Nutzername;
+        const url = this.nutzerUrl + "/" + Nutzername; 
+        console.log(nutzer); 
+        return this.http.post<Nutzer>(url, nutzer, this.httpOptions); 
+    }
+
 }
