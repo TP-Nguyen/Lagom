@@ -1,23 +1,22 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
-import { EintragComponent } from './eintrag/eintrag.component';
+import { EintragErstellenComponent } from './eintragErstellen/eintragErstellen.component';
 import { MainComponent } from './main/main.component'; 
 import { LoginComponent } from './login/login.component'; 
 import { RegistrierungComponent } from './registrierung/registrierung.component'; 
-import { EintragBearbeitenComponent } from './EintragBearbeiten/eintragBearbeiten.component'; 
-
+import { EintragBearbeitenComponent } from "./eintragBearbeiten/eintragBearbeiten.component";
 
 const routes: Routes = [
 
   // { path: '', component: AppComponent},
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'main', component: MainComponent},
-  { path: 'eintrag', component: EintragComponent},
+  { path: 'eintragErstellen', component: EintragErstellenComponent},
   { path: 'login', component: LoginComponent},
   { path: 'registrierung', component: RegistrierungComponent},
-  { path: 'bearbeiten/:EintragID', component: EintragBearbeitenComponent}
-];
+  { path: 'eintragBearbeiten/:EintragID', component: EintragBearbeitenComponent}
+]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

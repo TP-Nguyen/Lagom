@@ -4,9 +4,16 @@
 <body>
     <div id="navbar">
         <ul>
-        <li>Lagom</li>
+            <a routerLink="/eintragErstellen">
+                <li>Lagom / Neuer Eintrag</li>
+                <!-- <input id="submit" type="submit" value="zurück"> -->
+            </a>
         <li>Konto</li> <!--getNutzername-->
-        <li>Abmelden</li>
+        <a routerLink="/login">
+            <li>Abmelden</li>
+            <!-- <input id="submit" type="submit" value="zurück"> -->
+        </a>
+        
         </ul>
     </div>
     <div id="container">
@@ -17,7 +24,7 @@
                     <div class="listcontent" *ngFor="let tagebuch of tagebuch | async">
                         <div class="delete" (click)="deleteTagebuch(tagebuch)"><span >X</span></div>
                         <!-- <h4>{{eintrag.Titel}}</h4> -->
-                        <a routerLink="/bearbeiten/{{tagebuch.EintragID}}">
+                        <a routerLink="/eintragBearbeiten/{{tagebuch.EintragID}}">
                             <div class="update"><span >/</span></div>
                             <!-- <div class="update"  (click)="updateTagebuch(tagebuch)"><span >/</span></div> -->
                         </a>
@@ -77,6 +84,8 @@
             <div class="content">
                 <p>ToDo</p>
                 <div class="list" >
+                    
+                    <!-- {{todos.Titel}}; -->
                     <div class="do" *ngFor="let todo of todos | async ">
                         <div class="delete" (click)="deleteToDo(todo)"><span >X</span></div> 
                         <!-- klappt nicht mit checkbox- irgendein HTML kack -->

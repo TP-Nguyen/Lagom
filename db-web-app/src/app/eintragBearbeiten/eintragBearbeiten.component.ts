@@ -1,50 +1,63 @@
+import { MainService } from '../service/main.service';
 import { Component, OnInit, Input } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { Eintrag } from '../model/eintrag';
-import { Location } from '@angular/common';
-import { MainService} from '../service/main.service';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, from } from 'rxjs';
+import { FormBuilder } from '@angular/forms';
+import { CompileShallowModuleMetadata } from '@angular/compiler';
 
-import { Tagebuch } from '../model/tagebuch';
- 
 @Component({
   selector: 'app-eintragBearbeiten',
   templateUrl: './eintragBearbeiten.component.html',
   styleUrls: ['./eintragBearbeiten.component.css']
 })
 export class EintragBearbeitenComponent implements OnInit {
-  // eintrag: Observable<Tagebuch>;
-  // eintrag: Observable<Eintrag>;
-  @Input() eintrag: Eintrag;
+  bearbeitenEintrag;
 
-  constructor(
-    private mainService: MainService,
+  constructor(private mainService: MainService, 
     private route: ActivatedRoute,
-    private location: Location) { }
-
-  ngOnInit():void {
-    this.getEintrag();
-    // console.log(this.eintrag);
-    this.test();
-
-    // const EintragID = +this.route.snapshot.paramMap.get('EintragID');
-    // console.log(EintragID);
-    // // this.eintrag = this.mainService.getEintrag(EintragID);
-    // // this.eintrag.subscribe(data => {});
-    
-    // this.mainService.getEintrag(EintragID).subscribe(eintrag => this.eintrag = eintrag);
-  } 
-
-  public getEintrag(){
+    private formBuilder: FormBuilder) { 
+      // this.bearbeitenEintrag = this.formBuilder.group({
+      //   Datum=eintraege.Datum,
+      //   Uhrzeit=eintraege.Datum,
+      //   Titel=eintraege.Datum,
+      //   Untertitel=eintraege.Datum,
+      //   Text=eintraege.Datum,
+      //   Notiz=eintraege.Datum,
+      //   Anmerkung=eintraege.Datum
+      // }); 
+    }
+  @Input() eintraege: Eintrag;
+  ngOnInit(): void {
     const EintragID = +this.route.snapshot.paramMap.get('EintragID');
     console.log(EintragID);
-    this.mainService.getEintrag(EintragID).subscribe(eintrag => this.eintrag = eintrag);
-    
+    this.mainService.getEintrag(EintragID).subscribe(res => this.eintraege = res);
+    console.log(this.eintraege);
   }
 
-  public test(){
-    console.log(this.eintrag);
+  // submit(bearbeitenEintrag){
+  //   const updateEintrag = new Eintrag(bearbeitenEintrag.Datum, 
+  //                                     bearbeitenEintrag.Uhrzeit,
+  //                                     bearbeitenEintrag.Titel, 
+  //                                     bearbeitenEintrag.Untertitel, 
+  //                                     bearbeitenEintrag.Text, 
+  //                                     bearbeitenEintrag.Notiz, 
+  //                                     bearbeitenEintrag.Anmerkung); 
+  //   console.log("newNutzer.Nutzername")
+  //   console.log(updateEintrag.EintragID)
+    
+  //   console.log('Your data has been submitted', updateEintrag); 
+
+  //   this.mainService.updateEintrag(updateEintrag).subscribe(); 
+  // }
+
+  aktualisiereEintrag(): void {
+    this.mainService.updateEintrag(this.eintraege).subscribe();
   }
+  // public bearbeiteTagebuch(tagebuchEintrag: Eintrag): void{
+  //   // this.mainService.getTagebuchEintrag(tagebuchEintrag).subscribe(); 
+  // }
   
-}
+} 
+
+
