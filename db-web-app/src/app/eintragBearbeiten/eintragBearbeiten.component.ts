@@ -27,6 +27,10 @@ export class EintragBearbeitenComponent implements OnInit {
       //   Anmerkung=eintraege.Datum
       // }); 
     }
+
+    // var x = NotizInput.value;
+    // console.log(x);
+
   @Input() eintraege: Eintrag;
   // eintraege: Observable<Eintrag[]>;
 
@@ -37,11 +41,14 @@ export class EintragBearbeitenComponent implements OnInit {
     console.log(this.eintraege);
   }
 
+
+
   aktualisiereEintrag(): void {
     // console.log(this.eintraege.EintragID);
     // var bearbeiteneseintrag = this.eintraege.map(function(eintrag){
     //   return this.eintraege[0];
     // })
+        // var eintraege.Datum: String;
     this.mainService.updateEintrag(this.eintraege).subscribe();
     // this.mainService.updateEintrag(this.eintraege).subscribe();
   }

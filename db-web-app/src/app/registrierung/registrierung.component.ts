@@ -31,20 +31,20 @@ export class RegistrierungComponent implements OnInit{
 
   registrierungTitel = "REGISTRIERUNG"
 
-  registrierungElemente = [
-      {
-        input: "Nutzername", value: "nutzername"
-      },
-      {
-        input: "Ganzer Name", value: "ganzerName"
-      }, 
-      {
-        input: "Email", value: "email"
-      }, 
-      {
-        input: "Passwort", value: "passwort"
-      }
-  ];
+  // registrierungElemente = [
+  //     {
+  //       input: "Nutzername", value: "nutzername"
+  //     },
+  //     {
+  //       input: "Ganzer Name", value: "ganzerName"
+  //     }, 
+  //     {
+  //       input: "Email", value: "email"
+  //     }, 
+  //     {
+  //       input: "Passwort", value: "passwort"
+  //     }
+  // ];
 
   ngOnInit(): void {
   }
