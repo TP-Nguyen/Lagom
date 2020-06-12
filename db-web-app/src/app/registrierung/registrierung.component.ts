@@ -34,7 +34,7 @@ export class RegistrierungComponent implements OnInit{
   ngOnInit(): void {
   }
 
-  submit(nutzerdaten){
+  submit(nutzerdaten) {
     const newNutzer = new Nutzer(nutzerdaten.Nutzername, nutzerdaten.GanzerName, nutzerdaten.Email, nutzerdaten.Passwort); 
     this.neuerNutzer.reset(); 
     console.log("newNutzer.Nutzername")

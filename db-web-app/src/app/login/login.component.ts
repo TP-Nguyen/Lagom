@@ -15,7 +15,8 @@ export class LoginComponent implements OnInit {
 
   loginTitel = "LOGIN"
 
-  nutzerLogin; 
+  nutzerLogin;
+  @Input() nutzerGefunden : Nutzer;  
 
   constructor(private mainService: MainService, private formBuilder: FormBuilder) {
     this.nutzerLogin = this.formBuilder.group({
@@ -27,13 +28,18 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  submit(nutzerdaten){
+  submit(nutzerdaten) {
     const nutzerLogin = new Nutzer(nutzerdaten.Nutzername, nutzerdaten.GanzerName, nutzerdaten.Email, nutzerdaten.Passwort); 
     this.nutzerLogin.reset(); 
     console.log(nutzerLogin.Nutzername)
 
-    this.mainService.loginNutzer(nutzerLogin).subscribe(data => {console.log(data); 
-    }); 
+    // this.mainService.loginNutzer(nutzerLogin).subscribe(data => {console.log(data);
+      this.mainService.loginNutzer(nutzerLogin).subscribe(nutzer => this.nutzerGefunden = nutzer); 
+      console.log(this.nutzerGefunden);
+
+    // if (data = null) {
+    //   console.log("Falsche Nutzerdaten");
+    // }
   }
 
 }

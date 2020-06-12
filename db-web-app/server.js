@@ -161,7 +161,17 @@ app.post('/nutzer/:Nutzername', function (req, res) {
   console.log('request body: '); 
   console.dir(req.body);
 
+  const Nutzername = req.body.Nutzername; 
+  const Passwort = req.body.Passwort; 
   
+  const sql = "SELECT * FROM Nutzer WHERE Nutzername = ? AND Passwort = ?";
+  const values = [Nutzername, Passwort];
+  console.log(values);
+
+  connection.query(sql, values, function(error, results, fields) {
+    if (error) throw error; 
+    res.send(results); 
+  });
 }); 
 
 app.post('/eintrag', function (req, res) {
