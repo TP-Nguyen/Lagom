@@ -1,10 +1,10 @@
 import { MainService } from '../service/main.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { Observable, from } from 'rxjs';
-import{Eintrag} from '../model/eintrag';
-import{Ziel} from '../model/ziel';
-import{Todo} from '../model/todo';
-import{Erinnerung} from '../model/erinnerung';
+import { Eintrag} from '../model/eintrag';
+import { Ziel} from '../model/ziel';
+import { Todo} from '../model/todo';
+import { Erinnerung} from '../model/erinnerung';
 import { Galerie } from '../model/galerie';
 import { Motivation } from '../model/motivation';
 import { Nutzer } from '../model/nutzer';
@@ -80,19 +80,7 @@ export class MainComponent implements OnInit {
   public deleteErinnerung(erinnerungEintrag: Eintrag): void{
     this.mainService.deleteErinnerungEintrag(erinnerungEintrag).subscribe(); 
   }
-  
 
-  public updateTagebuch(tagebuchEintrag: Eintrag): void{
-    this.mainService.updateTagebuch(tagebuchEintrag).subscribe(); 
-  }
-
-  public bearbeiteTagebuch(tagebuchEintrag: Eintrag): void{
-    // this.mainService.getTagebuchEintrag(tagebuchEintrag).subscribe(); 
-  }
-
-  // public getEintrag(gesuchterEintrag : Eintrag): void{
-  //     this.mainService.getEintrag(gesuchterEintrag).subscribe;
-  // }
 
   title = 'db-web-app';
   month = "monat";
