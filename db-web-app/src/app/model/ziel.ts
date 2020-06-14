@@ -1,11 +1,12 @@
 export class Ziel{
-// ZielID : number;
-// WorkspaceID  : number;
-EintragID  : number;
+ZielID : number; //Primaerschluessel
 Datum : String;
 Titel : String;
 Untertitel : String;
 Text : String;
 Notiz :String;
 Anmerkung :String;
+//Fremdschluessel
+WorkspaceID  : number;
+EintragID  : number;
 }

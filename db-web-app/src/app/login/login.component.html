@@ -1,20 +1,20 @@
 <div class="box">
 
   <h2>{{loginTitel}}</h2>
-  <form>
-    <div *ngFor="let loginElemente of loginElemente">
+  <form [formGroup] ="nutzerLogin" (ngSubmit)="submit(nutzerLogin.value)">
       <div class="inputBox">
-        <input type="text" required="">
-        <label>{{loginElemente.input}}</label>
+        <input type="text" required="" formControlName="Nutzername">
+        <label>Nutzername: </label>
       </div>
-    </div>
-  </form>
 
-  <!-- Button "Login bestätigen" -->
-  <!-- hier kommt noch die Bedingung, ab wann man zur Main ruebergeleitet wird : nach Ausfuellen aller Felder-->
-  <a routerLink="/main">
-    <input id="login" type="submit" value="bestätigen">
-  </a>
+      <div class="inputBox">
+        <input type="text" required="" formControlName="Passwort">
+        <label>Passwort: </label>
+      </div>
+
+       <!-- Button "Login bestätigen" -->
+      <input id="login" type="submit" value="bestätigen">
+  </form>
 
   <!--Button "registrieren"-->
   <a routerLink="/registrierung">

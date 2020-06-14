@@ -156,6 +156,28 @@ app.post('/nutzer', function (req, res) {
   // Aus workspace Darkmode löschen?
 }); 
 
+
+app.get('/nutzer/:Nutzername/:Passwort', function (req, res) {
+//   console.log('request body: '); 
+//   console.dir(req.body);
+// //  
+//   const Nutzername = req.body.Nutzername; 
+//   const Passwort = req.body.Passwort;
+  const Nutzername = req.params.Nutzername; 
+  const Passwort = req.params.Passwort; 
+  console.log(Nutzername);
+  console.log(Passwort);
+  
+  const sql = "SELECT * FROM Nutzer WHERE Nutzername = ? AND Passwort = ?";
+  const values = [Nutzername, Passwort];
+
+  connection.query(sql, values, function(error, results, fields) {
+    console.log(results);
+    // if (error) throw error; 
+    // res.send(results); 
+  });
+}); 
+
 app.post('/eintrag', function (req, res) {
   console.log('request body: '); 
   console.dir(req.body); 
@@ -225,19 +247,26 @@ app.post('/eintrag', function (req, res) {
 }); 
 
 // PUT-Methode
-
-app.put('/eintragUpdate', function (req, res) {
+app.put('/eintrag', function (req, res) {
   // console.log('request body: '+ req.params.EintragID); 
   console.log('request body: '); 
   console.dir(req.body); 
 
-  const EintragID = req.body.EintragID;
-  const Datum = req.body.Datum; 
-  const Titel = req.body.Titel; 
-  const Untertitel = req.body.Untertitel; 
-  const Text = req.body.Text; 
-  const Notiz = req.body.Notiz; 
-  const Anmerkung = req.body.Anmerkung; 
+  // const EintragID = req.body.EintragID;
+  // const Datum = req.body.Datum; 
+  // const Titel = req.body.Titel; 
+  // const Untertitel = req.body.Untertitel; 
+  // const Text = req.body.Text; 
+  // const Notiz = req.body.Notiz; 
+  // const Anmerkung = req.body.Anmerkung; 
+
+  const EintragID = req.body[0].EintragID;
+  const Datum = req.body[0].Datum; 
+  const Titel = req.body[0].Titel; 
+  const Untertitel = req.body[0].Untertitel; 
+  const Text = req.body[0].Text; 
+  const Notiz = req.body[0].Notiz; 
+  const Anmerkung = req.body[0].Anmerkung; 
   
   console.log(req.body.EintragID);
 
@@ -245,7 +274,7 @@ app.put('/eintragUpdate', function (req, res) {
   
   const values = [Datum, Titel, Untertitel, Text, Notiz, Anmerkung, EintragID];
 
-    connection.query(sql, values, function(error, results, fields) {       
+    connection.query(sql, values, function(error, results, fields) {   
       if (error) throw error; 
       res.send(results); 
     }); 
