@@ -11,6 +11,7 @@ var index;
 app.use(cors());
 
 var bodyParser = require('body-parser'); 
+const { isEmpty } = require('rxjs-compat/operator/isEmpty');
 
  // parse application/x-www-form-urlencoded
  app.use(bodyParser.urlencoded({ extended: false }))
@@ -165,16 +166,20 @@ app.get('/nutzer/:Nutzername/:Passwort', function (req, res) {
 //   const Passwort = req.body.Passwort;
   const Nutzername = req.params.Nutzername; 
   const Passwort = req.params.Passwort; 
-  console.log(Nutzername);
-  console.log(Passwort);
+  // console.log(Nutzername);
+  // console.log(Passwort);
   
   const sql = "SELECT * FROM Nutzer WHERE Nutzername = ? AND Passwort = ?";
   const values = [Nutzername, Passwort];
 
   connection.query(sql, values, function(error, results, fields) {
-    console.log(results);
+    if (results[0] == null ){
+      console.log("null");
+      results[0] = "404"
+    }
+    console.log(results)
     // if (error) throw error; 
-    // res.send(results); 
+    res.send(results); 
   });
 }); 
 
@@ -251,15 +256,7 @@ app.put('/eintrag', function (req, res) {
   // console.log('request body: '+ req.params.EintragID); 
   console.log('request body: '); 
   console.dir(req.body); 
-
-  // const EintragID = req.body.EintragID;
-  // const Datum = req.body.Datum; 
-  // const Titel = req.body.Titel; 
-  // const Untertitel = req.body.Untertitel; 
-  // const Text = req.body.Text; 
-  // const Notiz = req.body.Notiz; 
-  // const Anmerkung = req.body.Anmerkung; 
-
+  
   const EintragID = req.body[0].EintragID;
   const Datum = req.body[0].Datum; 
   const Titel = req.body[0].Titel; 

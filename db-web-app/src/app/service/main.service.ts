@@ -98,31 +98,16 @@ export class MainService {
             }, this.httpOptions)
     }
 
-    loginNutzer (nutzer : Nutzer): Observable<Nutzer> {
+    loginNutzer (nutzer : Nutzer): Observable<Nutzer[]> {
         const Nutzername = typeof nutzer === 'string' ? nutzer : nutzer.Nutzername;
         const Passwort = typeof nutzer === 'string' ? nutzer : nutzer.Passwort;
         const url = this.nutzerUrl + "/" + Nutzername  + "/" + Passwort; 
-        // console.log("main");
-        // console.log(nutzer); 
-        // return this.http.post<Nutzer>(url, nutzer, this.httpOptions); 
-        return this.http.get<Nutzer>(url); 
+        return this.http.get<Nutzer[]>(url); 
     }
-    // updateEintrag(eintrag: Eintrag): Observable<Eintrag> {
-    //     const EintragID = typeof eintrag === 'number' ? eintrag : eintrag.EintragID; 
-    //     const url = this.eintragUrl +"Update";//+ eintrag.EintragID;
-    //     // console.log(EintragID);
-    //     console.log("mainservice");
-    //     // console.log(eintrag.Datum); //Findet der nicht
-    //     console.log(url);
-    //     console.dir(eintrag);
-    //     return this.http.put<Eintrag>(url, eintrag, this.httpOptions)
+
     updateEintrag(eintraege: Eintrag): Observable<Eintrag> {
         // const EintragID = typeof eintrag === 'number' ? eintrag : eintrag.EintragID; 
         const url = this.eintragUrl +"Update";
-        // console.log(EintragID);
-        // console.log(url)
-        console.log(eintraege.Text); //Findet der nicht
-        console.dir(eintraege);
         return this.http.put<Eintrag>(this.eintragUrl, eintraege, this.httpOptions); 
     }
 

@@ -4,7 +4,6 @@ import { MainService } from '../service/main.service';
 import { Observable, from } from 'rxjs';
 import { FormBuilder } from '@angular/forms'
 import { Nutzer } from '../model/nutzer'; 
-import { isNull } from 'util';
 
 @Component({
   selector: 'app-login',
@@ -18,9 +17,9 @@ export class LoginComponent implements OnInit {
 
   nutzerLogin;
   // @Input() nutzerGefunden : Nutzer;  
-  nutzerGefunden;
-  data = null; 
-  gefunden;
+  nutzerGefunden: Observable<Nutzer[]>;
+  // nutzerGefunden;//: Nutzer;
+  obj;
 
   constructor(private mainService: MainService, private formBuilder: FormBuilder) {
     this.nutzerLogin = this.formBuilder.group({
@@ -35,35 +34,22 @@ export class LoginComponent implements OnInit {
   submit(nutzerdaten) {
     const nutzerLogin = new Nutzer(nutzerdaten.Nutzername, nutzerdaten.GanzerName, nutzerdaten.Email, nutzerdaten.Passwort); 
     this.nutzerLogin.reset(); 
-    console.log(nutzerLogin.Nutzername)
-
-    // this.mainService.loginNutzer(nutzerLogin).subscribe(nutzerGefunden => {console.log(nutzerGefunden)}); 
-
-    // ;
-    this.nutzerGefunden = this.mainService.loginNutzer(nutzerLogin);
-    this.gefunden = this.mainService.loginNutzer(nutzerLogin);
-    this.nutzerGefunden.subscribe(data => {
-      console.log("data:" + data)
-      if (data != null){
-
-        this.nutzerGefunden = this.gefunden;
-        console.log("!null");
-  
-      }else{
-        console.log("null");
-      }
-    }); 
-    // this.nutzerGefunden.subscribe(nutzerGefunden => {console.log("data:" + nutzerGefunden)}); 
-    
-
-    //try1
-    // this.mainService.loginNutzer(nutzerLogin).subscribe(data => this.data = data); 
-    // console.log(this.data);
-    // console.log("nutzerGefunden: " + this.nutzerGefunden);
-
-    // if (data = null) {
-    //   console.log("Falsche Nutzerdaten");
-    // }
+    console.log("login: " + nutzerLogin.Nutzername )
+    if(nutzerdaten.Nutzername != null && nutzerdaten.Passwort != null ){
+      this.nutzerGefunden=this.mainService.loginNutzer(nutzerLogin);
+      this.nutzerGefunden.subscribe(data => {
+        console.log(data);
+        this.obj = data[0];
+        if(this.obj =="404"){
+          console.log(this.obj);
+          console.log("fail");          
+        }else{
+          console.log("erfolgreich");
+        }
+      }); 
+    }else{
+      console.log("Daten unvollständig")
+    }
   }
 
 }

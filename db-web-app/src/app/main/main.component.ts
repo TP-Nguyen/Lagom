@@ -58,7 +58,7 @@ export class MainComponent implements OnInit {
 
     this.nutzer.subscribe(data => {});
 
-    this.kalender.subscribe(data => {});
+    this.kalender.subscribe(data => {console.log( data)});
   }
   
   public deleteZiel(zielEintrag: Eintrag): void{
@@ -83,7 +83,7 @@ export class MainComponent implements OnInit {
 
 
   title = 'db-web-app';
-  month = "monat";
+  month = "Juli";
   days = [
     {
       number: "1"

@@ -34,9 +34,6 @@ export class EintragBearbeitenComponent implements OnInit {
     // console.log(this.eintraege.Datum);
     this.mainService.updateEintrag(this.eintraege).subscribe();
   }
-  // public bearbeiteTagebuch(tagebuchEintrag: Eintrag): void{
-  //   // this.mainService.getTagebuchEintrag(tagebuchEintrag).subscribe(); 
-  // }
 } 
 
 
