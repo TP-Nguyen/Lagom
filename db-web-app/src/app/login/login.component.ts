@@ -4,6 +4,7 @@ import { MainService } from '../service/main.service';
 import { Observable, from } from 'rxjs';
 import { FormBuilder } from '@angular/forms'
 import { Nutzer } from '../model/nutzer'; 
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,9 @@ export class LoginComponent implements OnInit {
   // nutzerGefunden;//: Nutzer;
   obj;
 
-  constructor(private mainService: MainService, private formBuilder: FormBuilder) {
+  constructor(private mainService: MainService, 
+              private formBuilder: FormBuilder, 
+              private router: Router) {
     this.nutzerLogin = this.formBuilder.group({
       Nutzername: '',
       Passwort: ''
@@ -44,12 +47,13 @@ export class LoginComponent implements OnInit {
           console.log(this.obj);
           console.log("fail");          
         }else{
+          console.log(data[0].NutzerID);
           console.log("erfolgreich");
+          this.router.navigate(['/main']);
         }
       }); 
     }else{
       console.log("Daten unvollständig")
     }
   }
-
 }
