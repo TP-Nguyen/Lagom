@@ -11,7 +11,8 @@ const routes: Routes = [
 
   // { path: '', component: AppComponent},
   { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'main', component: MainComponent},
+  // { path: 'main', component: MainComponent},
+  { path: 'main/:NutzerID', component: MainComponent},
   { path: 'eintragErstellen', component: EintragErstellenComponent},
   { path: 'login', component: LoginComponent},
   { path: 'registrierung', component: RegistrierungComponent},

@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
         }else{
           console.log(data[0].NutzerID);
           console.log("erfolgreich");
-          this.router.navigate(['/main']);
+          this.router.navigate(['/main/' + data[0].NutzerID ]);
         }
       }); 
     }else{
