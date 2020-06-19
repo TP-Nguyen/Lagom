@@ -211,8 +211,7 @@ app.post('/eintragerstellen', function (req, res) {
 
   const sql1 = "INSERT INTO Eintrag (Datum, Titel, Untertitel, Text, Notiz, Anmerkung)" + "VALUES (?, ?, ?, ?, ?, ?)";
   const values1 = [Datum, Titel, Untertitel, Text, Notiz, Anmerkung];
-  const sql2 = " INSERT INTO ? (WorkspaceID, EintragID, Uhrzeit)"+ "VALUES (?, ?, ?)" 
-  const values2 = [ Art, WorkspaceID, EintragID, Uhrzeit];
+ 
 
 
   // if (Art = Erinnerung){
@@ -235,10 +234,13 @@ app.post('/eintragerstellen', function (req, res) {
   //   const sql2 = "INSERT INTO ToDo  (WorkspaceID, EintragID)" + "VALUES (?, ?)";
   //   const values2 = [WorkspaceID, EintragsID]
   // }
-  // connection.query(sql1, values1, function(error, results, fields) {
-  //   if (error) throw error; 
-  //   res.send(results); 
-  // });
+  connection.query(sql1, values1, function(error, results, fields) {
+    if (error) throw error; 
+    res.send(results); 
+  });
+
+  const sql2 = " INSERT INTO ? (WorkspaceID, EintragID)"+ "VALUES (?, ?)" 
+  const values2 = [ Art, WorkspaceID, EintragID];
   // connection.query(sql2, values2, function(error, results, fields) {
   //   if (error) throw error; 
   //   res.send(results); 
