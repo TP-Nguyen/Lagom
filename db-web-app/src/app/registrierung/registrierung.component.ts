@@ -43,7 +43,7 @@ export class RegistrierungComponent implements OnInit{
     this.neuerNutzer.reset(); 
     // console.log("newNutzer.Nutzername");
     // console.log(newNutzer.Nutzername);
-    if(nutzerdaten.Nutzername != null && nutzerdaten.GanzerName != null && nutzerdaten.Email != null && nutzerdaten.Passwort != null ){
+    if(nutzerdaten.Nutzername != null || nutzerdaten.GanzerName != null || nutzerdaten.Email != null || nutzerdaten.Passwort != null ){
       console.log('Your data has been submitted', nutzerdaten); 
       this.mainService.addNutzer(newNutzer).subscribe(data => {console.log(data); });
       
