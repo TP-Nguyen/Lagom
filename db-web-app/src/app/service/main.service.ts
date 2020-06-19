@@ -89,10 +89,11 @@ export class MainService {
             }, this.httpOptions)
     }
 
-    addEintrag(newEintrag: Eintrag): Observable<Eintrag> {
-        console.dir(newEintrag);
-        console.log(newEintrag.Titel);
-        return this.http.post<Eintrag>(this.eintragUrl, 
+    addEintrag(newEintrag: Eintrag, EintragArt : String, WorkspaceID: number): Observable<Eintrag> {
+        // console.dir(newEintrag);
+        // console.log(newEintrag.Titel);
+        const url = this.eintragUrl +"erstellen" 
+        return this.http.post<Eintrag>(url, 
             {
                 "Datum": newEintrag.Datum, 
                 "Uhrzeit": newEintrag.Uhrzeit, 
@@ -101,6 +102,8 @@ export class MainService {
                 "Text": newEintrag.Text,
                 "Notiz": newEintrag.Notiz,
                 "Anmerkung": newEintrag.Anmerkung,
+                "EintragArt": EintragArt,
+                "WorkspaceID": WorkspaceID,
             }, this.httpOptions)
     }
 

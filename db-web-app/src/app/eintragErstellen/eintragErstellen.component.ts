@@ -3,7 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Eintrag } from '../model/eintrag';
 import { Observable, from } from 'rxjs';
 import { FormBuilder } from '@angular/forms'
+import { ActivatedRoute } from '@angular/router';
 import { MainService } from '../service/main.service'; 
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-eintragErstellen',
@@ -14,10 +16,15 @@ import { MainService } from '../service/main.service';
 export class EintragErstellenComponent implements OnInit{
   
   eintragListe: Observable<Eintrag[]>;
+  WorkspaceID = +this.route.snapshot.paramMap.get('WorkspaceID');
   neuerEintrag; 
   
-  constructor(private mainService: MainService, private formBuilder: FormBuilder) {
+  constructor(private mainService: MainService,
+              private route: ActivatedRoute,
+              private router: Router,
+              private formBuilder: FormBuilder) {
     this.neuerEintrag = this.formBuilder.group({
+      EintragArt: '',
       Datum: '', 
       Uhrzeit: '', 
       Titel: '', 
@@ -43,7 +50,7 @@ export class EintragErstellenComponent implements OnInit{
 
     console.log('Your data has been submitted', eintragdaten); 
 
-    this.mainService.addEintrag(newEintrag).subscribe(data => {console.log(data); 
+    this.mainService.addEintrag(newEintrag, eintragdaten.EintragArt,this.WorkspaceID).subscribe(data => {console.log(data); 
     }); 
   }
 

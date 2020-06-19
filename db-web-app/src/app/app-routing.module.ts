@@ -12,11 +12,11 @@ const routes: Routes = [
   // { path: '', component: AppComponent},
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   // { path: 'main', component: MainComponent},
-  { path: 'main/:NutzerID', component: MainComponent},
-  { path: 'eintragErstellen', component: EintragErstellenComponent},
+  { path: 'main/:WorkspaceID', component: MainComponent},
   { path: 'login', component: LoginComponent},
   { path: 'registrierung', component: RegistrierungComponent},
-  { path: 'eintragBearbeiten/:EintragID', component: EintragBearbeitenComponent}
+  { path: 'eintragBearbeiten/:EintragID', component: EintragBearbeitenComponent},
+  { path: 'eintragErstellen/:WorkspaceID', component: EintragErstellenComponent}
 ]
 
 @NgModule({

@@ -4,10 +4,8 @@
 <body>
     <div id="navbar">
         <ul>
-            <a routerLink="/eintragErstellen">
-                <li>Lagom / Neuer Eintrag</li>
+            <li (click)="eintragErstellen()">Lagom / Neuer Eintrag</li>
                 <!-- <input id="submit" type="submit" value="zurück"> -->
-            </a>
         <li>Konto</li> <!--getNutzername-->
         <a routerLink="/login">
             <li>Abmelden</li>

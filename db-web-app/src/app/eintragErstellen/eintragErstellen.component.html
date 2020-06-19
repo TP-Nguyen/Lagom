@@ -4,13 +4,13 @@
       <br><br>
       <form [formGroup]="neuerEintrag" (ngSubmit)="submit(neuerEintrag.value)">
         <label for="eintrag">Kategorie: </label>
-        <select name="eintrag">
-          <option value="ziel">Ziel</option>
-          <option value="erinnerung">Erinnerung</option>
-          <option value="kalender">Kalender</option>
-          <option value="tagebuch">Tagebuch</option>
-          <option value="todo">ToDo</option>
-          <option value="galerie">Galerie</option>
+        <select name="eintrag" formControlName="EintragArt">
+          <option value="Ziel">Ziel</option>
+          <option value="Erinnerung">Erinnerung</option>
+          <option value="Kalender">Kalender</option>
+          <option value="Tagebuch">Tagebuch</option>
+          <option value="Todo">ToDo</option>
+          <!-- <option value="Galerie">Galerie</option> -->
         </select>
           <br>
           <br>

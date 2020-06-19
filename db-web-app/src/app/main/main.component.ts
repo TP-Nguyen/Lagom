@@ -1,6 +1,7 @@
 import { MainService } from '../service/main.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { Observable, from } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 import { Eintrag} from '../model/eintrag';
 import { Ziel} from '../model/ziel';
 import { Todo} from '../model/todo';
@@ -10,6 +11,7 @@ import { Motivation } from '../model/motivation';
 import { Nutzer } from '../model/nutzer';
 import { Tagebuch } from '../model/tagebuch';
 import { Kalender } from '../model/kalender';
+import { Router } from '@angular/router';
 
 @Component({
   // selector: 'app-main', //Hier richtig?
@@ -19,7 +21,7 @@ import { Kalender } from '../model/kalender';
 })
 export class MainComponent implements OnInit {
 
-  constructor(private mainService: MainService) { }
+  constructor(private mainService: MainService,private router: Router,private route: ActivatedRoute) { }
 
   ziele: Observable<Ziel[]>;
   todos: Observable<Todo[]>;
@@ -32,7 +34,7 @@ export class MainComponent implements OnInit {
 
   //nutzer: Observable<Nutzer>; 
   nutzerListe: Observable<Nutzer[]>; 
-
+  WorkspaceID = +this.route.snapshot.paramMap.get('WorkspaceID');
   ngOnInit(): void {
 
     this.todos = this.mainService.getTodos();
@@ -81,6 +83,9 @@ export class MainComponent implements OnInit {
     this.mainService.deleteErinnerungEintrag(erinnerungEintrag).subscribe(); 
   }
 
+  public eintragErstellen(){
+    this.router.navigate(["eintragErstellen/" + this.WorkspaceID])
+  }
 
   title = 'db-web-app';
   month = "Juli";
