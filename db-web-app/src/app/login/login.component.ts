@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
   nutzerGefunden: Observable<Nutzer[]>;
   // nutzerGefunden;//: Nutzer;
   obj;
+  workspaceID
 
   constructor(private mainService: MainService, 
               private formBuilder: FormBuilder, 
@@ -41,7 +42,7 @@ export class LoginComponent implements OnInit {
     if(nutzerdaten.Nutzername != null && nutzerdaten.Passwort != null ){
       this.nutzerGefunden=this.mainService.loginNutzer(nutzerLogin);
       this.nutzerGefunden.subscribe(data => {
-        console.log(data);
+        // console.log(data);
         this.obj = data[0];
         if(this.obj =="404"){
           console.log(this.obj);
@@ -49,7 +50,9 @@ export class LoginComponent implements OnInit {
         }else{
           console.log(data[0].NutzerID);
           console.log("erfolgreich");
-          this.router.navigate(['/main/' + data[0].NutzerID ]);
+          this.workspaceID = this.mainService.getWorkspaceID(data[0].NutzerID);
+          this.workspaceID.subscribe(data => {console.log(data);
+            this.router.navigate(['/main/' + data[0].WorkspaceID ]);});
         }
       }); 
     }else{

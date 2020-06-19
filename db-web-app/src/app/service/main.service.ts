@@ -70,6 +70,12 @@ export class MainService {
         return this.http.get<Eintrag>(url)
     }
 
+    getWorkspaceID(NutzerID: Number){
+        const url = this.nutzerUrl +"/"+ NutzerID;
+        console.log(url);
+        return this.http.get(url)
+    }
+
     addNutzer(newNutzer: Nutzer): Observable<Nutzer> {
         console.dir(newNutzer);
         console.log(newNutzer.Nutzername);

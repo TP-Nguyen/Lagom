@@ -11,7 +11,7 @@ var index;
 app.use(cors());
 
 var bodyParser = require('body-parser'); 
-const { isEmpty } = require('rxjs-compat/operator/isEmpty');
+// const { isEmpty } = require('rxjs-compat/operator/isEmpty');
 
  // parse application/x-www-form-urlencoded
  app.use(bodyParser.urlencoded({ extended: false }))
@@ -119,11 +119,10 @@ app.get('/nutzer', function (req, res) {
   connection.query('SELECT * FROM Nutzer', function (error, results, fields) {
     if (error) throw error;
     res.send(results);
-
+  });
 });
-});
 
-//Ein spezifisches Getten
+//spezifisches Getten
 app.get('/eintrag/:EintragID', function (req, res) { 
   console.log('request body: '+ req.params.EintragID); 
   // id = request.param.EintragId;
@@ -135,7 +134,40 @@ app.get('/eintrag/:EintragID', function (req, res) {
   });
 });
  
+app.get('/nutzer/:Nutzername/:Passwort', function (req, res) {
+  //   console.log('request body: '); 
+  //   console.dir(req.body);
+  // //  
+  //   const Nutzername = req.body.Nutzername; 
+  //   const Passwort = req.body.Passwort;
+    const Nutzername = req.params.Nutzername; 
+    const Passwort = req.params.Passwort; 
+    // console.log(Nutzername);
+    // console.log(Passwort);
+    
+    const sql = "SELECT * FROM Nutzer WHERE Nutzername = ? AND Passwort = ?";
+    const values = [Nutzername, Passwort];
+  
+    connection.query(sql, values, function(error, results, fields) {
+      if (results[0] == null ){
+        console.log("null");
+        results[0] = "404"
+      }
+      console.log(results)
+      // if (error) throw error; 
+      res.send(results); 
+    });
+}); 
 
+app.get('/nutzer/:NutzerID', function (req, res) {
+  console.log('request body: '+ req.params.NutzerID); 
+  const sql = 'SELECT WorkspaceID FROM Workspace WHERE NutzerID = ?';
+  connection.query( sql,req.params.NutzerID, function (error, results, fields) {
+    if (error) throw error;
+    res.send(results);
+  });
+});
+  
 // POST-Methoden
 app.post('/nutzer', function (req, res) {
   console.log('request body: '); 
@@ -147,7 +179,7 @@ app.post('/nutzer', function (req, res) {
   const Passwort = req.body.Passwort; 
 
   const sql = "INSERT INTO Nutzer (Nutzername, Ganzername, Email, Passwort)" + "VALUES (?, ?, ?, ?)";
-  // const values = [Nutzername, GanzerName, Email, Passwort];
+  const values = [Nutzername, GanzerName, Email, Passwort];
 
   connection.query(sql, values, function(error, results, fields) {
     if (error) throw error; 
@@ -155,32 +187,6 @@ app.post('/nutzer', function (req, res) {
   });
   //Muss noch mit Workspace verbunden werden --> oder workspace löschen? 
   // Aus workspace Darkmode löschen?
-}); 
-
-
-app.get('/nutzer/:Nutzername/:Passwort', function (req, res) {
-//   console.log('request body: '); 
-//   console.dir(req.body);
-// //  
-//   const Nutzername = req.body.Nutzername; 
-//   const Passwort = req.body.Passwort;
-  const Nutzername = req.params.Nutzername; 
-  const Passwort = req.params.Passwort; 
-  // console.log(Nutzername);
-  // console.log(Passwort);
-  
-  const sql = "SELECT * FROM Nutzer WHERE Nutzername = ? AND Passwort = ?";
-  const values = [Nutzername, Passwort];
-
-  connection.query(sql, values, function(error, results, fields) {
-    if (results[0] == null ){
-      console.log("null");
-      results[0] = "404"
-    }
-    console.log(results)
-    // if (error) throw error; 
-    res.send(results); 
-  });
 }); 
 
 app.post('/eintrag', function (req, res) {

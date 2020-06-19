@@ -58,7 +58,7 @@ export class MainComponent implements OnInit {
 
     this.nutzer.subscribe(data => {});
 
-    this.kalender.subscribe(data => {console.log( data)});
+    this.kalender.subscribe(data => {});
   }
   
   public deleteZiel(zielEintrag: Eintrag): void{
