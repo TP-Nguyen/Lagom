@@ -31,20 +31,20 @@ export class MainComponent implements OnInit {
   nutzer: Observable<Nutzer[]>;
   tagebuch: Observable<Tagebuch[]>;
   kalender: Observable<Kalender[]>;
-
-  //nutzer: Observable<Nutzer>; 
-  nutzerListe: Observable<Nutzer[]>; 
+  nutzerdaten:Observable<any>;
   WorkspaceID = +this.route.snapshot.paramMap.get('WorkspaceID');
   ngOnInit(): void {
+    this.nutzerdaten = this.mainService.getNutzerdaten(this.WorkspaceID);
+    this.nutzerdaten.subscribe(data => {console.log(data)});
 
-    this.todos = this.mainService.getTodos();
-    this.ziele = this.mainService.getZiele();
-    this.erinnerungen = this.mainService.getErinnerungen();
-    this.galerien = this.mainService.getGalerien();
-    this.motivationen = this.mainService.getMotivationen();
+    this.todos = this.mainService.getTodos(this.WorkspaceID);
+    this.ziele = this.mainService.getZiele(this.WorkspaceID);
+    this.erinnerungen = this.mainService.getErinnerungen(this.WorkspaceID);
+    this.galerien = this.mainService.getGalerien(this.WorkspaceID);
+    this.motivationen = this.mainService.getMotivationen(this.WorkspaceID);
     this.nutzer = this.mainService.getNutzerListe();
-    this.tagebuch = this.mainService.getTagebuch();
-    this.kalender = this.mainService.getKalender();
+    this.tagebuch = this.mainService.getTagebuch(this.WorkspaceID);
+    this.kalender = this.mainService.getKalender(this.WorkspaceID);
 
     this.todos.subscribe(data => {});
 

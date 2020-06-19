@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
           console.log("erfolgreich");
           this.workspaceID = this.mainService.getWorkspaceID(data[0].NutzerID);
           this.workspaceID.subscribe(data => {console.log(data);
-            this.router.navigate(['/main/' + data[0].WorkspaceID ]);});
+          this.router.navigate(['/main/' + data[0].WorkspaceID ]);});
         }
       }); 
     }else{

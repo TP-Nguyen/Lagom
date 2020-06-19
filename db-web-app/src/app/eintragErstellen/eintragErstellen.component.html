@@ -45,10 +45,9 @@
           <input type="text" name="" formControlName="Anmerkung">
           <label>Anmerkung</label>
           </div>
-          <a routerLink="/main">
-            <input id="submit" type="submit" value="zurück">
-          </a>
+        
         <input type="submit" value="Submit">
       </form>
+      <input (click)="goBack()" style="float:'right'" type="submit" value="zurück">
   </div>
 </div>

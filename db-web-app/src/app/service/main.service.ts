@@ -26,54 +26,67 @@ export class MainService {
     private readonly galerieUrl = APIConfig.URL + ':' + APIConfig.PORT + '/galerie';
     private readonly motivationUrl = APIConfig.URL + ':' + APIConfig.PORT + '/motivation';
     private readonly nutzerUrl = APIConfig.URL + ':' + APIConfig.PORT + '/nutzer';
+    private readonly workspaceUrl = APIConfig.URL + ':' + APIConfig.PORT + '/workspace';
     private readonly tagebuchUrl = APIConfig.URL + ':' + APIConfig.PORT + '/tagebuch';
     private readonly kalenderUrl = APIConfig.URL + ':' + APIConfig.PORT + '/kalender';
     private readonly eintragUrl = APIConfig.URL + ':' + APIConfig.PORT + '/eintrag';
 
     httpOptions = { headers: new HttpHeaders({'Content-Type': 'application/json'}) }; 
 
-    getZiele(): Observable<Ziel[]> {
-        return this.http.get<Ziel[]>(this.zielUrl)
+    getNutzerdaten(WorkspaceID:number){
+        const url = this.workspaceUrl + "/" + WorkspaceID;
+        console.log(url);
+        return this.http.get(url);
+    }
+    getZiele(WorkspaceID:number): Observable<Ziel[]> {
+        const url= this.zielUrl + "/" + WorkspaceID;
+        return this.http.get<Ziel[]>(url);
     }
 
-    getTodos(): Observable<Todo[]> {
-        return this.http.get<Todo[]>(this.todoUrl)
+    getTodos(WorkspaceID:number): Observable<Todo[]> {
+        const url= this.todoUrl + "/" + WorkspaceID;
+        return this.http.get<Todo[]>(url);
     }
 
-    getErinnerungen(): Observable<Erinnerung[]> {
-        return this.http.get<Erinnerung[]>(this.erinnerungUrl)
+    getErinnerungen(WorkspaceID:number): Observable<Erinnerung[]> {
+        const url= this.erinnerungUrl + "/" + WorkspaceID;
+        return this.http.get<Erinnerung[]>(url);
     }
 
-    getGalerien(): Observable<Galerie[]> {
-        return this.http.get<Galerie[]>(this.galerieUrl)
+    getGalerien(WorkspaceID:number): Observable<Galerie[]> {
+        const url= this.galerieUrl + "/" + WorkspaceID;
+        return this.http.get<Galerie[]>(url);
     }
 
-    getMotivationen(): Observable<Motivation[]> {
-        return this.http.get<Motivation[]>(this.motivationUrl)
+    getMotivationen(WorkspaceID:number): Observable<Motivation[]> {
+        const url= this.motivationUrl + "/" + WorkspaceID;
+        return this.http.get<Motivation[]>(url);
     }
 
     getNutzerListe(): Observable<Nutzer[]> {
-        return this.http.get<Nutzer[]>(this.nutzerUrl)
+        return this.http.get<Nutzer[]>(this.nutzerUrl);
     }
 
-    getTagebuch(): Observable<Tagebuch[]> {
-        return this.http.get<Tagebuch[]>(this.tagebuchUrl)
+    getTagebuch(WorkspaceID:number): Observable<Tagebuch[]> {
+        const url= this.tagebuchUrl + "/" + WorkspaceID;
+        return this.http.get<Tagebuch[]>(url);
     }
 
-    getKalender(): Observable<Kalender[]> {
-        return this.http.get<Kalender[]>(this.kalenderUrl)
+    getKalender(WorkspaceID:number): Observable<Kalender[]> {
+        const url= this.kalenderUrl + "/" + WorkspaceID;
+        return this.http.get<Kalender[]>(url);
     }
 
     getEintrag(gesuchterEintrag: Number): Observable<any> {
         const url = this.eintragUrl +"/"+ gesuchterEintrag;
         console.log(url);
-        return this.http.get<Eintrag>(url)
+        return this.http.get<Eintrag>(url);
     }
 
     getWorkspaceID(NutzerID: Number){
         const url = this.nutzerUrl +"/"+ NutzerID;
         console.log(url);
-        return this.http.get(url)
+        return this.http.get(url);
     }
 
     addNutzer(newNutzer: Nutzer): Observable<Nutzer> {
@@ -86,7 +99,7 @@ export class MainService {
                 "GanzerName": newNutzer.GanzerName, 
                 "Email": newNutzer.Email, 
                 "Passwort": newNutzer.Passwort
-            }, this.httpOptions)
+            }, this.httpOptions);
     }
 
     addEintrag(newEintrag: Eintrag, EintragArt : String, WorkspaceID: number): Observable<Eintrag> {

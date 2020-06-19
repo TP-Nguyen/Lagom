@@ -6,7 +6,7 @@ import { FormBuilder } from '@angular/forms'
 import { ActivatedRoute } from '@angular/router';
 import { MainService } from '../service/main.service'; 
 import { Router } from '@angular/router';
-
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-eintragErstellen',
   templateUrl: './eintragErstellen.component.html',
@@ -16,12 +16,13 @@ import { Router } from '@angular/router';
 export class EintragErstellenComponent implements OnInit{
   
   eintragListe: Observable<Eintrag[]>;
-  WorkspaceID = +this.route.snapshot.paramMap.get('WorkspaceID');
+  WorkspaceID;
   neuerEintrag; 
   
   constructor(private mainService: MainService,
               private route: ActivatedRoute,
               private router: Router,
+              private location: Location,
               private formBuilder: FormBuilder) {
     this.neuerEintrag = this.formBuilder.group({
       EintragArt: '',
@@ -41,6 +42,9 @@ export class EintragErstellenComponent implements OnInit{
 
   ngOnInit(): void {
   }
+  goBack(){
+    this.location.back();
+  }
 
   submit(eintragdaten){
     const newEintrag = new Eintrag(eintragdaten.Datum, eintragdaten.Uhrzeit, eintragdaten.Titel, eintragdaten.Untertitel, eintragdaten.Text, eintragdaten.Notiz, eintragdaten.Anmerkung); 
@@ -52,6 +56,6 @@ export class EintragErstellenComponent implements OnInit{
 
     this.mainService.addEintrag(newEintrag, eintragdaten.EintragArt,this.WorkspaceID).subscribe(data => {console.log(data); 
     }); 
+    this.goBack();
   }
-
 }

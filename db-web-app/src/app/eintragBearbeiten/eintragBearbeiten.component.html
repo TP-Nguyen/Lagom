@@ -3,53 +3,40 @@
       <h2>Beitrag bearbeiten</h2>
       <br><br>
       <form *ngFor="let eintrag of eintraege"> 
-        <!--[formGroup]="bearbeitenEintrag" (ngSubmit)="submit(bearbeitenEintrag.value)" -->
           <br>
           <br>
          <div class="inputBox">
            <div >
             <input type="text" name="Datum" required="" value="" [(ngModel)]="eintrag.Datum">
-            <!--  [(ngModel)]="eintraege.Datum" > formControlName="Datum" -->
             <label>Datum</label>
           </div>
           </div> 
           <div class="inputBox">
           <input type="text" name="Uhrzeit" [(ngModel)]="eintrag.Uhrzeit" >
-           <!--formControlName="Uhrzeit" -->
           <label>Uhrzeit</label>
           </div> 
           <div class="inputBox">
           <input type="text" name="Titel" required="" [(ngModel)]="eintrag.Titel" >
-          <!-- formControlName="Titel"-->
           <label>Titel</label>
           </div> 
           <div class="inputBox">
           <input type="text" name="Untertitel" [(ngModel)]="eintrag.Untertitel" >
-          <!-- formControlName="Untertitel"-->
           <label>Untertitel</label>
           </div> 
           <div class="inputBox">
           <input type="text" name="Text" required="" [(ngModel)]="eintrag.Text" >
-          <!-- formControlName="Text"-->
           <label>Text</label>
           </div> 
           <div class="inputBox">
           <input type="text" name="Notiz" [(ngModel)]="eintrag.Notiz" #NotizInput >
-          <!--formControlName="Notiz" -->
           <label>Notiz</label>
           </div> 
           <div class="inputBox">
           <input type="text" name="Anmerkung" [(ngModel)]="eintrag.Anmerkung" >
-          <!-- formControlName="Anmerkung"-->
           <label>Anmerkung</label>
           </div>
-        <a routerLink="/main">
-          <input id="submit" type="submit" value="zurück">
-        </a>
-        <script>
-        
-      </script>
         <input type="submit" value="Aktualisiere Daten" (click)="aktualisiereEintrag()">
       </form>
+      <input id="submit" style="float:'right'" (click)="goBack()" type="submit" value="zurück">
   </div>
 </div>

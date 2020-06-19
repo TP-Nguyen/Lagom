@@ -6,10 +6,9 @@
         <ul>
             <li (click)="eintragErstellen()">Lagom / Neuer Eintrag</li>
                 <!-- <input id="submit" type="submit" value="zurück"> -->
-        <li>Konto</li> <!--getNutzername-->
+        <li *ngFor="let nutzer of nutzerdaten | async">{{nutzer.GanzerName}}</li>
         <a routerLink="/login">
             <li>Abmelden</li>
-            <!-- <input id="submit" type="submit" value="zurück"> -->
         </a>
         
         </ul>
@@ -21,12 +20,9 @@
                 <div class="list">
                     <div class="listcontent" *ngFor="let tagebuch of tagebuch | async">
                         <div class="delete" (click)="deleteTagebuch(tagebuch)"><span >X</span></div>
-                        <!-- <h4>{{eintrag.Titel}}</h4> -->
-                        <a routerLink="/eintragBearbeiten/{{tagebuch.EintragID}}">
+                        <a routerLink= "/eintragBearbeiten/{{tagebuch.EintragID}}">
                             <div class="update"><span >/</span></div>
-                            <!-- <div class="update"  (click)="updateTagebuch(tagebuch)"><span >/</span></div> -->
                         </a>
-                      
                         <p>{{tagebuch.Datum}}</p>
                         <p>{{tagebuch.Titel}}</p>
                         <p>{{tagebuch.Untertitel}}</p>
@@ -47,7 +43,9 @@
                 <div class="list">
                     <div class="listcontent" *ngFor="let kalender of kalender | async">
                         <div class="delete" (click)="deleteKalender(kalender)"><span >X</span></div>
-                        <!-- <h4>{{eintrag.Titel}}</h4> -->
+                        <a routerLink="/eintragBearbeiten/{{kalender.EintragID}}">
+                            <div class="update"><span >/</span></div>
+                        </a>
                         <p>{{kalender.Datum}}</p>
                         <p>{{kalender.Uhrzeit}}</p>
                         <p>{{kalender.Titel}}</p>
@@ -66,7 +64,9 @@
                 <div class="list">
                     <div class="listcontent" *ngFor="let ziel of ziele | async">
                         <div class="delete" (click)="deleteZiel(ziel)"><span >X</span></div>
-                        <!-- <h4>{{eintrag.Titel}}</h4> -->
+                        <a routerLink="/eintragBearbeiten/{{ziel.EintragID}}">
+                            <div class="update"><span >/</span></div>
+                        </a>
                         <p>{{ziel.Datum}}</p>
                         <p>{{ziel.Titel}}</p>
                         <p>{{ziel.Untertitel}}</p>
@@ -82,11 +82,7 @@
             <div class="content">
                 <p>ToDo</p>
                 <div class="list" >
-                    
-                    <!-- {{todos.Titel}}; -->
                     <div class="do" *ngFor="let todo of todos | async ">
-                        <div class="delete" (click)="deleteToDo(todo)"><span >X</span></div> 
-                        <!-- klappt nicht mit checkbox- irgendein HTML kack -->
                         <input type="checkbox">
                         <span class="checkmark"></span>
                         <label>{{todo.Datum}}</label>
@@ -95,6 +91,11 @@
                         <label>{{todo.Text}}</label>
                         <label>{{todo.Notiz}}</label>
                         <label>{{todo.Anmerkung}}</label>
+                        
+                        <div class="delete" (click)="deleteToDo(todo)"><span >X</span></div>
+                        <a routerLink="/eintragBearbeiten/{{todo.EintragID}}">
+                            <div class="update"><span >/</span></div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -106,8 +107,9 @@
                 <div class="list">
                     <div class="listcontent" *ngFor="let erinnerung of erinnerungen | async ">
                         <div class="delete" (click)="deleteErinnerung(erinnerung)"><span >X</span></div> 
-                        <!-- <input type="checkbox"> -->
-                        <!-- <span class="checkmark"></span> -->
+                        <a routerLink="/eintragBearbeiten/{{erinnerung.EintragID}}">
+                            <div class="update"><span >/</span></div>
+                        </a>
                         <p>{{erinnerung.Datum}}</p>
                         <p>{{erinnerung.Uhrzeit}}</p>
                         <p>{{erinnerung.Titel}}</p>
@@ -122,11 +124,9 @@
         <div class="field" id="Motivation">
             <div class="content">
                 <p>Motivation</p>
-                <div class="list">
-                    <div class="listcontent" *ngFor="let motivation of motivationen | async">
+                    <div *ngFor="let motivation of motivationen | async">
                         <p>{{motivation.Text}}</p>
-                    </div>
-                </div>    
+                    </div> 
             </div>
         </div>
         <div class="field" id="Galerie">

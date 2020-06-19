@@ -3,8 +3,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Eintrag } from '../model/eintrag';
 import { ActivatedRoute } from '@angular/router';
-import { FormBuilder } from '@angular/forms';
-import { CompileShallowModuleMetadata } from '@angular/compiler';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-eintragBearbeiten',
@@ -13,10 +13,12 @@ import { CompileShallowModuleMetadata } from '@angular/compiler';
 })
 export class EintragBearbeitenComponent implements OnInit {
   bearbeitenEintrag;
+  WorkspaceID = +this.route.snapshot.paramMap.get('WorkspaceID');
 
   constructor(private mainService: MainService, 
-    private route: ActivatedRoute) { 
-    }
+              private router: Router,
+              private location: Location,
+              private route: ActivatedRoute) { }
   @Input() eintraege: Eintrag;
   // eintraege: Observable<Eintrag[]>;
 
@@ -30,9 +32,14 @@ export class EintragBearbeitenComponent implements OnInit {
     this.mainService.getEintrag(EintragID).subscribe(eintraege => this.eintraege = eintraege);
   }
 
+  goBack(){
+    // this.router.navigate(['/main/' + this.WorkspaceID]);
+    this.location.back();
+  }
+
   aktualisiereEintrag(): void {
-    // console.log(this.eintraege.Datum);
     this.mainService.updateEintrag(this.eintraege).subscribe();
+    this.goBack();
   }
 } 
 
