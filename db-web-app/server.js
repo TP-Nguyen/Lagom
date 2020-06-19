@@ -191,15 +191,8 @@ app.post('/nutzer', function (req, res) {
 
 app.post('/eintragerstellen', function (req, res) {
   console.log('request body: '); 
-  console.dir(req.body); 
+  // console.dir(req.body); 
 
-  // const EintragID = 3002; //Abfragen durch vergebe ID
-  // const WorkspaceID = 2000; //Abfragen durch login
-
-  // Nur wenn Errinerungen, Kalender
-  const Uhrzeit = req.body.Uhrzeit; 
-
-  //Immer
   const Datum = req.body.Datum; 
   const Titel = req.body.Titel; 
   const Untertitel = req.body.Untertitel; 
@@ -211,8 +204,9 @@ app.post('/eintragerstellen', function (req, res) {
 
   const sql1 = "INSERT INTO Eintrag (Datum, Titel, Untertitel, Text, Notiz, Anmerkung)" + "VALUES (?, ?, ?, ?, ?, ?)";
   const values1 = [Datum, Titel, Untertitel, Text, Notiz, Anmerkung];
- 
-
+  // const sql2 = " INSERT INTO ? (WorkspaceID, EintragID)"+ "VALUES (?, ?)" 
+  // const values2 = [ Art, WorkspaceID,  LAST_INSERT_ID() ];
+// EintragID, Uhrzeit "select max(EintragID) from Eintrag"
 
   // if (Art = Erinnerung){
   //   const sql2 = "INSERT INTO Erinnerung (WorkspaceID, EintragID, Uhrzeit)" + "VALUES (?, ?, ?)";
@@ -234,18 +228,19 @@ app.post('/eintragerstellen', function (req, res) {
   //   const sql2 = "INSERT INTO ToDo  (WorkspaceID, EintragID)" + "VALUES (?, ?)";
   //   const values2 = [WorkspaceID, EintragsID]
   // }
+  const sql2 = null ;const values2 =null;
   connection.query(sql1, values1, function(error, results, fields) {
     if (error) throw error; 
     res.send(results); 
+    console.log(results);
+    console.log(results.insertId);
+    sql2 = "INSERT INTO "+" "+ Art +" (WorkspaceID, EintragID)"+ " VALUES (?, ?)" 
+    values2 = [WorkspaceID,  results.insertId ];
+  });  
+  connection.query(sql2, values2, function(error, results, fields) {
+    // if (error) throw error; 
+    res.send(results); 
   });
-
-  const sql2 = " INSERT INTO ? (WorkspaceID, EintragID)"+ "VALUES (?, ?)" 
-  const values2 = [ Art, WorkspaceID, EintragID];
-  // connection.query(sql2, values2, function(error, results, fields) {
-  //   if (error) throw error; 
-  //   res.send(results); 
-  // });
-    
 }); 
 
 // PUT-Methode
