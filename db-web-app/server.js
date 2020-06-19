@@ -230,8 +230,8 @@ app.post('/eintragerstellen', function (req, res) {
   // }
   // const sql2 = null ;const values2 =null; const EintragID = null;
   connection.query(sql1, values1, function(error, results, fields) {
-    if (error) throw error; 
-    res.send(results); 
+    // if (error) throw error; 
+    // res.send(results); 
     // console.log(results);
     console.log(results.insertId);
     sql2 = "INSERT INTO "+ Art +" (WorkspaceID, EintragID)" + " VALUES (?, ?)" 
