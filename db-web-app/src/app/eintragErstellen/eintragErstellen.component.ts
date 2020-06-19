@@ -16,7 +16,7 @@ import { Location } from '@angular/common';
 export class EintragErstellenComponent implements OnInit{
   
   eintragListe: Observable<Eintrag[]>;
-  WorkspaceID;
+  WorkspaceID = +this.route.snapshot.paramMap.get('WorkspaceID');
   neuerEintrag; 
   
   constructor(private mainService: MainService,
