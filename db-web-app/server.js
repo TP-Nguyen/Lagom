@@ -118,12 +118,16 @@ app.get('/nutzer', function (req, res) {
 });
 
 //spezifisches Getten
-app.get('/eintrag/:EintragID', function (req, res) { 
+app.get('/eintrag/:EintragID/:Art', function (req, res) { 
   console.log('request body: '+ req.params.EintragID); 
   // id = request.param.EintragId;
-  const sql = 'SELECT * FROM Eintrag WHERE EintragID = ?';
-  connection.query(sql, req.params.EintragID, function (error, results, fields) { 
+  const Art = req.params.Art; 
+  const sql = 'SELECT * FROM Eintrag natural join ' + Art + ' WHERE EintragID = ?';
+
+
+  connection.query(sql ,req.params.EintragID, function (error, results, fields) { 
   if (error) throw error;
+    console.log(results)
     res.send(results);
     
   });

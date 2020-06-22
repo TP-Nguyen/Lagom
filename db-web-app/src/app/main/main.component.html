@@ -20,7 +20,7 @@
                 <div class="list">
                     <div class="listcontent" *ngFor="let tagebuch of tagebuch | async">
                         <div class="delete" (click)="deleteTagebuch(tagebuch)"><span >X</span></div>
-                        <a routerLink= "/eintragBearbeiten/{{tagebuch.EintragID}}">
+                        <a routerLink= "/eintragBearbeiten/Tagebuch/{{tagebuch.EintragID}}">
                             <div class="update"><span >/</span></div>
                         </a>
                         <p>{{tagebuch.Datum}}</p>
@@ -43,7 +43,7 @@
                 <div class="list">
                     <div class="listcontent" *ngFor="let kalender of kalender | async">
                         <div class="delete" (click)="deleteKalender(kalender)"><span >X</span></div>
-                        <a routerLink="/eintragBearbeiten/{{kalender.EintragID}}">
+                        <a routerLink="/eintragBearbeiten/Kalender/{{kalender.EintragID}}">
                             <div class="update"><span >/</span></div>
                         </a>
                         <p>{{kalender.Datum}}</p>
@@ -64,7 +64,7 @@
                 <div class="list">
                     <div class="listcontent" *ngFor="let ziel of ziele | async">
                         <div class="delete" (click)="deleteZiel(ziel)"><span >X</span></div>
-                        <a routerLink="/eintragBearbeiten/{{ziel.EintragID}}">
+                        <a routerLink="/eintragBearbeiten/Ziel/{{ziel.EintragID}}">
                             <div class="update"><span >/</span></div>
                         </a>
                         <p>{{ziel.Datum}}</p>
@@ -93,7 +93,7 @@
                         <label>{{todo.Anmerkung}}</label>
                         
                         <div class="delete" (click)="deleteToDo(todo)"><span >X</span></div>
-                        <a routerLink="/eintragBearbeiten/{{todo.EintragID}}">
+                        <a routerLink="/eintragBearbeiten/ToDo/{{todo.EintragID}}">
                             <div class="update"><span >/</span></div>
                         </a>
                     </div>
@@ -107,7 +107,7 @@
                 <div class="list">
                     <div class="listcontent" *ngFor="let erinnerung of erinnerungen | async ">
                         <div class="delete" (click)="deleteErinnerung(erinnerung)"><span >X</span></div> 
-                        <a routerLink="/eintragBearbeiten/{{erinnerung.EintragID}}">
+                        <a routerLink="/eintragBearbeiten/Erinnerung/{{erinnerung.EintragID}}">
                             <div class="update"><span >/</span></div>
                         </a>
                         <p>{{erinnerung.Datum}}</p>

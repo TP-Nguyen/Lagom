@@ -77,8 +77,8 @@ export class MainService {
         return this.http.get<Kalender[]>(url);
     }
 
-    getEintrag(gesuchterEintrag: Number): Observable<any> {
-        const url = this.eintragUrl +"/"+ gesuchterEintrag;
+    getEintrag(gesuchterEintrag: Number, Art: String): Observable<any> {
+        const url = this.eintragUrl +"/"+ gesuchterEintrag + "/" + Art;
         console.log(url);
         return this.http.get<Eintrag>(url);
     }
@@ -130,6 +130,7 @@ export class MainService {
     updateEintrag(eintraege: Eintrag): Observable<Eintrag> {
         // const EintragID = typeof eintrag === 'number' ? eintrag : eintrag.EintragID; 
         const url = this.eintragUrl +"Update";
+        console.log(eintraege);
         return this.http.put<Eintrag>(this.eintragUrl, eintraege, this.httpOptions); 
     }
 

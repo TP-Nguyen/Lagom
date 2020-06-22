@@ -16,6 +16,11 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'registrierung', component: RegistrierungComponent},
   { path: 'eintragBearbeiten/:EintragID', component: EintragBearbeitenComponent},
+  { path: 'eintragBearbeiten/Tagebuch/:EintragID', component: EintragBearbeitenComponent},
+  { path: 'eintragBearbeiten/ToDo/:EintragID', component: EintragBearbeitenComponent},
+  { path: 'eintragBearbeiten/Kalender/:EintragID', component: EintragBearbeitenComponent},
+  { path: 'eintragBearbeiten/Ziel/:EintragID', component: EintragBearbeitenComponent},
+  { path: 'eintragBearbeiten/Erinnerung/:EintragID', component: EintragBearbeitenComponent},
   { path: 'eintragErstellen/:WorkspaceID', component: EintragErstellenComponent}
 ]
 
