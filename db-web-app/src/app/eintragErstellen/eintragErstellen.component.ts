@@ -50,13 +50,18 @@ export class EintragErstellenComponent implements OnInit{
     const newEintrag = new Eintrag(eintragdaten.Datum, eintragdaten.Uhrzeit, eintragdaten.Titel, eintragdaten.Untertitel, eintragdaten.Text, eintragdaten.Notiz, eintragdaten.Anmerkung); 
     this.neuerEintrag.reset(); 
   
-    if(eintragdaten.Datum != "" && eintragdaten.Titel != ""){
-      if(eintragdaten.Datum != null && eintragdaten.Titel != null){
+    if(eintragdaten.EintragArt != "" && eintragdaten.Datum != "" && eintragdaten.Titel != ""){
+      if(eintragdaten.EintragArt != null && eintragdaten.Datum != null && eintragdaten.Titel != null){
         console.log('Your data has been submitted', eintragdaten); 
         this.mainService.addEintrag(newEintrag, eintragdaten.EintragArt,this.WorkspaceID).subscribe(data => {console.log(data); 
         }); 
         this.goBack();
       }
+      else{
+        console.log("Daten null")
+      }
+    }else{
+      console.log("Daten leer")
     }    
   }
 }
