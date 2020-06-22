@@ -49,13 +49,14 @@ export class EintragErstellenComponent implements OnInit{
   submit(eintragdaten){
     const newEintrag = new Eintrag(eintragdaten.Datum, eintragdaten.Uhrzeit, eintragdaten.Titel, eintragdaten.Untertitel, eintragdaten.Text, eintragdaten.Notiz, eintragdaten.Anmerkung); 
     this.neuerEintrag.reset(); 
-    console.log("newEintrag.Titel")
-    console.log(newEintrag.Titel)
-
-    console.log('Your data has been submitted', eintragdaten); 
-
-    this.mainService.addEintrag(newEintrag, eintragdaten.EintragArt,this.WorkspaceID).subscribe(data => {console.log(data); 
-    }); 
-    this.goBack();
+  
+    if(eintragdaten.Datum != "" && eintragdaten.Titel != ""){
+      if(eintragdaten.Datum != null && eintragdaten.Titel != null){
+        console.log('Your data has been submitted', eintragdaten); 
+        this.mainService.addEintrag(newEintrag, eintragdaten.EintragArt,this.WorkspaceID).subscribe(data => {console.log(data); 
+        }); 
+        this.goBack();
+      }
+    }    
   }
 }
