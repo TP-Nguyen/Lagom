@@ -3,6 +3,7 @@
 export class Eintrag{
     // ZielID : number;
     // WorkspaceID  : number;
+    Art : String;
     EintragID  : number;
     Datum : String;
     Uhrzeit: String;

@@ -239,7 +239,7 @@ app.post('/eintragerstellen', function (req, res) {
 }); 
 
 // PUT-Methode
-app.put('/eintrag', function (req, res) {
+app.put('/eintragUpdate/:Art', function (req, res) {
   // console.log('request body: '+ req.params.EintragID); 
   console.log('request body: '); 
   console.dir(req.body); 
@@ -251,16 +251,30 @@ app.put('/eintrag', function (req, res) {
   const Text = req.body[0].Text; 
   const Notiz = req.body[0].Notiz; 
   const Anmerkung = req.body[0].Anmerkung; 
-  
-  console.log(req.body.EintragID);
+  const Uhrzeit = req.body[0].Uhrzeit;
 
+  const Art = req.params.Art;
+  // console.log(Art);
+  
   const sql = "UPDATE Eintrag SET Datum = ?, Titel = ?, Untertitel = ?, Text = ?, Notiz = ?, Anmerkung = ? WHERE EintragID = ?" ;
   
   const values = [Datum, Titel, Untertitel, Text, Notiz, Anmerkung, EintragID];
 
     connection.query(sql, values, function(error, results, fields) {   
-      if (error) throw error; 
-      res.send(results); 
+      // if (error) throw error; 
+      // res.send(results); 
+
+      if (Art == "Erinnerung" || Art == "Kalender"){
+        console.log("Art")
+        console.log(Art)
+        const sql2 = "UPDATE " + Art + " SET Uhrzeit = ? WHERE EintragID = ?";
+        const values2 = [Uhrzeit, EintragID];
+        connection.query(sql2, values2, function(error, results, fields) {
+          console.log(sql2);
+          if (error) throw error; 
+          res.send(results); 
+        });
+      }
     }); 
     
 }); 

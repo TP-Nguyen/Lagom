@@ -26,12 +26,13 @@ export class EintragBearbeitenComponent implements OnInit {
     this.getEintrag();
   }
 
+  Art = this.route.snapshot.url[1].path;
+
   getEintrag(): void {
     const EintragID = +this.route.snapshot.paramMap.get('EintragID');
     console.log(EintragID);
-    const Art = this.route.snapshot.url[1].path;
-    console.log(Art);
-    this.mainService.getEintrag(EintragID, Art).subscribe(eintraege => this.eintraege = eintraege);
+    
+    this.mainService.getEintrag(EintragID, this.Art).subscribe(eintraege => this.eintraege = eintraege);
   }
 
   goBack(){
@@ -42,6 +43,7 @@ export class EintragBearbeitenComponent implements OnInit {
   aktualisiereEintrag(): void {
     // if(this.eintraege.Datum != "" && this.eintraege.Titel != ""){
     //   if(this.eintraege.Datum != null && this.eintraege.Titel != null){
+        this.eintraege.Art = this.Art;
         this.mainService.updateEintrag(this.eintraege).subscribe();
         this.goBack();
     //   }else{

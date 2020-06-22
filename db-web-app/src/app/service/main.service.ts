@@ -129,9 +129,10 @@ export class MainService {
 
     updateEintrag(eintraege: Eintrag): Observable<Eintrag> {
         // const EintragID = typeof eintrag === 'number' ? eintrag : eintrag.EintragID; 
-        const url = this.eintragUrl +"Update";
+        const url = this.eintragUrl + "Update/" + eintraege.Art;
+        console.log(url);
         console.log(eintraege);
-        return this.http.put<Eintrag>(this.eintragUrl, eintraege, this.httpOptions); 
+        return this.http.put<Eintrag>(url, eintraege, this.httpOptions); 
     }
 
     deleteZielEintrag (zielEintrag: Eintrag): Observable<Eintrag> {
