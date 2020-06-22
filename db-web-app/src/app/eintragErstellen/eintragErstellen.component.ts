@@ -56,8 +56,7 @@ export class EintragErstellenComponent implements OnInit{
         this.mainService.addEintrag(newEintrag, eintragdaten.EintragArt,this.WorkspaceID).subscribe(data => {console.log(data); 
         }); 
         this.goBack();
-      }
-      else{
+      }else{
         console.log("Daten null")
       }
     }else{

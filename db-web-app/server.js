@@ -207,46 +207,30 @@ app.post('/eintragerstellen', function (req, res) {
   const Anmerkung = req.body.Anmerkung;
   const Art = req.body.EintragArt;
   const WorkspaceID =req.body.WorkspaceID;
+  const Uhrzeit = req.body.Uhrzeit;
 
   const sql1 = "INSERT INTO Eintrag (Datum, Titel, Untertitel, Text, Notiz, Anmerkung)" + "VALUES (?, ?, ?, ?, ?, ?)";
   const values1 = [Datum, Titel, Untertitel, Text, Notiz, Anmerkung];
-  // const sql2 = " INSERT INTO ? (WorkspaceID, EintragID)"+ "VALUES (?, ?)" 
-  // const values2 = [ Art, WorkspaceID,  LAST_INSERT_ID() ];
-// EintragID, Uhrzeit "select max(EintragID) from Eintrag"
-
-  // if (Art = Erinnerung){
-  //   const sql2 = "INSERT INTO Erinnerung (WorkspaceID, EintragID, Uhrzeit)" + "VALUES (?, ?, ?)";
-  //   const values2 = [WorkspaceID, EintragsID, Uhrzeit]
-  // }
-  // if (Art = Kalender){
-  //   const sql2 = "INSERT INTO Kalender  (WorkspaceID, EintragID, Uhrzeit)" + "VALUES (?, ?, ?)";
-  //   const values2 = [WorkspaceID, EintragsID, Uhrzeit]
-  // }
-  // if (Art = Ziel){
-  //   const sql2 = "INSERT INTO Ziel  (WorkspaceID, EintragID)" + "VALUES (?, ?)";
-  //   const values2 = [WorkspaceID, EintragsID]
-  // }
-  // if (Art = Tagebuch){
-  //   const sql2 = "INSERT INTO Tagebuch  (WorkspaceID, EintragID)" + "VALUES (?, ?)";
-  //   const values2 = [WorkspaceID, EintragsID]
-  // }
-  // if (Art = ToDo){
-  //   const sql2 = "INSERT INTO ToDo  (WorkspaceID, EintragID)" + "VALUES (?, ?)";
-  //   const values2 = [WorkspaceID, EintragsID]
-  // }
-  // const sql2 = null ;const values2 =null; const EintragID = null;
+  
   connection.query(sql1, values1, function(error, results, fields) {
-    // if (error) throw error; 
-    // res.send(results); 
-    // console.log(results);
     console.log(results.insertId);
-    sql2 = "INSERT INTO "+ Art +" (WorkspaceID, EintragID)" + " VALUES (?, ?)" 
-    values2 = [WorkspaceID,  results.insertId];
-
-    connection.query(sql2, values2, function(error, results, fields) {
-          if (error) throw error; 
-          res.send(results); 
-    });
+    if (Art == "Erinnerung" || Art == "Kalender"){
+      console.log("!")
+      const sql2 = "INSERT INTO " + Art + " (WorkspaceID, EintragID, Uhrzeit)" + "VALUES (?, ?, ?)";
+      const values2 = [WorkspaceID, results.insertId, Uhrzeit];
+      connection.query(sql2, values2, function(error, results, fields) {
+        if (error) throw error; 
+        res.send(results); 
+      });
+    }else{
+      console.log("?")
+      const sql2 = "INSERT INTO "+ Art +" (WorkspaceID, EintragID)" + " VALUES (?, ?)" 
+      const values2 = [WorkspaceID, results.insertId];
+      connection.query(sql2, values2, function(error, results, fields) {
+        if (error) throw error; 
+        res.send(results); 
+      });
+    }
   }); 
 }); 
 
