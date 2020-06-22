@@ -185,11 +185,18 @@ app.post('/nutzer', function (req, res) {
   const values = [Nutzername, GanzerName, Email, Passwort];
 
   connection.query(sql, values, function(error, results, fields) {
-    if (error) throw error; 
+    console.log(results.insertId);
+    sql2 = "INSERT INTO Workspace (NutzerID, MotivationID)" + " VALUES (?, (SELECT FLOOR (RAND () * (100011-100001) + 100001)))" 
+    // motivationID = "(SELECT FLOOR (RAND () * (100011-100001) + 100001))" //Zufaellige Motivationszahl wird generiert
+    values2 = [results.insertId];
+
+    connection.query(sql2, values2, function(error, results, fields) {
+          console.log("SHSHSDSHJDSH");
+          // if (error) throw error; 
+          // res.send(results); 
+    });
     res.send(results); 
   });
-  //Muss noch mit Workspace verbunden werden --> oder workspace löschen? 
-  // Aus workspace Darkmode löschen?
 }); 
 
 app.post('/eintragerstellen', function (req, res) {
@@ -243,7 +250,7 @@ app.post('/eintragerstellen', function (req, res) {
     connection.query(sql2, values2, function(error, results, fields) {
           if (error) throw error; 
           res.send(results); 
-        });
+    });
   }); 
 }); 
 

@@ -38,6 +38,8 @@ export class RegistrierungComponent implements OnInit{
   ngOnInit(): void {
   }
 
+ nutzer;
+  
   submit(nutzerdaten) {
     const newNutzer = new Nutzer(nutzerdaten.Nutzername, nutzerdaten.GanzerName, nutzerdaten.Email, nutzerdaten.Passwort); 
     this.neuerNutzer.reset(); 
@@ -45,11 +47,15 @@ export class RegistrierungComponent implements OnInit{
     // console.log(newNutzer.Nutzername);
     if(nutzerdaten.Nutzername != null || nutzerdaten.GanzerName != null || nutzerdaten.Email != null || nutzerdaten.Passwort != null ){
       console.log('Your data has been submitted', nutzerdaten); 
-      this.mainService.addNutzer(newNutzer).subscribe(data => {console.log(data); });
-      
-      // this.workspaceID = this.mainService.getWorkspaceID(data[0].NutzerID);
-      // this.workspaceID.subscribe(data => {console.log(data);
-      //   this.router.navigate(['/main/' + data[0].WorkspaceID ]);}); 
+      this.nutzer = this.mainService.addNutzer(newNutzer).subscribe(data => {console.log(data);});  
+        
+      // this.workspaceID = data.insertId;
+        
+        this.workspaceID = this.mainService.getWorkspaceID(this.nutzer.nutzerID);
+        console.log(this.workspaceID);
+        this.workspaceID.subscribe(data => {console.log(data);
+        this.router.navigate(['/main/' + this.workspaceID ]); }); 
+        
     }
   }
 }
