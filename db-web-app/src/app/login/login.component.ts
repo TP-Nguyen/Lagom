@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
   nutzerGefunden: Observable<Nutzer[]>;
   // nutzerGefunden;//: Nutzer;
   obj;
-  workspaceID
+  workspaceID;
 
   constructor(private mainService: MainService, 
               private formBuilder: FormBuilder, 

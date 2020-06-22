@@ -38,24 +38,20 @@ export class RegistrierungComponent implements OnInit{
   ngOnInit(): void {
   }
 
- nutzer;
-  
   submit(nutzerdaten) {
     const newNutzer = new Nutzer(nutzerdaten.Nutzername, nutzerdaten.GanzerName, nutzerdaten.Email, nutzerdaten.Passwort); 
     this.neuerNutzer.reset(); 
-    // console.log("newNutzer.Nutzername");
-    // console.log(newNutzer.Nutzername);
-    if(nutzerdaten.Nutzername != null || nutzerdaten.GanzerName != null || nutzerdaten.Email != null || nutzerdaten.Passwort != null ){
-      console.log('Your data has been submitted', nutzerdaten); 
-      this.nutzer = this.mainService.addNutzer(newNutzer).subscribe(data => {console.log(data);});  
-        
-      // this.workspaceID = data.insertId;
-        
-        this.workspaceID = this.mainService.getWorkspaceID(this.nutzer.nutzerID);
-        console.log(this.workspaceID);
-        this.workspaceID.subscribe(data => {console.log(data);
-        this.router.navigate(['/main/' + this.workspaceID ]); }); 
-        
+    if(nutzerdaten.Nutzername != "" && nutzerdaten.GanzerName != "" && nutzerdaten.Email != "" && nutzerdaten.Passwort != "" ){
+      if(nutzerdaten.Nutzername != null && nutzerdaten.GanzerName != null && nutzerdaten.Email != null && nutzerdaten.Passwort != null ){
+        this.mainService.addNutzer(newNutzer).subscribe(data => {});   
+        console.log('Your data has been submitted', nutzerdaten); 
+        this.router.navigate(['/login/']); 
+     
+      }else{
+        console.log("Daten null")
+      }
+    }else{
+      console.log("Daten leer")
     }
   }
 }

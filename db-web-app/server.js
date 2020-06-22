@@ -185,17 +185,13 @@ app.post('/nutzer', function (req, res) {
   const values = [Nutzername, GanzerName, Email, Passwort];
 
   connection.query(sql, values, function(error, results, fields) {
-    console.log(results.insertId);
-    sql2 = "INSERT INTO Workspace (NutzerID, MotivationID)" + " VALUES (?, (SELECT FLOOR (RAND () * (100011-100001) + 100001)))" 
-    // motivationID = "(SELECT FLOOR (RAND () * (100011-100001) + 100001))" //Zufaellige Motivationszahl wird generiert
+    sql2 = "INSERT INTO Workspace (NutzerID, MotivationID)" + " VALUES (?, (SELECT FLOOR (RAND () * (100011-100001) + 100001)))"; 
     values2 = [results.insertId];
 
     connection.query(sql2, values2, function(error, results, fields) {
-          console.log("SHSHSDSHJDSH");
-          // if (error) throw error; 
-          // res.send(results); 
+        if (error) throw error; 
+        res.send(results); 
     });
-    res.send(results); 
   });
 }); 
 
