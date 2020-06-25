@@ -57,3 +57,11 @@
     pointer-events: none;
     transition: .5s;
 }
+
+#zurueck{
+    float: left;
+}
+
+#aktualisieren{
+    float: right;
+}

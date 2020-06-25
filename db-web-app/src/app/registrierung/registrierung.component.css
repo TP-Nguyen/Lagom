@@ -65,6 +65,9 @@ body{
     
 }
 
-#registrieren {
+#bestaetigen {
     float: right;
+}
+#zurueck {
+    float: left;
 }

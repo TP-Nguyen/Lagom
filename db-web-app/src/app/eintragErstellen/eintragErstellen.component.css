@@ -65,3 +65,11 @@
     color:dodgerblue;
     font-size: 12px;
 }
+
+#zurueck{
+    float: left;
+}
+
+#bestaetigen{
+    float: right;
+}
