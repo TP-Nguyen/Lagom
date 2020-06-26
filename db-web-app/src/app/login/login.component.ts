@@ -43,22 +43,28 @@ export class LoginComponent implements OnInit {
     const nutzerLogin = new Nutzer(nutzerdaten.Nutzername, nutzerdaten.GanzerName, nutzerdaten.Email, nutzerdaten.Passwort); 
     this.nutzerLogin.reset(); 
     console.log("login: " + nutzerLogin.Nutzername )
-    if(nutzerdaten.Nutzername != null && nutzerdaten.Passwort != null ){
-      this.nutzerGefunden=this.mainService.loginNutzer(nutzerLogin);
-      this.nutzerGefunden.subscribe(data => {
-        // console.log(data);
-        this.obj = data[0];
-        if(this.obj =="404"){
-          console.log(this.obj);
-          console.log("fail");          
-        }else{
-          console.log(data[0].NutzerID);
-          console.log("erfolgreich");
-          this.workspaceID = this.mainService.getWorkspaceID(data[0].NutzerID);
-          this.workspaceID.subscribe(data => {console.log(data);
-          this.router.navigate(['/main/' + data[0].WorkspaceID ]);});
-        }
-      }); 
+    if (nutzerdaten.Nutzername != "" && nutzerdaten.Passwort != "") {
+      if(nutzerdaten.Nutzername != null && nutzerdaten.Passwort != null ){
+        this.nutzerGefunden=this.mainService.loginNutzer(nutzerLogin);
+        this.nutzerGefunden.subscribe(data => {
+          // console.log(data);
+          this.obj = data[0];
+          if(this.obj =="404"){
+            console.log(this.obj);
+            console.log("fail");   
+            this.nutzerNichtGefundenError();        
+          }else{
+            console.log(data[0].NutzerID);
+            console.log("erfolgreich");
+            this.workspaceID = this.mainService.getWorkspaceID(data[0].NutzerID);
+            this.workspaceID.subscribe(data => {console.log(data);
+            this.router.navigate(['/main/' + data[0].WorkspaceID ]);});
+          }
+        }); 
+      }else{
+        console.log("Daten unvollständig")
+        this.showError();
+      }
     }else{
       console.log("Daten unvollständig")
       this.showError();
@@ -68,6 +74,11 @@ export class LoginComponent implements OnInit {
   showError() {
     this.nachricht = "Alle Felder müssen ausgefüllt werden!";
     console.warn('Alle Felder müssen ausgefüllt werden!')
+  }
+
+  nutzerNichtGefundenError() {
+    this.nachricht = "Nutzer nicht gefunden!";
+    console.warn('Nutzer nicht gefunden!')
   }
 
 }
