@@ -19,8 +19,8 @@ export class RegistrierungComponent implements OnInit{
    nutzerListe: Observable<Nutzer[]>;
    neuerNutzer; 
    workspaceID;
- 
-  nachricht = " "; 
+
+    nachricht = " "; 
 
   constructor(private mainService: MainService, 
               private router: Router,
@@ -45,10 +45,17 @@ export class RegistrierungComponent implements OnInit{
     this.neuerNutzer.reset(); 
     if(nutzerdaten.Nutzername != "" && nutzerdaten.GanzerName != "" && nutzerdaten.Email != "" && nutzerdaten.Passwort != "" ){
       if(nutzerdaten.Nutzername != null && nutzerdaten.GanzerName != null && nutzerdaten.Email != null && nutzerdaten.Passwort != null ){
+        this.nutzerListe = this.mainService.getNutzerListe();
+        this.nutzerListe.subscribe(nutzerListe => {console.log(this.nutzerListe);
+          for (var i = 0, nutzerListe.length, i = i + 1) {
+            if (nutzerdaten.Nutzername == nutzerListe[i].Nutzername) {
+
+            }
+          }
         this.mainService.addNutzer(newNutzer).subscribe(data => {});   
         console.log('Your data has been submitted', nutzerdaten); 
         this.router.navigate(['/login/']); 
-     
+      }); 
       }else{
         console.log("Daten null"); 
         this.showError(); 
