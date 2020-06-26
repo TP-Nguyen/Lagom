@@ -136,6 +136,7 @@ export class MainService {
         // const EintragID = typeof eintrag === 'number' ? eintrag : eintrag.EintragID; 
         const url = this.eintragUrl + "Update/" + eintraege.Art;
         console.log(url);
+        console.log("MAIN")
         console.log(eintraege);
         return this.http.put<Eintrag>(url, eintraege, this.httpOptions); 
     }
