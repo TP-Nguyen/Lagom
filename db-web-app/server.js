@@ -110,9 +110,15 @@ app.get('/galerie/:WorkspaceID', function (req, res) {
   
 });
 
-app.get('/nutzer', function (req, res) {
-
+app.get('/nutzer', function (req, res) { 
   connection.query('SELECT * FROM Nutzer', function (error, results, fields) {
+    if (error) throw error;
+    res.send(results);
+  });
+});
+
+app.get('/nutzername/:name', function (req, res) {
+  connection.query('SELECT * FROM Nutzer where Nutzername = ?', req.params.name, function (error, results, fields) {
     if (error) throw error;
     res.send(results);
   });

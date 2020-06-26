@@ -16,10 +16,10 @@ import { Router } from '@angular/router';
 export class RegistrierungComponent implements OnInit{
 
    //nutzerListe = Nutzer[]; 
-   nutzerListe: Observable<Nutzer[]>;
+   nutzergefunden: Observable<Nutzer>;
    neuerNutzer; 
    workspaceID;
-
+   username = false;
     nachricht = " "; 
 
   constructor(private mainService: MainService, 
@@ -39,23 +39,30 @@ export class RegistrierungComponent implements OnInit{
 
   ngOnInit(): void {
   }
-
+  changeNutzername(name){
+    this.nutzergefunden = this.mainService.getNutzername(name);
+    this.nutzergefunden.subscribe(data => {
+      console.log(data);
+      this.username=true;
+      if(data[0]==null) {this.username=false;}
+      if(this.username == true){
+        this.nachricht="Nutzername ist bereits vorhanden";
+        console.warn(this.nachricht)
+      }else{
+        this.nachricht="";
+      }
+    });
+    
+    // console.log(this.nutzergefunden);
+  }
   submit(nutzerdaten) {
     const newNutzer = new Nutzer(nutzerdaten.Nutzername, nutzerdaten.GanzerName, nutzerdaten.Email, nutzerdaten.Passwort); 
     this.neuerNutzer.reset(); 
     if(nutzerdaten.Nutzername != "" && nutzerdaten.GanzerName != "" && nutzerdaten.Email != "" && nutzerdaten.Passwort != "" ){
       if(nutzerdaten.Nutzername != null && nutzerdaten.GanzerName != null && nutzerdaten.Email != null && nutzerdaten.Passwort != null ){
-        this.nutzerListe = this.mainService.getNutzerListe();
-        this.nutzerListe.subscribe(nutzerListe => {console.log(this.nutzerListe);
-          for (var i = 0, nutzerListe.length, i = i + 1) {
-            if (nutzerdaten.Nutzername == nutzerListe[i].Nutzername) {
-
-            }
-          }
-        this.mainService.addNutzer(newNutzer).subscribe(data => {});   
-        console.log('Your data has been submitted', nutzerdaten); 
-        this.router.navigate(['/login/']); 
-      }); 
+          this.mainService.addNutzer(newNutzer).subscribe(data => {});   
+          console.log('Your data has been submitted', nutzerdaten); 
+          this.router.navigate(['/login/']); 
       }else{
         console.log("Daten null"); 
         this.showError(); 
@@ -68,7 +75,7 @@ export class RegistrierungComponent implements OnInit{
 
   showError() {
     this.nachricht = "Alle Felder müssen ausgefüllt werden!";
-    console.warn('Alle Felder müssen ausgefüllt werden!')
+    console.warn(this.nachricht);
   }
 
 }

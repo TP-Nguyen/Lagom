@@ -7,7 +7,7 @@
       <div class="inputBox">
         <div class="field">
           <div class="control">
-            <input type="text" required="" formControlName="Nutzername">
+            <input type="text" required="" formControlName="Nutzername" (change)="changeNutzername($event.target.value)">
             <label>Nutzername: </label>
           </div>
         </div>

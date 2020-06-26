@@ -38,6 +38,11 @@ export class MainService {
         console.log(url);
         return this.http.get(url);
     }
+    getNutzername(nutzername:string): Observable<Nutzer>{
+        const url = this.nutzerUrl + "name/" + nutzername;
+        console.log(url);
+        return this.http.get<Nutzer>(url);
+    }
     getZiele(WorkspaceID:number): Observable<Ziel[]> {
         const url= this.zielUrl + "/" + WorkspaceID;
         return this.http.get<Ziel[]>(url);
