@@ -136,7 +136,6 @@ export class MainService {
         // const EintragID = typeof eintrag === 'number' ? eintrag : eintrag.EintragID; 
         const url = this.eintragUrl + "Update/" + eintraege.Art;
         console.log(url);
-        console.log("MAIN")
         console.log(eintraege);
         return this.http.put<Eintrag>(url, eintraege, this.httpOptions); 
     }
@@ -147,7 +146,6 @@ export class MainService {
         console.log(EintragID);
         console.log(url);
         return this.http.delete<Eintrag>(url, this.httpOptions);
-        
     }
 
     deleteKalenderEintrag (kalenderEintrag: Eintrag): Observable<Eintrag> {

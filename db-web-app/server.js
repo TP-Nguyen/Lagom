@@ -30,7 +30,7 @@ app.get('/main', function(req,res)
     res.sendFile('main.component.html', { root: __dirname + '/src/app/main'});
 }); 
 
- //hochschul server
+ //HOCHSCHUL SERVER
 const connection = mysql.createConnection({
   host: "195.37.176.178", 
   port: "20133",
@@ -45,7 +45,6 @@ var server = app.listen(SERVER_PORT, function (){
 
       console.log("App listening at http://%s:%s", host, port)
 });
-
 
 // GET-Anfragen 
 
@@ -93,7 +92,6 @@ app.get('/tagebuch/:WorkspaceID', function (req, res) {
 });
 
 app.get('/motivation/:WorkspaceID', function (req, res) {
-  // 'SELECT * FROM Motivation'
   const sql = 'select * from Motivation where MotivationID = (SELECT MotivationID FROM Workspace where WorkspaceID ='+req.params.WorkspaceID +')';
   connection.query(sql, function (error, results, fields) {
     if (error) throw error;
@@ -127,10 +125,8 @@ app.get('/nutzername/:name', function (req, res) {
 //spezifisches Getten
 app.get('/eintrag/:EintragID/:Art', function (req, res) { 
   console.log('request body: '+ req.params.EintragID); 
-  // id = request.param.EintragId;
   const Art = req.params.Art; 
   const sql = 'SELECT * FROM Eintrag natural join ' + Art + ' WHERE EintragID = ?';
-
 
   connection.query(sql ,req.params.EintragID, function (error, results, fields) { 
   if (error) throw error;
@@ -141,16 +137,9 @@ app.get('/eintrag/:EintragID/:Art', function (req, res) {
 });
  
 app.get('/nutzer/:Nutzername/:Passwort', function (req, res) {
-  //   console.log('request body: '); 
-  //   console.dir(req.body);
-  // //  
-  //   const Nutzername = req.body.Nutzername; 
-  //   const Passwort = req.body.Passwort;
     const Nutzername = req.params.Nutzername; 
     const Passwort = req.params.Passwort; 
-    // console.log(Nutzername);
-    // console.log(Passwort);
-    
+
     const sql = "SELECT * FROM Nutzer WHERE Nutzername = ? AND Passwort = ? ";
     const values = [Nutzername, Passwort];
   
@@ -160,7 +149,7 @@ app.get('/nutzer/:Nutzername/:Passwort', function (req, res) {
         results[0] = "404"
       }
       console.log(results)
-      // if (error) throw error; 
+      if (error) throw error; 
       res.send(results); 
     });
 }); 
@@ -183,6 +172,7 @@ app.get('/workspace/:WorkspaceID', function (req, res) {
 });
   
 // POST-Methoden
+
 app.post('/nutzer', function (req, res) {
   console.log('request body: '); 
   console.dir(req.body); 
@@ -246,11 +236,12 @@ app.post('/eintragerstellen', function (req, res) {
 }); 
 
 // PUT-Methode
+
 app.put('/eintragUpdate/:Art', function (req, res) {
-  // console.log('request body: '+ req.params.EintragID); 
   console.log('request body: '); 
   console.dir(req.body); 
   
+  const Art = req.params.Art;
   const EintragID = req.body[0].EintragID;
   const Datum = req.body[0].Datum; 
   const Titel = req.body[0].Titel; 
@@ -260,33 +251,27 @@ app.put('/eintragUpdate/:Art', function (req, res) {
   const Anmerkung = req.body[0].Anmerkung; 
   const Uhrzeit = req.body[0].Uhrzeit;
 
-  const Art = req.params.Art;
-  // console.log(Art);
-  
   const sql = "UPDATE Eintrag SET Datum = ?, Titel = ?, Untertitel = ?, Text = ?, Notiz = ?, Anmerkung = ? WHERE EintragID = ?" ;
   
   const values = [Datum, Titel, Untertitel, Text, Notiz, Anmerkung, EintragID];
 
     connection.query(sql, values, function(error, results, fields) {   
-      // if (error) throw error; 
-      // res.send(results); 
+      if (error) throw error; 
+      res.send(results); 
 
       if (Art == "Erinnerung" || Art == "Kalender"){
-        console.log("Art")
         console.log(Art)
         const sql2 = "UPDATE " + Art + " SET Uhrzeit = ? WHERE EintragID = ?";
         const values2 = [Uhrzeit, EintragID];
         connection.query(sql2, values2, function(error, results, fields) {
-          console.log(sql2);
           if (error) throw error; 
           res.send(results); 
         });
       }
     }); 
-    
 }); 
 
-// Delete-Methoden
+// DELETE-Methoden
 
 app.delete('/zielDelete/:EintragID', function (req, res) {
   const sql = " DELETE FROM Ziel WHERE EintragID = ?";

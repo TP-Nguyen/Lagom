@@ -33,13 +33,14 @@ export class EintragBearbeitenComponent implements OnInit {
   }
   
   @Input() eintraege: Eintrag;
-  Art = this.route.snapshot.url[1].path;
-  EintragID;
-  uhr=false;
-  modelChangeDate(newDate){
-    this.eintraege[0].Datum = newDate;
-    console.log(this.eintraege[0].Datum);
-  }
+    Art = this.route.snapshot.url[1].path;
+    EintragID;
+    uhr=false;
+
+    modelChangeDate(newDate){
+      this.eintraege[0].Datum = newDate;
+      console.log(this.eintraege[0].Datum);
+    }
   
     ngOnInit(): void {
     this.EintragID = +this.route.snapshot.paramMap.get('EintragID');
@@ -61,7 +62,6 @@ export class EintragBearbeitenComponent implements OnInit {
   }
 
   aktualisiereEintrag(): void {
-    console.log("componnent")
     console.log(this.eintraege[0]); 
     
     if(this.eintraege[0].Datum != "" &&  this.eintraege[0].Datum != null ){
