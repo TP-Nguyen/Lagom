@@ -14,6 +14,9 @@ import { FormBuilder } from '@angular/forms';
   styleUrls: ['./eintragBearbeiten.component.css']
 })
 export class EintragBearbeitenComponent implements OnInit {
+
+  Titel = "EINTRAG BEARBEITEN"
+
   bearbeitenEintrag;
   nachricht = " ";
   WorkspaceID = +this.route.snapshot.paramMap.get('WorkspaceID');
@@ -30,13 +33,14 @@ export class EintragBearbeitenComponent implements OnInit {
   }
   
   @Input() eintraege: Eintrag;
-  Art = this.route.snapshot.url[1].path;
-  EintragID;
-  uhr=false;
-  modelChangeDate(newDate){
-    this.eintraege[0].Datum = newDate;
-    console.log(this.eintraege[0].Datum);
-  }
+    Art = this.route.snapshot.url[1].path;
+    EintragID;
+    uhr=false;
+
+    modelChangeDate(newDate){
+      this.eintraege[0].Datum = newDate;
+      console.log(this.eintraege[0].Datum);
+    }
   
     ngOnInit(): void {
     this.EintragID = +this.route.snapshot.paramMap.get('EintragID');
@@ -50,8 +54,7 @@ export class EintragBearbeitenComponent implements OnInit {
   getEintrag(): void {    
     this.mainService.getEintrag(this.EintragID, this.Art).subscribe(eintraege =>  {this.eintraege = eintraege,
       console.log(eintraege[0].Datum);
-    }
-      );
+    });
   }
 
   goBack(){
@@ -60,27 +63,20 @@ export class EintragBearbeitenComponent implements OnInit {
 
   aktualisiereEintrag(): void {
     console.log(this.eintraege[0]); 
-
-    if(this.eintraege[0].Datum != "" && this.eintraege[0].Titel != ""){
-     if(this.eintraege[0].Datum != null && this.eintraege[0].Titel != null){
+    
+    if(this.eintraege[0].Datum != "" &&  this.eintraege[0].Datum != null ){
+      if(this.eintraege[0].Titel != "" && this.eintraege[0].Titel != null){
         this.eintraege.Art = this.Art;
         this.mainService.updateEintrag(this.eintraege).subscribe();
         this.goBack();
       }else{
-        console.log("Daten null")
-        this.showError(); 
+        this.nachricht = "Titel wurde nicht eingetragen";
       }
     }else{
-      console.log("Daten leer")
-      this.showError(); 
+      this.nachricht = "Datum wurde nicht eingetragen";
     }  
+    
   }
-
-  showError() {
-    this.nachricht = "Datum oder Titel oder beides wurden nicht eingetragen!";
-    console.warn('Datum oder Titel oder beides wurden nicht eingetragen!')
-  }
-
 } 
 
 

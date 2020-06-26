@@ -146,7 +146,6 @@ export class MainService {
         console.log(EintragID);
         console.log(url);
         return this.http.delete<Eintrag>(url, this.httpOptions);
-        
     }
 
     deleteKalenderEintrag (kalenderEintrag: Eintrag): Observable<Eintrag> {
