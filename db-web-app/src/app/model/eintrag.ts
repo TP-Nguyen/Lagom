@@ -5,7 +5,7 @@ export class Eintrag{
     // WorkspaceID  : number;
     Art : String;
     EintragID  : number;
-    Datum : String;
+    Datum : Date;
     Uhrzeit: String;
     Titel : String;
     Untertitel : String;
@@ -13,7 +13,7 @@ export class Eintrag{
     Notiz : String;
     Anmerkung : String;
 
-    constructor(datum: string, uhrzeit:string, Titel: string, untertitel: string, text: string, notiz: string, anmerkung: string) {
+    constructor(datum: Date, uhrzeit:string, Titel: string, untertitel: string, text: string, notiz: string, anmerkung: string) {
         this.Datum = datum;
         this.Uhrzeit = uhrzeit;
         this.Titel = Titel;

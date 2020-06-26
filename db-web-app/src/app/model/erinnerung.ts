@@ -2,7 +2,7 @@ export class Erinnerung{
     // ZielID : number;
     // WorkspaceID  : number;
     EintragID  : number;
-    Datum : String;
+    Datum : Date;
     Uhrzeit : String;
     Titel : String;
     Untertitel : String;
