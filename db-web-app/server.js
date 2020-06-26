@@ -72,14 +72,14 @@ app.get('/ziel/:WorkspaceID', function (req, res) {
 });
 
 app.get('/kalender/:WorkspaceID', function (req, res) {
-    connection.query('SELECT * FROM Eintrag natural join Kalender where WorkspaceID = ? order by Datum asc', req.params.WorkspaceID, function (error, results, fields) {
+    connection.query('SELECT * FROM Eintrag natural join Kalender where WorkspaceID = ? order by Datum, Uhrzeit asc', req.params.WorkspaceID, function (error, results, fields) {
       if (error) throw error;
       res.send(results);
   });
 });
 
 app.get('/erinnerung/:WorkspaceID', function (req, res) {
-  connection.query('SELECT * FROM Eintrag natural join Erinnerung where WorkspaceID = ? order by Datum asc' , req.params.WorkspaceID, function (error, results, fields) {
+  connection.query('SELECT * FROM Eintrag natural join Erinnerung where WorkspaceID = ? order by Datum, Uhrzeit asc' , req.params.WorkspaceID, function (error, results, fields) {
     if (error) throw error;
     res.send(results);
   });
