@@ -5,21 +5,39 @@
       <br>
       <br>
       <div class="inputBox">
-        <input type="text" required="" formControlName="Nutzername">
-        <label>Nutzername: </label>
+        <div class="field">
+          <div class="control">
+            <input type="text" required="" formControlName="Nutzername">
+            <label>Nutzername: </label>
+          </div>
+        </div>
       </div>
       <div class="inputBox">
-        <input type="text" required="" formControlName="GanzerName">
-        <label>Ganzer Name: </label>
+        <div class="field">
+          <div class="control">
+            <input type="text" required="" formControlName="GanzerName">
+            <label>Ganzer Name: </label>
+          </div>
+        </div>
       </div>
       <div class="inputBox">
-        <input type="text" required="" formControlName="Email">
-        <label>Email: </label>
+        <div class="field">
+          <div class="control">
+            <input type="text" required="" formControlName="Email">
+            <label>Email: </label>
+           </div>
+        </div>
       </div>
       <div class="inputBox">
-        <input type="text" required="" formControlName="Passwort">
-        <label>Passwort: </label>
+        <div class="field">
+          <div class="control">
+            <input type="text" required="" formControlName="Passwort">
+            <label>Passwort: </label>
+          </div>
+        </div>
       </div>
+
+      <div style="color: red" class="field has-text-danger">{{nachricht}}</div>
       
       <input id="bestaetigen" type="submit" value="bestätigen">
     </form>

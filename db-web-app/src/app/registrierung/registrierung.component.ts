@@ -20,6 +20,8 @@ export class RegistrierungComponent implements OnInit{
    neuerNutzer; 
    workspaceID;
  
+  nachricht = " "; 
+
   constructor(private mainService: MainService, 
               private router: Router,
               private formBuilder: FormBuilder) {
@@ -48,10 +50,18 @@ export class RegistrierungComponent implements OnInit{
         this.router.navigate(['/login/']); 
      
       }else{
-        console.log("Daten null")
+        console.log("Daten null"); 
+        this.showError(); 
       }
     }else{
-      console.log("Daten leer")
+      console.log("Daten leer");
+      this.showError(); 
     }
   }
+
+  showError() {
+    this.nachricht = "Alle Felder müssen ausgefüllt werden!";
+    console.warn('Alle Felder müssen ausgefüllt werden!')
+  }
+
 }

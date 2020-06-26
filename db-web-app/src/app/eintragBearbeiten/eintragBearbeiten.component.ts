@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { Kalender } from '../model/kalender';
+import { FormBuilder } from '@angular/forms'; 
 
 @Component({
   selector: 'app-eintragBearbeiten',
@@ -14,12 +15,20 @@ import { Kalender } from '../model/kalender';
 })
 export class EintragBearbeitenComponent implements OnInit {
   bearbeitenEintrag;
+  nachricht = " ";
   WorkspaceID = +this.route.snapshot.paramMap.get('WorkspaceID');
 
   constructor(private mainService: MainService, 
               private router: Router,
               private location: Location,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private formBuilder: FormBuilder) { 
+    this.bearbeitenEintrag = this.formBuilder.group({
+      Datum: '', 
+      Titel: ''
+    }); 
+  }
+  
   @Input() eintraege: Eintrag;
   Art = this.route.snapshot.url[1].path;
   EintragID;
@@ -59,11 +68,19 @@ export class EintragBearbeitenComponent implements OnInit {
         this.goBack();
       }else{
         console.log("Daten null")
+        this.showError(); 
       }
     }else{
       console.log("Daten leer")
+      this.showError(); 
     }  
   }
+
+  showError() {
+    this.nachricht = "Datum oder Titel oder beides wurden nicht eingetragen!";
+    console.warn('Datum oder Titel oder beides wurden nicht eingetragen!')
+  }
+
 } 
 
 

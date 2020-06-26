@@ -18,6 +18,8 @@ export class EintragErstellenComponent implements OnInit{
   eintragListe: Observable<Eintrag[]>;
   WorkspaceID = +this.route.snapshot.paramMap.get('WorkspaceID');
   neuerEintrag; 
+
+  nachricht = " "; 
   
   constructor(private mainService: MainService,
               private route: ActivatedRoute,
@@ -77,9 +79,17 @@ export class EintragErstellenComponent implements OnInit{
         this.goBack();
       }else{
         console.log("Daten null")
+        this.showError(); 
       }
     }else{
       console.log("Daten leer")
+      this.showError(); 
     }    
   }
+
+  showError() {
+    this.nachricht = "Kategorie wurde nicht ausgewählt oder Datum oder Titel wurden nicht eingetragen!";
+    console.warn('Kategorie wurde nicht ausgewählt oder Datum oder Titel wurden nicht eingetragen!')
+  }
+
 }
