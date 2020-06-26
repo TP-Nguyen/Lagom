@@ -14,6 +14,9 @@ import { FormBuilder } from '@angular/forms';
   styleUrls: ['./eintragBearbeiten.component.css']
 })
 export class EintragBearbeitenComponent implements OnInit {
+
+  Titel = "EINTRAG BEARBEITEN"
+
   bearbeitenEintrag;
   nachricht = " ";
   WorkspaceID = +this.route.snapshot.paramMap.get('WorkspaceID');
@@ -61,21 +64,18 @@ export class EintragBearbeitenComponent implements OnInit {
     console.log("componnent")
     console.log(this.eintraege[0]); 
     
-    if(this.eintraege[0].Datum != "" &&  this.eintraege[0].Datum != null && this.eintraege[0].Titel != "" && this.eintraege[0].Titel != null){
-      if(this.eintraege[0].Datum != "" &&  this.eintraege[0].Datum != null ){
-        if(this.eintraege[0].Titel != "" && this.eintraege[0].Titel != null){
-          this.eintraege.Art = this.Art;
-          this.mainService.updateEintrag(this.eintraege).subscribe();
-          this.goBack();
-        }else{
-          this.nachricht = "Titel wurde nicht eingetragen";
-        }
+    if(this.eintraege[0].Datum != "" &&  this.eintraege[0].Datum != null ){
+      if(this.eintraege[0].Titel != "" && this.eintraege[0].Titel != null){
+        this.eintraege.Art = this.Art;
+        this.mainService.updateEintrag(this.eintraege).subscribe();
+        this.goBack();
       }else{
-        this.nachricht = "Datum wurde nicht eingetragen";
-      }  
+        this.nachricht = "Titel wurde nicht eingetragen";
+      }
     }else{
-      this.nachricht = "Titel und Datum wurden nicht eingetragen";
+      this.nachricht = "Datum wurde nicht eingetragen";
     }  
+    
   }
 } 
 
