@@ -139,16 +139,14 @@
         </div>
         <div class="field" id="Galerie">
             <div class="content">
-                <p>Galerie</p>
+                <!-- <p>Galerie</p> -->
                 <div class="listcontent" *ngFor="let galerie of galerien | async">
-                    <p>{{galerie.GalerieID}}</p>
-                    <p>{{galerie.WorkspaceID}}</p>
+                    <!-- <p>{{galerie.GalerieID}}</p> -->
+                    <!-- <p>{{galerie.WorkspaceID}}</p> -->
+                    <img src="{{galerie.Pfad}}" >
                 </div>
             </div>
         </div> 
     </div>      
-        
-        
-         
 </body>
     <!-- <router-outlet></router-outlet> -->

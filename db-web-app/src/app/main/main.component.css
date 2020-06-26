@@ -195,6 +195,28 @@ a:visited{
     grid-column: span 1;
     grid-row: span 1;
 }
+#Galerie .field{ padding: 1px;}
+
+#Galerie .content{
+    /* height: 100%; */
+    height: 150px;
+    width: 100%;
+    overflow-y: scroll;
+}
+#Galerie .content .listcontent{
+    height: 150px;
+    background-color: transparent;
+    border: 0px solid white;
+    width: auto;
+    display:flex;
+    justify-content: center;
+}
+#Galerie img{
+    /* width: 100%;
+    height: auto; */
+    width: auto;
+    height: 150px;
+}
 .list{
     height: 80%;
     overflow: auto;
