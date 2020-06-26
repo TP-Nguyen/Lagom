@@ -41,17 +41,19 @@ export class EintragBearbeitenComponent implements OnInit {
   }
 
   aktualisiereEintrag(): void {
-    // if(this.eintraege.Datum != "" && this.eintraege.Titel != ""){
-    //   if(this.eintraege.Datum != null && this.eintraege.Titel != null){
+    console.log(this.eintraege[0]); 
+
+    if(this.eintraege[0].Datum != "" && this.eintraege[0].Titel != ""){
+     if(this.eintraege[0].Datum != null && this.eintraege[0].Titel != null){
         this.eintraege.Art = this.Art;
         this.mainService.updateEintrag(this.eintraege).subscribe();
         this.goBack();
-    //   }else{
-    //     console.log("Daten null")
-    //   }
-    // }else{
-    //   console.log("Daten leer")
-    // }  
+      }else{
+        console.log("Daten null")
+      }
+    }else{
+      console.log("Daten leer")
+    }  
   }
 } 
 
