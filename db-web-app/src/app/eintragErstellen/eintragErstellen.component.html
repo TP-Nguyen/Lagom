@@ -3,20 +3,28 @@
       <h2>{{erstellungsTitel}}</h2>
       <br><br>
       <form [formGroup]="neuerEintrag" (ngSubmit)="submit(neuerEintrag.value)">
-        <label for="eintrag">Kategorie: </label>
-        <select name="eintrag" formControlName="EintragArt">
-          <option value="Ziel">Ziel</option>
-          <option value="Erinnerung">Erinnerung</option>
-          <option value="Kalender">Kalender</option>
-          <option value="Tagebuch">Tagebuch</option>
-          <option value="ToDo">ToDo</option>
-          <!-- <option value="Galerie">Galerie</option> -->
-        </select>
+        <div class="field">
+          <div class="control">
+            <label for="eintrag">Kategorie: </label>
+            <select name="eintrag" formControlName="EintragArt">
+              <option value="Ziel">Ziel</option>
+              <option value="Erinnerung">Erinnerung</option>
+              <option value="Kalender">Kalender</option>
+              <option value="Tagebuch">Tagebuch</option>
+              <option value="ToDo">ToDo</option>
+              <!-- <option value="Galerie">Galerie</option> -->
+            </select>
+          </div>
+        </div>
           <br>
           <br>
          <div class="inputBox">
-          <input type="text" name="" required="" formControlName="Datum">
-          <label>Datum</label>
+            <div class="field">
+              <div class="control">
+                <input type="text" name="" required="" formControlName="Datum">
+                <label>Datum</label>
+              </div>
+            </div>
           </div> 
 
           <!-- Nur wenn Erinnerungen, Kalender ODER wir fügen überall Uhrzeit ein -->
@@ -26,8 +34,12 @@
           </div> 
 
           <div class="inputBox">
-          <input type="text" name="" required="" formControlName="Titel">
-          <label>Titel</label>
+            <div class="field">
+              <div class="control">
+                <input type="text" name="" required="" formControlName="Titel">
+                <label>Titel</label>
+              </div>
+            </div>
           </div> 
           <div class="inputBox">
           <input type="text" name="" formControlName="Untertitel">
@@ -46,6 +58,8 @@
           <label>Anmerkung</label>
           </div>
         
+          <div style="color: red" class="field has-text-danger">{{nachricht}}</div>
+
         <input id="bestaetigen"type="submit" value="bestätigen">
       </form>
       <input id="zurueck" (click)="goBack()" type="submit" value="zurück">
