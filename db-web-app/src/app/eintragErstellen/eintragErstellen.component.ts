@@ -71,25 +71,27 @@ export class EintragErstellenComponent implements OnInit{
     console.log(newEintrag);
     console.log(eintragdaten.EintragArt);
   
-    if(eintragdaten.EintragArt != "" && eintragdaten.Datum != "" && eintragdaten.Titel != ""){
-      if(eintragdaten.EintragArt != null && eintragdaten.Datum != null && eintragdaten.Titel != null){
-        console.log('Your data has been submitted', eintragdaten); 
-        this.mainService.addEintrag(newEintrag, eintragdaten.EintragArt,this.WorkspaceID).subscribe(data => {console.log(data); 
-        }); 
-        this.goBack();
-      }else{
-        console.log("Daten null")
-        this.showError(); 
-      }
-    }else{
-      console.log("Daten leer")
-      this.showError(); 
-    }    
+        if(eintragdaten.EintragArt != "" && eintragdaten.EintragArt != null){
+          if(eintragdaten.Datum != "" && eintragdaten.Datum != null){
+            if(eintragdaten.Titel != "" && eintragdaten.Titel != null){
+              console.log('Your data has been submitted', eintragdaten); 
+              this.mainService.addEintrag(newEintrag, eintragdaten.EintragArt,this.WorkspaceID).subscribe(data => {console.log(data); 
+              }); 
+              this.goBack();
+            }else{
+              this.nachricht = "Ein Titel muss eingetragen werden!";  
+            }
+          }else{
+              this.nachricht = "Ein Datum muss eingetragen werden!";  
+          }
+        }else{
+              this.nachricht = "Eine Kategorie muss ausgewählt werden!"; 
+        }
   }
 
-  showError() {
-    this.nachricht = "Kategorie wurde nicht ausgewählt oder Datum oder Titel wurden nicht eingetragen!";
-    console.warn('Kategorie wurde nicht ausgewählt oder Datum oder Titel wurden nicht eingetragen!')
-  }
+  // showError() {
+  //   this.nachricht = "Kategorie wurde nicht ausgewählt oder Datum oder Titel wurden nicht eingetragen!";
+  //   console.warn('Kategorie wurde nicht ausgewählt oder Datum oder Titel wurden nicht eingetragen!'); 
+  // }
 
 }
