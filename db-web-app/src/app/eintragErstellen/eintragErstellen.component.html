@@ -4,33 +4,32 @@
       <br><br>
       <form [formGroup]="neuerEintrag" (ngSubmit)="submit(neuerEintrag.value)">
         <label for="eintrag">Kategorie: </label>
-        <select name="eintrag" formControlName="EintragArt">
+        <select name="eintrag"  formControlName="EintragArt" (change)="changeUhr($event.target.value)">
           <option value="Ziel">Ziel</option>
           <option value="Erinnerung">Erinnerung</option>
           <option value="Kalender">Kalender</option>
           <option value="Tagebuch">Tagebuch</option>
           <option value="ToDo">ToDo</option>
-          <!-- <option value="Galerie">Galerie</option> -->
         </select>
           <br>
           <br>
          <div class="inputBox">
           <input type="date" name="" required="" formControlName="Datum">
-          <label>Datum</label>
+          <label id="date">Datum</label>
           </div> 
 
           <!-- Nur wenn Erinnerungen, Kalender ODER wir fügen überall Uhrzeit ein -->
-          <div class="inputBox"> 
-          <input type="text" name="" formControlName="Uhrzeit">
-          <label>Uhrzeit</label>
+          <div class="inputBox" *ngIf="uhr"> 
+          <input type="text" name="" required="" formControlName="Uhrzeit">
+          <label >Uhrzeit</label>
           </div> 
 
           <div class="inputBox">
           <input type="text" name="" required="" formControlName="Titel">
           <label>Titel</label>
           </div> 
-          <div class="inputBox">
-          <input type="text" name="" formControlName="Untertitel">
+          <div class="inputBox" >
+          <input type="text" name="" required="" formControlName="Untertitel">
           <label>Untertitel</label>
           </div> 
           <div class="inputBox">
@@ -38,15 +37,15 @@
           <label>Text</label>
           </div> 
           <div class="inputBox">
-          <input type="text" name="" formControlName="Notiz">
+          <input type="text" name="" required="" formControlName="Notiz">
           <label>Notiz</label>
           </div> 
           <div class="inputBox">
-          <input type="text" name="" formControlName="Anmerkung">
+          <input type="text" name="" required="" formControlName="Anmerkung">
           <label>Anmerkung</label>
           </div>
         
-        <input id="bestaetigen"type="submit" value="bestätigen">
+        <input id="bestaetigen" type="submit" value="bestätigen">
       </form>
       <input id="zurueck" (click)="goBack()" type="submit" value="zurück">
   </div>

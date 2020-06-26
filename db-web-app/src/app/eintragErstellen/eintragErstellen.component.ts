@@ -40,7 +40,24 @@ export class EintragErstellenComponent implements OnInit{
 
   erstellungsTitel = "EINTRAG ERSTELLEN"
 
+  uhr = false;
+
+  arten= [
+    {value: 'Ziel', uhr: false },
+    {value: 'Erinnerung', uhr: true },
+    {value: 'Kalender', uhr: true },
+    {value: 'Tagebuch', uhr: false },
+    {value: 'ToDo', uhr: false }
+  ];
+  changeUhr(typ){
+    if(typ == "Erinnerung" || typ == "Kalender"){
+      this.uhr = true;
+    }else{
+      this.uhr = false;
+    }
+  }
   ngOnInit(): void {
+    
   }
   goBack(){
     this.location.back();
@@ -49,6 +66,8 @@ export class EintragErstellenComponent implements OnInit{
   submit(eintragdaten){
     const newEintrag = new Eintrag(eintragdaten.Datum, eintragdaten.Uhrzeit, eintragdaten.Titel, eintragdaten.Untertitel, eintragdaten.Text, eintragdaten.Notiz, eintragdaten.Anmerkung); 
     this.neuerEintrag.reset(); 
+    console.log(newEintrag);
+    console.log(eintragdaten.EintragArt);
   
     if(eintragdaten.EintragArt != "" && eintragdaten.Datum != "" && eintragdaten.Titel != ""){
       if(eintragdaten.EintragArt != null && eintragdaten.Datum != null && eintragdaten.Titel != null){
