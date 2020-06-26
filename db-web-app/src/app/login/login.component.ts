@@ -20,10 +20,11 @@ export class LoginComponent implements OnInit {
   nutzerLogin;
   // @Input() nutzerGefunden : Nutzer;  
   nutzerGefunden: Observable<Nutzer[]>;
+  nutzername: Observable<Nutzer>;
   // nutzerGefunden;//: Nutzer;
   obj;
   workspaceID;
-
+  username = true;
   //loginForm; 
   nachricht = " ";
 
@@ -39,20 +40,35 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  changeNutzername(name){
+    this.nutzername = this.mainService.getNutzername(name);
+    this.nutzername.subscribe(data => {
+      console.log(data);
+      this.username = true;
+      if(data[0]==null) {this.username=false;}
+      if(this.username == false){
+        this.nachricht="Nutzername nicht vorhanden!";
+        console.warn(this.nachricht)
+      }else{
+        this.nachricht="";
+      }
+    });
+  }
+
   submit(nutzerdaten) {
     const nutzerLogin = new Nutzer(nutzerdaten.Nutzername, nutzerdaten.GanzerName, nutzerdaten.Email, nutzerdaten.Passwort); 
     this.nutzerLogin.reset(); 
     console.log("login: " + nutzerLogin.Nutzername )
-    if (nutzerdaten.Nutzername != "" && nutzerdaten.Passwort != "") {
-      if(nutzerdaten.Nutzername != null && nutzerdaten.Passwort != null ){
+    if (nutzerdaten.Nutzername != "" && nutzerdaten.Passwort != "" && this.username) {
+      if(nutzerdaten.Nutzername != null && nutzerdaten.Passwort != null && this.username){
         this.nutzerGefunden=this.mainService.loginNutzer(nutzerLogin);
         this.nutzerGefunden.subscribe(data => {
-          // console.log(data);
+          console.log(data);
           this.obj = data[0];
           if(this.obj =="404"){
             console.log(this.obj);
             console.log("fail");   
-            this.nutzerNichtGefundenError();        
+            this.passwortError();        
           }else{
             console.log(data[0].NutzerID);
             console.log("erfolgreich");
@@ -73,12 +89,12 @@ export class LoginComponent implements OnInit {
 
   showError() {
     this.nachricht = "Alle Felder müssen ausgefüllt werden!";
-    console.warn('Alle Felder müssen ausgefüllt werden!')
+    console.warn(this.nachricht);
   }
 
-  nutzerNichtGefundenError() {
-    this.nachricht = "Nutzer nicht gefunden!";
-    console.warn('Nutzer nicht gefunden!')
+  passwortError() {
+    this.nachricht = "Passwort falsch!";
+    console.warn(this.nachricht);
   }
 
 }

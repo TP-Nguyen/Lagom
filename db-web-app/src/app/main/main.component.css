@@ -329,8 +329,8 @@ a:visited{
     position: fixed;
     justify-content: center;
     align-items: center;
-    top: 90%;
-    left: 85vw;
+    bottom: 3vh;
+    left: 90vw;
     z-index: 11;
     display: flex;
     color: white;
