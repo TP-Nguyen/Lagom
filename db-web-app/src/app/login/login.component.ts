@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent implements OnInit {
   title = 'db-web-app';
 
@@ -22,6 +23,9 @@ export class LoginComponent implements OnInit {
   // nutzerGefunden;//: Nutzer;
   obj;
   workspaceID;
+
+  //loginForm; 
+  nachricht = " ";
 
   constructor(private mainService: MainService, 
               private formBuilder: FormBuilder, 
@@ -57,6 +61,13 @@ export class LoginComponent implements OnInit {
       }); 
     }else{
       console.log("Daten unvollständig")
+      this.showError();
     }
   }
+
+  showError() {
+    this.nachricht = "Alle Felder müssen ausgefüllt werden!";
+    console.warn('Alle Felder müssen ausgefüllt werden!')
+  }
+
 }
