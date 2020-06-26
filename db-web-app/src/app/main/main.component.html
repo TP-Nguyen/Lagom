@@ -88,19 +88,22 @@
                 <p>ToDo</p>
                 <div class="list" >
                     <div class="do" *ngFor="let todo of todos | async ">
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                        <label>{{todo.Datum}}</label>
-                        <label>{{todo.Titel}}</label>
-                        <label>{{todo.Untertitel}}</label>
-                        <label>{{todo.Text}}</label>
-                        <label>{{todo.Notiz}}</label>
-                        <label>{{todo.Anmerkung}}</label>
-                        
-                        <div class="delete" (click)="deleteToDo(todo)"><img src="/assets/img/loeschen.png" height="25px"></div>
-                        <a routerLink="/eintragBearbeiten/ToDo/{{todo.EintragID}}">
-                            <div class="update"><img src="/assets/img/bearbeiten.png" height="25px"></div>
-                        </a>
+                        <div style="width: 75%;">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            <label>{{todo.Datum}} </label>
+                            <label>{{todo.Titel}} </label>
+                            <label>{{todo.Untertitel}} </label>
+                            <label>{{todo.Text}} </label>
+                            <label>{{todo.Notiz}} </label>
+                            <label>{{todo.Anmerkung}} </label>
+                        </div>   
+                        <div style="float: right;">
+                            <div class="delete" (click)="deleteToDo(todo)"><img src="/assets/img/loeschen.png" height="25px"></div>
+                            <a routerLink="/eintragBearbeiten/ToDo/{{todo.EintragID}}">
+                                <div class="update"><img src="/assets/img/bearbeiten.png" height="25px"></div>
+                            </a>
+                        </div> 
                     </div>
                 </div>
             </div>
