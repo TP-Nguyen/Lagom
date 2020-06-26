@@ -58,7 +58,7 @@
     pointer-events: none;
     transition: .5s;
 }
-.inputBox #date,
+.inputBox .full,
 .inputBox input:focus ~ label,
 .inputBox input:valid ~ label{
     top: -18px;

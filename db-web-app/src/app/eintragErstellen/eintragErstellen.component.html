@@ -15,13 +15,13 @@
           <br>
          <div class="inputBox">
           <input type="date" name="" required="" formControlName="Datum">
-          <label id="date">Datum</label>
+          <label class="full" >Datum</label>
           </div> 
 
           <!-- Nur wenn Erinnerungen, Kalender ODER wir fügen überall Uhrzeit ein -->
           <div class="inputBox" *ngIf="uhr"> 
-          <input type="text" name="" required="" formControlName="Uhrzeit">
-          <label >Uhrzeit</label>
+          <input type="time" name="" required="" formControlName="Uhrzeit">
+          <label class="full" >Uhrzeit</label>
           </div> 
 
           <div class="inputBox">
