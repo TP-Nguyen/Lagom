@@ -5,6 +5,7 @@ import { Eintrag } from '../model/eintrag';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { Kalender } from '../model/kalender';
 
 @Component({
   selector: 'app-eintragBearbeiten',
@@ -20,29 +21,31 @@ export class EintragBearbeitenComponent implements OnInit {
               private location: Location,
               private route: ActivatedRoute) { }
   @Input() eintraege: Eintrag;
-  // eintraege: Observable<Eintrag[]>;
-
-  ngOnInit(): void {
+  Art = this.route.snapshot.url[1].path;
+  EintragID;
+  uhr=false;
+  modelChangeDate(newDate){
+    this.eintraege[0].Datum = newDate;
+    console.log(this.eintraege[0].Datum);
+  }
+  
+    ngOnInit(): void {
+    this.EintragID = +this.route.snapshot.paramMap.get('EintragID');
+    console.log(this.EintragID);
     this.getEintrag();
-    
+    if(this.Art == "Erinnerung" || this.Art == "Kalender"){
+      this.uhr=true;
+    }
   }
 
-  Art = this.route.snapshot.url[1].path;
-
-  getEintrag(): void {
-    const EintragID = +this.route.snapshot.paramMap.get('EintragID');
-    console.log(EintragID);
-    
-    
-    this.mainService.getEintrag(EintragID, this.Art).subscribe(eintraege =>  {this.eintraege = eintraege,
+  getEintrag(): void {    
+    this.mainService.getEintrag(this.EintragID, this.Art).subscribe(eintraege =>  {this.eintraege = eintraege,
       console.log(eintraege[0].Datum);
     }
       );
-    
   }
 
   goBack(){
-    // this.router.navigate(['/main/' + this.WorkspaceID]);
     this.location.back();
   }
 

@@ -250,6 +250,7 @@ a:visited{
     height: 25px;
     width: 300px;
     margin: 0;
+    left:0;
 }  
 #ToDo .content .list .do .checkmark {
     height: 23px;

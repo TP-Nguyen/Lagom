@@ -7,11 +7,12 @@
           <br>
          <div class="inputBox">
            <div >
-            <input type="text" name="Datum" required="" value="" [(ngModel)]="eintrag.Datum">
+            <input type="date" name="Datum" required="" class="form-control" placeholder="ex. YYYY/MM/DD"
+            [ngModel]="eintrag.Datum | date : 'yyyy-MM-dd'"  (ngModelChange)="modelChangeDate($event)">
             <label>Datum</label>
           </div>
           </div> 
-          <div class="inputBox">
+          <div class="inputBox" *ngIf="uhr">
           <input type="text" name="Uhrzeit" [(ngModel)]="eintrag.Uhrzeit" >
           <label>Uhrzeit</label>
           </div> 
