@@ -72,6 +72,10 @@ root{
     color: #fff;
     transition: 0.5s;
 }
+a,
+a:visited{
+    color:whitesmoke;
+}
 #container .field:hover{
 /*        background: dodgerblue;*/
 /*         background-color:rgba(192,192,192,0.7);*/
