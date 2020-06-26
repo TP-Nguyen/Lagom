@@ -58,35 +58,35 @@ app.get('/eintrag', function (req, res) {
 });
 
 app.get('/todo/:WorkspaceID', function (req, res) {
-    connection.query('SELECT * FROM Eintrag natural join ToDo where WorkspaceID = ?', req.params.WorkspaceID, function (error, results, fields) { 
+    connection.query('SELECT * FROM Eintrag natural join ToDo where WorkspaceID = ? order by Datum asc ', req.params.WorkspaceID, function (error, results, fields) { 
     if (error) throw error;
       res.send(results);
     });
 });
 
 app.get('/ziel/:WorkspaceID', function (req, res) {
-    connection.query('SELECT * FROM Eintrag natural join Ziel where WorkspaceID = ?', req.params.WorkspaceID, function (error, results, fields) { 
+    connection.query('SELECT * FROM Eintrag natural join Ziel where WorkspaceID = ? order by Datum asc', req.params.WorkspaceID, function (error, results, fields) { 
     if (error) throw error;
       res.send(results);
     });
 });
 
 app.get('/kalender/:WorkspaceID', function (req, res) {
-    connection.query('SELECT * FROM Eintrag natural join Kalender where WorkspaceID = ?', req.params.WorkspaceID, function (error, results, fields) {
+    connection.query('SELECT * FROM Eintrag natural join Kalender where WorkspaceID = ? order by Datum asc', req.params.WorkspaceID, function (error, results, fields) {
       if (error) throw error;
       res.send(results);
   });
 });
 
 app.get('/erinnerung/:WorkspaceID', function (req, res) {
-  connection.query('SELECT * FROM Eintrag natural join Erinnerung where WorkspaceID = ?', req.params.WorkspaceID, function (error, results, fields) {
+  connection.query('SELECT * FROM Eintrag natural join Erinnerung where WorkspaceID = ? order by Datum asc' , req.params.WorkspaceID, function (error, results, fields) {
     if (error) throw error;
     res.send(results);
   });
 });
 
 app.get('/tagebuch/:WorkspaceID', function (req, res) {
-  connection.query('SELECT * FROM Eintrag natural join Tagebuch where WorkspaceID = ?', req.params.WorkspaceID, function (error, results, fields) {
+  connection.query('SELECT * FROM Eintrag natural join Tagebuch where WorkspaceID = ? order by Datum asc', req.params.WorkspaceID, function (error, results, fields) {
     if (error) throw error;
     res.send(results);
   });
@@ -102,7 +102,8 @@ app.get('/motivation/:WorkspaceID', function (req, res) {
 });
 
 app.get('/galerie/:WorkspaceID', function (req, res) {
-  connection.query('SELECT * FROM Galerie where WorkspaceID = ?', req.params.WorkspaceID, function (error, results, fields) {
+  const sql = 
+  connection.query('SELECT * FROM Galerie natural join Bild where WorkspaceID = ?', req.params.WorkspaceID, function (error, results, fields) {
     if (error) throw error;
     res.send(results);
   });
@@ -144,7 +145,7 @@ app.get('/nutzer/:Nutzername/:Passwort', function (req, res) {
     // console.log(Nutzername);
     // console.log(Passwort);
     
-    const sql = "SELECT * FROM Nutzer WHERE Nutzername = ? AND Passwort = ?";
+    const sql = "SELECT * FROM Nutzer WHERE Nutzername = ? AND Passwort = ? ";
     const values = [Nutzername, Passwort];
   
     connection.query(sql, values, function(error, results, fields) {
