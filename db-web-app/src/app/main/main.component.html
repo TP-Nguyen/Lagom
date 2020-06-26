@@ -4,7 +4,7 @@
 <body>
     <div id="navbar">
         <ul>
-            <li (click)="eintragErstellen()">Lagom / Neuer Eintrag</li>
+            <li>Lagom </li>
                 <!-- <input id="submit" type="submit" value="zurück"> -->
         <li *ngFor="let nutzer of nutzerdaten | async">{{nutzer.GanzerName}}</li>
         <a routerLink="/login">
@@ -13,15 +13,20 @@
         
         </ul>
     </div>
+
+    <a (click)="eintragErstellen()"> 
+        <div class="add"><img src="/assets/img/hinzufuegen.png" height="25px"> <span>Neuer Eintrag</span></div>
+    </a>
+
     <div id="container">
         <div class="field" id="Tagebuch">
             <div class="content">
                 <p>Tagebuch</p>
                 <div class="list">
                     <div class="listcontent" *ngFor="let tagebuch of tagebuch | async">
-                        <div class="delete" (click)="deleteTagebuch(tagebuch)"><span >X</span></div>
+                        <div class="delete" (click)="deleteTagebuch(tagebuch)"><img src="/assets/img/loeschen.png" height="25px"></div>
                         <a routerLink= "/eintragBearbeiten/Tagebuch/{{tagebuch.EintragID}}">
-                            <div class="update"><span >/</span></div>
+                            <div class="update"><img src="/assets/img/bearbeiten.png" height="25px"></div>
                         </a>
                         <p>{{tagebuch.Datum}}</p>
                         <p>{{tagebuch.Titel}}</p>
@@ -42,9 +47,9 @@
                 </div>
                 <div class="list">
                     <div class="listcontent" *ngFor="let kalender of kalender | async">
-                        <div class="delete" (click)="deleteKalender(kalender)"><span >X</span></div>
+                        <div class="delete" (click)="deleteKalender(kalender)"><img src="/assets/img/loeschen.png" height="25px"></div>
                         <a routerLink="/eintragBearbeiten/Kalender/{{kalender.EintragID}}">
-                            <div class="update"><span >/</span></div>
+                            <div class="update"> <img src="/assets/img/bearbeiten.png" height="25px"></div>
                         </a>
                         <p>{{kalender.Datum}}</p>
                         <p>{{kalender.Uhrzeit}}</p>
@@ -63,9 +68,9 @@
                 <p>Ziele</p>
                 <div class="list">
                     <div class="listcontent" *ngFor="let ziel of ziele | async">
-                        <div class="delete" (click)="deleteZiel(ziel)"><span >X</span></div>
+                        <div class="delete" (click)="deleteZiel(ziel)"><img src="/assets/img/loeschen.png" height="25px"></div>
                         <a routerLink="/eintragBearbeiten/Ziel/{{ziel.EintragID}}">
-                            <div class="update"><span >/</span></div>
+                            <div class="update"><img src="/assets/img/bearbeiten.png" height="25px"></div>
                         </a>
                         <p>{{ziel.Datum}}</p>
                         <p>{{ziel.Titel}}</p>
@@ -92,9 +97,9 @@
                         <label>{{todo.Notiz}}</label>
                         <label>{{todo.Anmerkung}}</label>
                         
-                        <div class="delete" (click)="deleteToDo(todo)"><span >X</span></div>
+                        <div class="delete" (click)="deleteToDo(todo)"><img src="/assets/img/loeschen.png" height="25px"></div>
                         <a routerLink="/eintragBearbeiten/ToDo/{{todo.EintragID}}">
-                            <div class="update"><span >/</span></div>
+                            <div class="update"><img src="/assets/img/bearbeiten.png" height="25px"></div>
                         </a>
                     </div>
                 </div>
@@ -106,9 +111,9 @@
                 <p>Erinnerung</p>
                 <div class="list">
                     <div class="listcontent" *ngFor="let erinnerung of erinnerungen | async ">
-                        <div class="delete" (click)="deleteErinnerung(erinnerung)"><span >X</span></div> 
+                        <div class="delete" (click)="deleteErinnerung(erinnerung)"><img src="/assets/img/loeschen.png" height="25px"></div> 
                         <a routerLink="/eintragBearbeiten/Erinnerung/{{erinnerung.EintragID}}">
-                            <div class="update"><span >/</span></div>
+                            <div class="update"><img src="/assets/img/bearbeiten.png" height="25px"></div>
                         </a>
                         <p>{{erinnerung.Datum}}</p>
                         <p>{{erinnerung.Uhrzeit}}</p>

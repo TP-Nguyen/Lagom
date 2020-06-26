@@ -35,8 +35,8 @@
           <input type="text" name="Anmerkung" [(ngModel)]="eintrag.Anmerkung" >
           <label>Anmerkung</label>
           </div>
-        <input type="submit" value="Aktualisiere Daten" (click)="aktualisiereEintrag()">
+        <input id="aktualisieren" type="submit" value="Aktualisiere Daten" (click)="aktualisiereEintrag()">
       </form>
-      <input id="submit" style="float:'right'" (click)="goBack()" type="submit" value="zurück">
+      <input id="zurueck" (click)="goBack()" type="submit" value="zurück">
   </div>
 </div>
