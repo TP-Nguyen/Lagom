@@ -86,7 +86,7 @@ app.get('/erinnerung/:WorkspaceID', function (req, res) {
 });
 
 app.get('/tagebuch/:WorkspaceID', function (req, res) {
-  connection.query('SELECT * FROM Eintrag natural join Tagebuch where WorkspaceID = ? order by Datum asc', req.params.WorkspaceID, function (error, results, fields) {
+  connection.query('SELECT * FROM Eintrag natural join Tagebuch where WorkspaceID = ? order by Datum desc', req.params.WorkspaceID, function (error, results, fields) {
     if (error) throw error;
     res.send(results);
   });
