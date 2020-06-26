@@ -24,6 +24,7 @@ export class EintragBearbeitenComponent implements OnInit {
 
   ngOnInit(): void {
     this.getEintrag();
+    
   }
 
   Art = this.route.snapshot.url[1].path;
@@ -32,7 +33,12 @@ export class EintragBearbeitenComponent implements OnInit {
     const EintragID = +this.route.snapshot.paramMap.get('EintragID');
     console.log(EintragID);
     
-    this.mainService.getEintrag(EintragID, this.Art).subscribe(eintraege => this.eintraege = eintraege);
+    
+    this.mainService.getEintrag(EintragID, this.Art).subscribe(eintraege =>  {this.eintraege = eintraege,
+      console.log(eintraege[0].Datum);
+    }
+      );
+    
   }
 
   goBack(){
