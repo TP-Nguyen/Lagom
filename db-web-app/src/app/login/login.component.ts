@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MainService } from '../service/main.service'; 
 import { Observable, from } from 'rxjs';
-import { FormBuilder } from '@angular/forms'
+import { FormBuilder } from '@angular/forms'; 
 import { Nutzer } from '../model/nutzer'; 
 import { Router } from '@angular/router';
 

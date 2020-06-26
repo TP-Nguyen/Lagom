@@ -5,6 +5,7 @@ import { Eintrag } from '../model/eintrag';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { FormBuilder } from '@angular/forms'; 
 
 @Component({
   selector: 'app-eintragBearbeiten',
@@ -13,12 +14,20 @@ import { Location } from '@angular/common';
 })
 export class EintragBearbeitenComponent implements OnInit {
   bearbeitenEintrag;
+  nachricht = " ";
   WorkspaceID = +this.route.snapshot.paramMap.get('WorkspaceID');
 
   constructor(private mainService: MainService, 
               private router: Router,
               private location: Location,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private formBuilder: FormBuilder) { 
+    this.bearbeitenEintrag = this.formBuilder.group({
+      Datum: '', 
+      Titel: ''
+    }); 
+  }
+  
   @Input() eintraege: Eintrag;
   // eintraege: Observable<Eintrag[]>;
 
@@ -56,11 +65,19 @@ export class EintragBearbeitenComponent implements OnInit {
         this.goBack();
       }else{
         console.log("Daten null")
+        this.showError(); 
       }
     }else{
       console.log("Daten leer")
+      this.showError(); 
     }  
   }
+
+  showError() {
+    this.nachricht = "Datum oder Titel oder beides wurden nicht eingetragen!";
+    console.warn('Datum oder Titel oder beides wurden nicht eingetragen!')
+  }
+
 } 
 
 

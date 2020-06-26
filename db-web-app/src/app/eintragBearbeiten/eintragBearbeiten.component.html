@@ -6,18 +6,24 @@
           <br>
           <br>
          <div class="inputBox">
-           <div >
-            <input type="text" name="Datum" required="" value="" [(ngModel)]="eintrag.Datum">
-            <label>Datum</label>
-          </div>
+           <div class="field">
+             <div class="control">
+                <input type="text" name="Datum" required="" value="" [(ngModel)]="eintrag.Datum">
+                <label>Datum</label>
+              </div>
+            </div>
           </div> 
           <div class="inputBox">
           <input type="text" name="Uhrzeit" [(ngModel)]="eintrag.Uhrzeit" >
           <label>Uhrzeit</label>
           </div> 
           <div class="inputBox">
-          <input type="text" name="Titel" required="" [(ngModel)]="eintrag.Titel" >
-          <label>Titel</label>
+            <div class="field">
+              <div class="control">
+                <input type="text" name="Titel" required="" [(ngModel)]="eintrag.Titel" >
+                <label>Titel</label>
+              </div>
+            </div>
           </div> 
           <div class="inputBox">
           <input type="text" name="Untertitel" [(ngModel)]="eintrag.Untertitel" >
@@ -35,6 +41,9 @@
           <input type="text" name="Anmerkung" [(ngModel)]="eintrag.Anmerkung" >
           <label>Anmerkung</label>
           </div>
+
+          <div style="color: red" class="field has-text-danger">{{nachricht}}</div>
+          
         <input id="aktualisieren" type="submit" value="Aktualisiere Daten" (click)="aktualisiereEintrag()">
       </form>
       <input id="zurueck" (click)="goBack()" type="submit" value="zurück">
