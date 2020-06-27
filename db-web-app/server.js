@@ -143,13 +143,12 @@ app.get('/nutzername/:name', function (req, res) {
 
 //spezifisches Getten
 app.get('/eintrag/:EintragID/:Art', function (req, res) { 
-  console.log('request body: '+ req.params.EintragID); 
+  // console.log('request body: '+ req.params.EintragID); 
   const Art = req.params.Art; 
   const sql = 'SELECT * FROM Eintrag natural join ' + Art + ' WHERE EintragID = ?';
 
   con.query(sql ,req.params.EintragID, function (error, results, fields) { 
   if (error) throw error;
-    console.log(results)
     res.send(results);
     
   });
@@ -164,17 +163,16 @@ app.get('/nutzer/:Nutzername/:Passwort', function (req, res) {
   
     con.query(sql, values, function(error, results, fields) {
       if (results[0] == null ){
-        console.log("null");
+        // console.log("null");
         results[0] = "404"
       }
-      console.log(results)
       if (error) throw error; 
       res.send(results); 
     });
 }); 
 
 app.get('/nutzer/:NutzerID', function (req, res) {
-  console.log('request body: '+ req.params.NutzerID); 
+  // console.log('request body: '+ req.params.NutzerID); 
   const sql = 'SELECT WorkspaceID FROM Workspace WHERE NutzerID = ?';
   con.query( sql,req.params.NutzerID, function (error, results, fields) {
     if (error) throw error;
@@ -183,7 +181,7 @@ app.get('/nutzer/:NutzerID', function (req, res) {
 });
 
 app.get('/workspace/:WorkspaceID', function (req, res) {
-  console.log('request body: '+ req.params.WorkspaceID); 
+  // console.log('request body: '+ req.params.WorkspaceID); 
   const sql = 'SELECT * FROM Nutzer natural join Workspace WHERE WorkspaceID = ?';
   con.query( sql,req.params.WorkspaceID, function (error, results, fields) {
     res.send(results);
@@ -193,8 +191,8 @@ app.get('/workspace/:WorkspaceID', function (req, res) {
 // POST-Methoden
 
 app.post('/nutzer', function (req, res) {
-  console.log('request body: '); 
-  console.dir(req.body); 
+  // console.log('request body: '); 
+  // console.dir(req.body); 
 
   const Nutzername = req.body.Nutzername; 
   const GanzerName = req.body.GanzerName; 
@@ -216,7 +214,7 @@ app.post('/nutzer', function (req, res) {
 }); 
 
 app.post('/eintragerstellen', function (req, res) {
-  console.log('request body: '); 
+  // console.log('request body: '); 
   // console.dir(req.body); 
 
   const Datum = req.body.Datum; 
@@ -233,9 +231,8 @@ app.post('/eintragerstellen', function (req, res) {
   const values1 = [Datum, Titel, Untertitel, Text, Notiz, Anmerkung];
   
   con.query(sql1, values1, function(error, results, fields) {
-    console.log(results.insertId);
+    // console.log(results.insertId);
     if (Art == "Erinnerung" || Art == "Kalender"){
-      console.log("!")
       const sql2 = "INSERT INTO " + Art + " (WorkspaceID, EintragID, Uhrzeit)" + "VALUES (?, ?, ?)";
       const values2 = [WorkspaceID, results.insertId, Uhrzeit];
       con.query(sql2, values2, function(error, results, fields) {
@@ -243,7 +240,6 @@ app.post('/eintragerstellen', function (req, res) {
         res.send(results); 
       });
     }else{
-      console.log("?")
       const sql2 = "INSERT INTO "+ Art +" (WorkspaceID, EintragID)" + " VALUES (?, ?)" 
       const values2 = [WorkspaceID, results.insertId];
       con.query(sql2, values2, function(error, results, fields) {
@@ -257,8 +253,8 @@ app.post('/eintragerstellen', function (req, res) {
 // PUT-Methode
 
 app.put('/eintragUpdate/:Art', function (req, res) {
-  console.log('request body: '); 
-  console.dir(req.body); 
+  // console.log('request body: '); 
+  // console.dir(req.body); 
   
   const Art = req.params.Art;
   const EintragID = req.body[0].EintragID;
@@ -279,7 +275,6 @@ app.put('/eintragUpdate/:Art', function (req, res) {
       res.send(results); 
 
       if (Art == "Erinnerung" || Art == "Kalender"){
-        console.log(Art)
         const sql2 = "UPDATE " + Art + " SET Uhrzeit = ? WHERE EintragID = ?";
         const values2 = [Uhrzeit, EintragID];
         con.query(sql2, values2, function(error, results, fields) {
@@ -298,7 +293,7 @@ app.delete('/zielDelete/:EintragID', function (req, res) {
   const values =[req.params.EintragID];
   con.query(sql , values, function(error, results, fields) {});
   con.query(sql2, values, function(error, results, fields) {});
-  console.log("deleteZiel");
+  // console.log("deleteZiel");
 }); 
 
 app.delete('/kalenderDelete/:EintragID', function (req, res) {
@@ -307,7 +302,7 @@ app.delete('/kalenderDelete/:EintragID', function (req, res) {
   const values =[req.params.EintragID];
   con.query(sql , values, function(error, results, fields) {});
   con.query(sql2, values, function(error, results, fields) {});
-  console.log("deleteKalender");
+  // console.log("deleteKalender");
 }); 
 
 app.delete('/tagebuchDelete/:EintragID', function (req, res) {
@@ -316,7 +311,7 @@ app.delete('/tagebuchDelete/:EintragID', function (req, res) {
   const values =[req.params.EintragID];
   con.query(sql , values, function(error, results, fields) {});
   con.query(sql2, values, function(error, results, fields) {});
-  console.log("deleteTagebuch");
+  // console.log("deleteTagebuch");
 }); 
 
 app.delete('/todoDelete/:EintragID', function (req, res) {
@@ -325,7 +320,7 @@ app.delete('/todoDelete/:EintragID', function (req, res) {
   const values =[req.params.EintragID];
   con.query(sql , values, function(error, results, fields) {});
   con.query(sql2, values, function(error, results, fields) {});
-  console.log("deleteToDo");
+  // console.log("deleteToDo");
 }); 
 
 app.delete('/erinnerungDelete/:EintragID', function (req, res) {
@@ -334,5 +329,5 @@ app.delete('/erinnerungDelete/:EintragID', function (req, res) {
   const values =[req.params.EintragID];
   con.query(sql , values, function(error, results, fields) {});
   con.query(sql2, values, function(error, results, fields) {});
-  console.log("deleteErinnerung");
+  // console.log("deleteErinnerung");
 }); 

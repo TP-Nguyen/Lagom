@@ -43,12 +43,10 @@ export class MainService {
 
     getNutzerdaten(WorkspaceID:number){
         const url = this.workspaceUrl + "/" + WorkspaceID;
-        console.log(url);
         return this.http.get(url);
     }
     getNutzername(nutzername:string): Observable<Nutzer>{
         const url = this.nutzerUrl + "name/" + nutzername;
-        console.log(url);
         return this.http.get<Nutzer>(url);
     }
     getZiele(WorkspaceID:number): Observable<Ziel[]> {
@@ -84,17 +82,15 @@ export class MainService {
     }
     getEintrag(gesuchterEintrag: Number, Art: String): Observable<any> {
         const url = this.eintragUrl +"/"+ gesuchterEintrag + "/" + Art;
-        console.log(url);
         return this.http.get<Eintrag>(url);
     }
     getWorkspaceID(NutzerID: Number){
         const url = this.nutzerUrl +"/"+ NutzerID;
-        console.log(url);
         return this.http.get(url);
     }
     addNutzer(newNutzer: Nutzer): Observable<Nutzer> {
-        console.dir(newNutzer);
-        console.log(newNutzer.Nutzername);
+        // console.dir(newNutzer);
+        // console.log(newNutzer.Nutzername);
         return this.http.post<Nutzer>(this.nutzerUrl, 
             {
                 "NutzerID": newNutzer.NutzerID, 
@@ -129,45 +125,33 @@ export class MainService {
     }
     updateEintrag(eintraege: Eintrag): Observable<Eintrag> {
         const url = this.eintragUrl + "Update/" + eintraege.Art;
-        console.log(url);
-        console.log(eintraege);
+
         return this.http.put<Eintrag>(url, eintraege, this.httpOptions); 
     }
     deleteZielEintrag (zielEintrag: Eintrag): Observable<Eintrag> {
         const EintragID = typeof zielEintrag === 'number' ? zielEintrag : zielEintrag.EintragID; 
         const url = this.zielUrl +"Delete/"+ EintragID;
-        console.log(EintragID);
-        console.log(url);
-
         return this.http.delete<Eintrag>(url, this.httpOptions); 
     }
     deleteKalenderEintrag (kalenderEintrag: Eintrag): Observable<Eintrag> {
         const EintragID = typeof kalenderEintrag === 'number' ? kalenderEintrag : kalenderEintrag.EintragID; 
         const url = this.kalenderUrl +"Delete/"+ EintragID;
-        console.log(EintragID);
-        console.log(url);
         return this.http.delete<Eintrag>(url, this.httpOptions); 
     }
     deleteTagebuchEintrag (tagebuchEintrag: Eintrag): Observable<Eintrag> {
         const EintragID = typeof tagebuchEintrag === 'number' ? tagebuchEintrag : tagebuchEintrag.EintragID; 
         const url = this.tagebuchUrl +"Delete/"+ EintragID;
-        console.log(EintragID);
-        console.log(url);
         return this.http.delete<Eintrag>(url, this.httpOptions);  
     }
 
     deleteToDoEintrag (todoEintrag: Eintrag): Observable<Eintrag> {
         const EintragID = typeof todoEintrag === 'number' ? todoEintrag : todoEintrag.EintragID; 
         const url = this.todoUrl +"Delete/"+ EintragID;
-        console.log(EintragID);
-        console.log(url);
         return this.http.delete<Eintrag>(url, this.httpOptions)
     }
     deleteErinnerungEintrag (erinnerungEintrag: Eintrag): Observable<Eintrag> {
         const EintragID = typeof erinnerungEintrag === 'number' ? erinnerungEintrag : erinnerungEintrag.EintragID; 
         const url = this.erinnerungUrl +"Delete/"+ EintragID;
-        console.log(EintragID);
-        console.log(url);
         return this.http.delete<Eintrag>(url, this.httpOptions); 
     }
 }

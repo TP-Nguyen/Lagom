@@ -23,8 +23,6 @@ const SOCKET_ENDPOINT = 'localhost:3000';
 })
 
 export class MainComponent implements OnInit {
-
-
   socket;
 
   constructor(private mainService: MainService,
@@ -50,12 +48,19 @@ export class MainComponent implements OnInit {
 
   setupSocketConnection() {
     this.socket = io(SOCKET_ENDPOINT);
+    console.log("socketauf");
+    this.socket.on('delete', (data: Todo) => {
+      console.log("socket");
+      if(data){
+        this.getAllData();
+        console.log("getAll");
+      }
+    });
  }
   
   private getAllData(): void{
-    console.log("getDATA");
     this.nutzerdaten = this.mainService.getNutzerdaten(this.WorkspaceID);
-    this.nutzerdaten.subscribe(data => {console.log(data)});
+    this.nutzerdaten.subscribe(data => {});
 
     this.todos = this.mainService.getTodos(this.WorkspaceID);
     this.todos.subscribe(data => {});
@@ -97,9 +102,16 @@ export class MainComponent implements OnInit {
   }
   
   public deleteToDo(todoEintrag: Eintrag): void{
+    console.log("de3let")
+  
+    this.socket.emit("delete");
+    this.setupSocketConnection();
     this.mainService.deleteToDoEintrag(todoEintrag).subscribe();
+    
     this.todos = this.mainService.getTodos(this.WorkspaceID);
     this.todos.subscribe(data => {});
+
+    
   }
 
   public deleteErinnerung(erinnerungEintrag: Eintrag): void{
