@@ -40,16 +40,6 @@ export class MainComponent implements OnInit {
   nutzerdaten:Observable<any>;
   WorkspaceID = +this.route.snapshot.paramMap.get('WorkspaceID');
 
-  // data[];  
-  // ngOnInit(): void {
-  //   this.mainService.refresh$
-  //     .subscribe(() => {
-  //       this.getAllData();
-  //       console.log("data")
-  //     });
-  //   this.getAllData();
-  // }
-  @ViewChild('filterInput') filterInput: NgModel;
   ngOnInit() {
     this.getAllData();
   }
@@ -61,55 +51,57 @@ export class MainComponent implements OnInit {
     this.nutzerdaten.subscribe(data => {console.log(data)});
 
     this.todos = this.mainService.getTodos(this.WorkspaceID);
+    this.todos.subscribe(data => {});
+
     this.ziele = this.mainService.getZiele(this.WorkspaceID);
-    this.erinnerungen = this.mainService.getErinnerungen(this.WorkspaceID);
-    this.galerien = this.mainService.getGalerien(this.WorkspaceID);
-    this.motivationen = this.mainService.getMotivationen(this.WorkspaceID);
-    this.nutzer = this.mainService.getNutzerListe();
-    this.tagebuch = this.mainService.getTagebuch(this.WorkspaceID);
-    this.kalender = this.mainService.getKalender(this.WorkspaceID);
-
-    this.todos.subscribe(data => { console.log(data)});
-
     this.ziele.subscribe(data => {});
 
+    this.erinnerungen = this.mainService.getErinnerungen(this.WorkspaceID);
     this.erinnerungen.subscribe(data => {});
 
+    this.galerien = this.mainService.getGalerien(this.WorkspaceID);
     this.galerien.subscribe(data => {});
 
+    this.motivationen = this.mainService.getMotivationen(this.WorkspaceID);
     this.motivationen.subscribe(data => {});
 
+    // this.nutzer = this.mainService.getNutzerListe();
+    // this.nutzer.subscribe(data => {});
+
+    this.tagebuch = this.mainService.getTagebuch(this.WorkspaceID);
     this.tagebuch.subscribe(data => {});
 
-    this.nutzer.subscribe(data => {});
-
+    this.kalender = this.mainService.getKalender(this.WorkspaceID);
     this.kalender.subscribe(data => {});
   }
   public deleteZiel(zielEintrag: Eintrag): void{
-
     this.mainService.deleteZielEintrag(zielEintrag).subscribe(); 
+    this.ziele = this.mainService.getZiele(this.WorkspaceID);
+    this.ziele.subscribe(data => {});
   }
 
   public deleteKalender(kalenderEintrag: Eintrag): void{
-
     this.mainService.deleteKalenderEintrag(kalenderEintrag).subscribe(); 
+    this.kalender = this.mainService.getKalender(this.WorkspaceID);
+    this.kalender.subscribe(data => {});
   }
 
   public deleteTagebuch(tagebuchEintrag: Eintrag): void{
-
     this.mainService.deleteTagebuchEintrag(tagebuchEintrag).subscribe(); 
+    this.tagebuch = this.mainService.getTagebuch(this.WorkspaceID);
+    this.tagebuch.subscribe(data => {});
   }
   
   public deleteToDo(todoEintrag: Eintrag): void{
-
     this.mainService.deleteToDoEintrag(todoEintrag).subscribe();
-    this.getAllData();
+    this.todos = this.mainService.getTodos(this.WorkspaceID);
+    this.todos.subscribe(data => {});
   }
 
   public deleteErinnerung(erinnerungEintrag: Eintrag): void{
-
     this.mainService.deleteErinnerungEintrag(erinnerungEintrag).subscribe(); 
-    this.getAllData();
+    this.erinnerungen = this.mainService.getErinnerungen(this.WorkspaceID);
+    this.erinnerungen.subscribe(data => {});
   }
 
   public eintragErstellen(){

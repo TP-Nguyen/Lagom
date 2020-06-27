@@ -108,9 +108,11 @@ a:visited{
         height: 110px;
     }
     #Tagebuch .content .list,
-    #Erinnerung .content .list,
     #Ziele .content .list{
-        height: 180px;
+        height: 170px;
+    }
+    #Erinnerung .content .list{
+        height: 120px;
     }
 }
 #Kalender .content .month{
@@ -283,7 +285,7 @@ a:visited{
 #ToDo .content .list .do{
     height: auto;
     /* max-width: 450px; */
-    width: 430px;
+    width: 455px;
     display: flex;
     clear: both;
     padding: 3px 5px;
@@ -330,7 +332,7 @@ a:visited{
     justify-content: center;
     align-items: center;
     bottom: 3vh;
-    right: 12vw;
+    right: 02vw;
     z-index: 11;
     display: flex;
     color: white;

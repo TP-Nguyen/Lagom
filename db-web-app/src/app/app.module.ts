@@ -14,7 +14,7 @@ import { LoginComponent } from './login/login.component';
 import { RegistrierungComponent } from './registrierung/registrierung.component';
 import { EintragBearbeitenComponent } from "./eintragBearbeiten/eintragBearbeiten.component";
 import { EintragErstellenComponent } from './eintragErstellen/eintragErstellen.component';
-import { CalendarModule } from '@progress/kendo-angular-dateinputs';
+// import { CalendarModule } from '@progress/kendo-angular-dateinputs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const routes: Routes = [
@@ -41,7 +41,7 @@ const routes: Routes = [
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    CalendarModule,
+    // CalendarModule,
     BrowserAnimationsModule
   ],
   providers: [], //[AuthService]

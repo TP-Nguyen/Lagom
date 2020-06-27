@@ -11,7 +11,6 @@ import { Motivation } from '../model/motivation';
 import { Nutzer } from '../model/nutzer';
 import { Tagebuch } from '../model/tagebuch';
 import { Kalender } from '../model/kalender';
-import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -147,11 +146,6 @@ export class MainService {
         console.log(url);
         return this.http.delete<Eintrag>(url, this.httpOptions);  
     }
-    private _refreshNeeded$ = new Subject<void>();
-
-  get refreshNeeded$() {
-    return this._refreshNeeded$;
-  }
 
     deleteToDoEintrag (todoEintrag: Eintrag): Observable<Eintrag> {
         const EintragID = typeof todoEintrag === 'number' ? todoEintrag : todoEintrag.EintragID; 
@@ -159,11 +153,6 @@ export class MainService {
         console.log(EintragID);
         console.log(url);
         return this.http.delete<Eintrag>(url, this.httpOptions)
-        .pipe(
-            tap(() => {
-              this._refreshNeeded$.next();
-            })
-          );
     }
     deleteErinnerungEintrag (erinnerungEintrag: Eintrag): Observable<Eintrag> {
         const EintragID = typeof erinnerungEintrag === 'number' ? erinnerungEintrag : erinnerungEintrag.EintragID; 
