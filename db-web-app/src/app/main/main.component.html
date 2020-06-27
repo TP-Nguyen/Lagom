@@ -41,10 +41,10 @@
         
         <div class="field" id="Kalender">
             <div class="content">
-                <h3>{{month}}</h3>
-                <div class="month">       
+                <!-- <h3>{{month}}</h3> -->                
+                <!-- <div class="month">       
                     <div class="day" *ngFor="let day of days">{{day.number}}</div>
-                </div>
+                </div> -->
                 <div class="list">
                     <div class="listcontent" *ngFor="let kalender of kalender | async">
                         <div class="delete" (click)="deleteKalender(kalender)"><img src="/assets/img/loeschen.png" height="25px"></div>

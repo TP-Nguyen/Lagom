@@ -330,7 +330,7 @@ a:visited{
     justify-content: center;
     align-items: center;
     bottom: 3vh;
-    left: 90vw;
+    right: 12vw;
     z-index: 11;
     display: flex;
     color: white;

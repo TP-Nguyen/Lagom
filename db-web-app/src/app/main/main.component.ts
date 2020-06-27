@@ -1,6 +1,6 @@
 import { MainService } from '../service/main.service';
-import { Component, OnInit, Input } from '@angular/core';
-import { Observable, from } from 'rxjs';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Observable, from, BehaviorSubject, interval, combineLatest, merge } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { Eintrag} from '../model/eintrag';
 import { Ziel} from '../model/ziel';
@@ -12,6 +12,9 @@ import { Nutzer } from '../model/nutzer';
 import { Tagebuch } from '../model/tagebuch';
 import { Kalender } from '../model/kalender';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { switchMap, startWith, filter, debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
+import { NgModel } from '@angular/forms';
 
 @Component({
   // selector: 'app-main', //Hier richtig?
@@ -21,7 +24,10 @@ import { Router } from '@angular/router';
 })
 export class MainComponent implements OnInit {
 
-  constructor(private mainService: MainService,private router: Router,private route: ActivatedRoute) { }
+  constructor(private mainService: MainService,
+    private router: Router,
+    private readonly http: HttpClient,
+    private route: ActivatedRoute) { }
 
   ziele: Observable<Ziel[]>;
   todos: Observable<Todo[]>;
@@ -33,7 +39,24 @@ export class MainComponent implements OnInit {
   kalender: Observable<Kalender[]>;
   nutzerdaten:Observable<any>;
   WorkspaceID = +this.route.snapshot.paramMap.get('WorkspaceID');
-  ngOnInit(): void {
+
+  // data[];  
+  // ngOnInit(): void {
+  //   this.mainService.refresh$
+  //     .subscribe(() => {
+  //       this.getAllData();
+  //       console.log("data")
+  //     });
+  //   this.getAllData();
+  // }
+  @ViewChild('filterInput') filterInput: NgModel;
+  ngOnInit() {
+    this.getAllData();
+  }
+  
+  
+  private getAllData(): void{
+    console.log("getDATA");
     this.nutzerdaten = this.mainService.getNutzerdaten(this.WorkspaceID);
     this.nutzerdaten.subscribe(data => {console.log(data)});
 
@@ -46,7 +69,7 @@ export class MainComponent implements OnInit {
     this.tagebuch = this.mainService.getTagebuch(this.WorkspaceID);
     this.kalender = this.mainService.getKalender(this.WorkspaceID);
 
-    this.todos.subscribe(data => {});
+    this.todos.subscribe(data => { console.log(data)});
 
     this.ziele.subscribe(data => {});
 
@@ -62,25 +85,31 @@ export class MainComponent implements OnInit {
 
     this.kalender.subscribe(data => {});
   }
-  
   public deleteZiel(zielEintrag: Eintrag): void{
+
     this.mainService.deleteZielEintrag(zielEintrag).subscribe(); 
   }
 
   public deleteKalender(kalenderEintrag: Eintrag): void{
+
     this.mainService.deleteKalenderEintrag(kalenderEintrag).subscribe(); 
   }
 
   public deleteTagebuch(tagebuchEintrag: Eintrag): void{
+
     this.mainService.deleteTagebuchEintrag(tagebuchEintrag).subscribe(); 
   }
-
+  
   public deleteToDo(todoEintrag: Eintrag): void{
-    this.mainService.deleteToDoEintrag(todoEintrag).subscribe(); 
+
+    this.mainService.deleteToDoEintrag(todoEintrag).subscribe();
+    this.getAllData();
   }
 
   public deleteErinnerung(erinnerungEintrag: Eintrag): void{
+
     this.mainService.deleteErinnerungEintrag(erinnerungEintrag).subscribe(); 
+    this.getAllData();
   }
 
   public eintragErstellen(){

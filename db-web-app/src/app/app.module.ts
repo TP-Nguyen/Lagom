@@ -14,6 +14,8 @@ import { LoginComponent } from './login/login.component';
 import { RegistrierungComponent } from './registrierung/registrierung.component';
 import { EintragBearbeitenComponent } from "./eintragBearbeiten/eintragBearbeiten.component";
 import { EintragErstellenComponent } from './eintragErstellen/eintragErstellen.component';
+import { CalendarModule } from '@progress/kendo-angular-dateinputs';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const routes: Routes = [
   { path: 'main', component: MainComponent},
@@ -38,7 +40,9 @@ const routes: Routes = [
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CalendarModule,
+    BrowserAnimationsModule
   ],
   providers: [], //[AuthService]
   bootstrap: [AppComponent]
