@@ -48,23 +48,9 @@ export class MainComponent implements OnInit {
 
   setupSocketConnection() {
     this.socket = io(SOCKET_ENDPOINT);
-    console.log("socketauf");
-    
     this.socket.on('my broadcast', (data: string) => {
       this.getAllData();
     });
-
-    
-
-    this.socket.on("delete", (data: Todo) => {
-      console.log("socket");
-      if(data){
-        this.getAllData();
-        console.log("getAllSOCKET");
-      }
-    });
-
-    
  }
   
   private getAllData(): void{
@@ -94,34 +80,28 @@ export class MainComponent implements OnInit {
   }
   public deleteZiel(zielEintrag: Eintrag): void{
     this.mainService.deleteZielEintrag(zielEintrag).subscribe(); 
-    this.ziele = this.mainService.getZiele(this.WorkspaceID);
-    this.ziele.subscribe(data => {});
+    this.socket.emit('refresh','refresh Page');
   }
 
   public deleteKalender(kalenderEintrag: Eintrag): void{
     this.mainService.deleteKalenderEintrag(kalenderEintrag).subscribe(); 
-    this.kalender = this.mainService.getKalender(this.WorkspaceID);
-    this.kalender.subscribe(data => {});
+    this.socket.emit('refresh','refresh Page');
   }
 
   public deleteTagebuch(tagebuchEintrag: Eintrag): void{
     this.mainService.deleteTagebuchEintrag(tagebuchEintrag).subscribe(); 
-    this.tagebuch = this.mainService.getTagebuch(this.WorkspaceID);
-    this.tagebuch.subscribe(data => {});
+    this.socket.emit('refresh','refresh Page');
   }
   
   public deleteToDo(todoEintrag: Eintrag): void{  
     this.mainService.deleteToDoEintrag(todoEintrag).subscribe();
-    this.todos = this.mainService.getTodos(this.WorkspaceID);
-    this.todos.subscribe(data => {});
-    this.socket.emit('delete');
+    this.socket.emit('refresh','refresh Page');
     
   }
 
   public deleteErinnerung(erinnerungEintrag: Eintrag): void{
     this.mainService.deleteErinnerungEintrag(erinnerungEintrag).subscribe(); 
-    this.erinnerungen = this.mainService.getErinnerungen(this.WorkspaceID);
-    this.erinnerungen.subscribe(data => {});
+    this.socket.emit('refresh','refresh Page');
   }
 
   public eintragErstellen(){

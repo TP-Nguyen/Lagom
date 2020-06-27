@@ -7,6 +7,8 @@ import { ActivatedRoute } from '@angular/router';
 import { MainService } from '../service/main.service'; 
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import * as io from 'socket.io-client';
+const SOCKET_ENDPOINT = 'localhost:3000';
 @Component({
   selector: 'app-eintragErstellen',
   templateUrl: './eintragErstellen.component.html',
@@ -41,7 +43,7 @@ export class EintragErstellenComponent implements OnInit{
   title = 'db-web-app';
 
   erstellungsTitel = "EINTRAG ERSTELLEN"
-
+  socket;
   uhr = false;
 
   arten= [
@@ -59,10 +61,14 @@ export class EintragErstellenComponent implements OnInit{
     }
   }
   ngOnInit(): void {
-    
+    this.setupSocketConnection();
+  }
+  setupSocketConnection() {
+    this.socket = io(SOCKET_ENDPOINT);
   }
   goBack(){
     this.location.back();
+    this.socket.emit('refresh','refresh Page');
   }
 
   submit(eintragdaten){

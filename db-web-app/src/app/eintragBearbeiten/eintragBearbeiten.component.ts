@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { Kalender } from '../model/kalender';
 import { FormBuilder } from '@angular/forms'; 
+import * as io from 'socket.io-client';
+const SOCKET_ENDPOINT = 'localhost:3000';
 
 @Component({
   selector: 'app-eintragBearbeiten',
@@ -36,6 +38,7 @@ export class EintragBearbeitenComponent implements OnInit {
     Art = this.route.snapshot.url[1].path;
     EintragID;
     uhr=false;
+    socket;
 
     modelChangeDate(newDate){
       this.eintraege[0].Datum = newDate;
@@ -43,12 +46,21 @@ export class EintragBearbeitenComponent implements OnInit {
     }
   
     ngOnInit(): void {
+    this.setupSocketConnection();
     this.EintragID = +this.route.snapshot.paramMap.get('EintragID');
     console.log(this.EintragID);
     this.getEintrag();
     if(this.Art == "Erinnerung" || this.Art == "Kalender"){
       this.uhr=true;
     }
+
+  }
+  setupSocketConnection() {
+    this.socket = io(SOCKET_ENDPOINT);
+  }
+  goBack(){
+    this.location.back();
+    this.socket.emit('refresh','refresh Page');
   }
 
   getEintrag(): void {    
@@ -56,11 +68,6 @@ export class EintragBearbeitenComponent implements OnInit {
       console.log(eintraege[0].Datum);
     });
   }
-
-  goBack(){
-    this.location.back();
-  }
-
   aktualisiereEintrag(): void {
     console.log(this.eintraege[0]); 
     
