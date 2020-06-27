@@ -3,6 +3,7 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 // import { HttpClientModule }    from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 import {Nutzer} from '../app/model/nutzer'; 
+import { MainService } from './service/main.service';
 
 @Component({
   selector: 'app-root',
@@ -10,46 +11,13 @@ import {Nutzer} from '../app/model/nutzer';
   styleUrls: ['./app.component.css']
 })
 
- export class AppComponent {
-  constructor(private http: HttpClient) { } 
-  privateeventsUrl ="/";
+ export class AppComponent implements OnInit{
+  
+  constructor(private mainService: MainService) {}
 
-  title = 'db-web-app';
-
-  loginTitel = "LOGIN"
-
-  loginElemente = [
-    {
-      input: "Nutzername" 
-    }, 
-    {
-      input: "Passwort"
-    }
-  ];
-
-
-registrierungTitel = "REGISTRIERUNG"
-
-registrierungElemente = [
-    {
-      input: "Nutzername"
-    },
-    {
-      input: "Ganzer Name"
-    }, 
-    {
-      input: "Email"
-    }, 
-    {
-      input: "Passwort"
-    }
-  ];
 
   ngOnInit() {
+    this.mainService.setupSocketConnection();
   }
-//thenLogin: TemplateRef<any>|null =  null;
-//login: boolean = true;  
-
-//thenRegistrieren: TemplateRef<any>|null = null;
 
 }

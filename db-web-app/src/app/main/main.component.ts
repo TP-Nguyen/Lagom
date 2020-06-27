@@ -15,19 +15,16 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import * as io from 'socket.io-client';
 
-const SOCKET_ENDPOINT = 'localhost:8080';
+const SOCKET_ENDPOINT = 'localhost:3000';
 @Component({
-  // selector: 'app-main', //Hier richtig?
   selector: 'app-root', 
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css']
 })
 
-
-
 export class MainComponent implements OnInit {
 
-  message : String;
+
   socket;
 
   constructor(private mainService: MainService,
@@ -53,22 +50,6 @@ export class MainComponent implements OnInit {
 
   setupSocketConnection() {
     this.socket = io(SOCKET_ENDPOINT);
-    this.socket.on('message-broadcast', (data: string) => {
-    if (data) {
-     const element = document.createElement('li');
-     element.innerHTML = data;
-     element.style.background = 'white';
-     element.style.padding =  '15px 30px';
-     element.style.margin = '10px';
-     document.getElementById('message-list').appendChild(element);
-     }
-   });
- }
- 
-
-  SendMessage() {
-    this.socket.emit('message', this.message);
-    this.message = '';
  }
   
   private getAllData(): void{
@@ -90,9 +71,6 @@ export class MainComponent implements OnInit {
 
     this.motivationen = this.mainService.getMotivationen(this.WorkspaceID);
     this.motivationen.subscribe(data => {});
-
-    // this.nutzer = this.mainService.getNutzerListe();
-    // this.nutzer.subscribe(data => {});
 
     this.tagebuch = this.mainService.getTagebuch(this.WorkspaceID);
     this.tagebuch.subscribe(data => {});

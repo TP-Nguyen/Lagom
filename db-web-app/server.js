@@ -8,9 +8,21 @@ var cors = require('cors');
 // var app = express();
 
 const app = require('express')();
-const http = require('http').Server(app);
-// const io = require('socket.io')(http);
-var io = require('socket.io')(server, { origins: '*:*'});
+const http = require('http').createServer(app);
+const io = require('socket.io')(http);
+
+// app.get('/', (req, res) => {
+//   res.send('<h1>Hey Socket.io</h1>');
+// });
+io.on('connection', (socket) => {
+  console.log('a user connected');
+  socket.on('disconnect', () => {
+    console.log('user disconnected');
+  });
+});
+http.listen(3000, () => {
+  console.log('listening on *:3000');
+});
 
 //HOCHSCHUL SERVER
 const con = mysql.createConnection({
@@ -26,14 +38,6 @@ var server = app.listen(SERVER_PORT, function (){
       port = server.address().port;
 
       console.log("App listening at http://%s:%s", host, port)
-});
-
-io.on('connection', (socket) => {
-  console.log('a user connected');
-  // socket.on('message', (msg) => {
-  //   console.log(msg);
-  //   socket.broadcast.emit('message-broadcast', msg);
-  //  });
 });
 
 var index;

@@ -12,12 +12,21 @@ import { Nutzer } from '../model/nutzer';
 import { Tagebuch } from '../model/tagebuch';
 import { Kalender } from '../model/kalender';
 
+import * as io from 'socket.io-client';
+import { env } from 'process';
+
 @Injectable({
   providedIn: 'root'
 })
 
 export class MainService {
+    socket;
+
     constructor(private http: HttpClient) {}
+
+    setupSocketConnection() {
+        this.socket = io(env.SOCKET_ENDPOINT);
+      }
 
     private readonly zielUrl = APIConfig.URL + ':' + APIConfig.PORT + '/ziel';
     private readonly todoUrl = APIConfig.URL + ':' + APIConfig.PORT + '/todo';
