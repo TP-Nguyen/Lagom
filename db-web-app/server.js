@@ -279,8 +279,8 @@ app.put('/eintragUpdate/:Art', function (req, res) {
   const values = [Datum, Titel, Untertitel, Text, Notiz, Anmerkung, EintragID];
 
     con.query(sql, values, function(error, results, fields) {   
-      if (error) throw error; 
-      res.send(results); 
+      // if (error) throw error; 
+      // res.send(results); 
 
       if (Art == "Erinnerung" || Art == "Kalender"){
         const sql2 = "UPDATE " + Art + " SET Uhrzeit = ? WHERE EintragID = ?";
