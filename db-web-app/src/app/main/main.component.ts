@@ -110,18 +110,11 @@ export class MainComponent implements OnInit {
     this.tagebuch.subscribe(data => {});
   }
   
-  public deleteToDo(todoEintrag: Eintrag): void{
-    console.log("de3let")
-  
-    
-    this.setupSocketConnection();
+  public deleteToDo(todoEintrag: Eintrag): void{  
     this.mainService.deleteToDoEintrag(todoEintrag).subscribe();
-    
     this.todos = this.mainService.getTodos(this.WorkspaceID);
     this.todos.subscribe(data => {});
-
-    // this.socket.emit("delete");
-    this.socket.emit('my message', 'Hello there from dfslkngakfdsny.');
+    this.socket.emit('delete');
     
   }
 
