@@ -1,6 +1,6 @@
 import { MainService } from '../service/main.service';
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { Observable, from, BehaviorSubject, interval, combineLatest, merge } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { Eintrag} from '../model/eintrag';
 import { Ziel} from '../model/ziel';
@@ -13,16 +13,22 @@ import { Tagebuch } from '../model/tagebuch';
 import { Kalender } from '../model/kalender';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { switchMap, startWith, filter, debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
-import { NgModel } from '@angular/forms';
+import * as io from 'socket.io-client';
 
+const SOCKET_ENDPOINT = 'localhost:8080';
 @Component({
   // selector: 'app-main', //Hier richtig?
   selector: 'app-root', 
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css']
 })
+
+
+
 export class MainComponent implements OnInit {
+
+  message : String;
+  socket;
 
   constructor(private mainService: MainService,
     private router: Router,
@@ -41,9 +47,29 @@ export class MainComponent implements OnInit {
   WorkspaceID = +this.route.snapshot.paramMap.get('WorkspaceID');
 
   ngOnInit() {
+    this.setupSocketConnection();
     this.getAllData();
   }
-  
+
+  setupSocketConnection() {
+    this.socket = io(SOCKET_ENDPOINT);
+    this.socket.on('message-broadcast', (data: string) => {
+    if (data) {
+     const element = document.createElement('li');
+     element.innerHTML = data;
+     element.style.background = 'white';
+     element.style.padding =  '15px 30px';
+     element.style.margin = '10px';
+     document.getElementById('message-list').appendChild(element);
+     }
+   });
+ }
+ 
+
+  SendMessage() {
+    this.socket.emit('message', this.message);
+    this.message = '';
+ }
   
   private getAllData(): void{
     console.log("getDATA");

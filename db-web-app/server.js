@@ -1,37 +1,19 @@
 // server.js
 const SERVER_PORT = 8080;
 
-var express = require('express');
-var path = require('path');
 var mysql = require('mysql');
+var path = require('path');
+var express = require('express');
 var cors = require('cors');
+// var app = express();
 
-var app = express();
-var index;
-app.use(cors());
+const app = require('express')();
+const http = require('http').Server(app);
+// const io = require('socket.io')(http);
+var io = require('socket.io')(server, { origins: '*:*'});
 
-var bodyParser = require('body-parser'); 
-// const { isEmpty } = require('rxjs-compat/operator/isEmpty');
-
- // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }))
- // parse application/json
-app.use(bodyParser.json())
-
-app.use(express.static(path.join(__dirname, '/dist/db-web-app'))); 
-
-app.get('/', function(req,res)
-{
-    res.sendFile('app.component.html', { root: __dirname + '/src/app'});
-});
-
-app.get('/main', function(req,res)
-{
-    res.sendFile('main.component.html', { root: __dirname + '/src/app/main'});
-}); 
-
- //HOCHSCHUL SERVER
-const connection = mysql.createConnection({
+//HOCHSCHUL SERVER
+const con = mysql.createConnection({
   host: "195.37.176.178", 
   port: "20133",
   user: "Gruppe5", 
@@ -46,10 +28,43 @@ var server = app.listen(SERVER_PORT, function (){
       console.log("App listening at http://%s:%s", host, port)
 });
 
+io.on('connection', (socket) => {
+  console.log('a user connected');
+  // socket.on('message', (msg) => {
+  //   console.log(msg);
+  //   socket.broadcast.emit('message-broadcast', msg);
+  //  });
+});
+
+var index;
+app.use(cors());
+
+var bodyParser = require('body-parser'); 
+// const { isEmpty } = require('rxjs-compat/operator/isEmpty');
+
+ // parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+ // parse application/json
+app.use(bodyParser.json())
+
+app.use(express.static(path.join(__dirname, '/dist/db-web-app'))); 
+
+ 
+
 // GET-Anfragen 
 
+app.get('/', function(req,res)
+{
+    res.sendFile('app.component.html', { root: __dirname + '/src/app'});
+});
+
+app.get('/main', function(req,res)
+{
+    res.sendFile('main.component.html', { root: __dirname + '/src/app/main'});
+}); 
+
 app.get('/eintrag', function (req, res) {
-  connection.query('SELECT * FROM Eintrag', function (error, results, fields) {
+  con.query('SELECT * FROM Eintrag', function (error, results, fields) {
   if (error) throw error;
     res.send(results);
 
@@ -57,35 +72,35 @@ app.get('/eintrag', function (req, res) {
 });
 
 app.get('/todo/:WorkspaceID', function (req, res) {
-    connection.query('SELECT * FROM Eintrag natural join ToDo where WorkspaceID = ? order by Datum asc ', req.params.WorkspaceID, function (error, results, fields) { 
+    con.query('SELECT * FROM Eintrag natural join ToDo where WorkspaceID = ? order by Datum asc ', req.params.WorkspaceID, function (error, results, fields) { 
     if (error) throw error;
       res.send(results);
     });
 });
 
 app.get('/ziel/:WorkspaceID', function (req, res) {
-    connection.query('SELECT * FROM Eintrag natural join Ziel where WorkspaceID = ? order by Datum asc', req.params.WorkspaceID, function (error, results, fields) { 
+    con.query('SELECT * FROM Eintrag natural join Ziel where WorkspaceID = ? order by Datum asc', req.params.WorkspaceID, function (error, results, fields) { 
     if (error) throw error;
       res.send(results);
     });
 });
 
 app.get('/kalender/:WorkspaceID', function (req, res) {
-    connection.query('SELECT * FROM Eintrag natural join Kalender where WorkspaceID = ? order by Datum, Uhrzeit asc', req.params.WorkspaceID, function (error, results, fields) {
+    con.query('SELECT * FROM Eintrag natural join Kalender where WorkspaceID = ? order by Datum, Uhrzeit asc', req.params.WorkspaceID, function (error, results, fields) {
       if (error) throw error;
       res.send(results);
   });
 });
 
 app.get('/erinnerung/:WorkspaceID', function (req, res) {
-  connection.query('SELECT * FROM Eintrag natural join Erinnerung where WorkspaceID = ? order by Datum, Uhrzeit asc' , req.params.WorkspaceID, function (error, results, fields) {
+  con.query('SELECT * FROM Eintrag natural join Erinnerung where WorkspaceID = ? order by Datum, Uhrzeit asc' , req.params.WorkspaceID, function (error, results, fields) {
     if (error) throw error;
     res.send(results);
   });
 });
 
 app.get('/tagebuch/:WorkspaceID', function (req, res) {
-  connection.query('SELECT * FROM Eintrag natural join Tagebuch where WorkspaceID = ? order by Datum desc', req.params.WorkspaceID, function (error, results, fields) {
+  con.query('SELECT * FROM Eintrag natural join Tagebuch where WorkspaceID = ? order by Datum desc', req.params.WorkspaceID, function (error, results, fields) {
     if (error) throw error;
     res.send(results);
   });
@@ -93,7 +108,7 @@ app.get('/tagebuch/:WorkspaceID', function (req, res) {
 
 app.get('/motivation/:WorkspaceID', function (req, res) {
   const sql = 'select * from Motivation where MotivationID = (SELECT MotivationID FROM Workspace where WorkspaceID ='+req.params.WorkspaceID +')';
-  connection.query(sql, function (error, results, fields) {
+  con.query(sql, function (error, results, fields) {
     if (error) throw error;
     res.send(results);
   });
@@ -101,7 +116,7 @@ app.get('/motivation/:WorkspaceID', function (req, res) {
 
 app.get('/galerie/:WorkspaceID', function (req, res) {
   const sql = 
-  connection.query('SELECT * FROM Galerie natural join Bild where WorkspaceID = ?', req.params.WorkspaceID, function (error, results, fields) {
+  con.query('SELECT * FROM Galerie natural join Bild where WorkspaceID = ?', req.params.WorkspaceID, function (error, results, fields) {
     if (error) throw error;
     res.send(results);
   });
@@ -109,14 +124,14 @@ app.get('/galerie/:WorkspaceID', function (req, res) {
 });
 
 app.get('/nutzer', function (req, res) { 
-  connection.query('SELECT * FROM Nutzer', function (error, results, fields) {
+  con.query('SELECT * FROM Nutzer', function (error, results, fields) {
     if (error) throw error;
     res.send(results);
   });
 });
 
 app.get('/nutzername/:name', function (req, res) {
-  connection.query('SELECT * FROM Nutzer where Nutzername = ?', req.params.name, function (error, results, fields) {
+  con.query('SELECT * FROM Nutzer where Nutzername = ?', req.params.name, function (error, results, fields) {
     if (error) throw error;
     res.send(results);
   });
@@ -128,7 +143,7 @@ app.get('/eintrag/:EintragID/:Art', function (req, res) {
   const Art = req.params.Art; 
   const sql = 'SELECT * FROM Eintrag natural join ' + Art + ' WHERE EintragID = ?';
 
-  connection.query(sql ,req.params.EintragID, function (error, results, fields) { 
+  con.query(sql ,req.params.EintragID, function (error, results, fields) { 
   if (error) throw error;
     console.log(results)
     res.send(results);
@@ -143,7 +158,7 @@ app.get('/nutzer/:Nutzername/:Passwort', function (req, res) {
     const sql = "SELECT * FROM Nutzer WHERE Nutzername = ? AND Passwort = ? ";
     const values = [Nutzername, Passwort];
   
-    connection.query(sql, values, function(error, results, fields) {
+    con.query(sql, values, function(error, results, fields) {
       if (results[0] == null ){
         console.log("null");
         results[0] = "404"
@@ -157,7 +172,7 @@ app.get('/nutzer/:Nutzername/:Passwort', function (req, res) {
 app.get('/nutzer/:NutzerID', function (req, res) {
   console.log('request body: '+ req.params.NutzerID); 
   const sql = 'SELECT WorkspaceID FROM Workspace WHERE NutzerID = ?';
-  connection.query( sql,req.params.NutzerID, function (error, results, fields) {
+  con.query( sql,req.params.NutzerID, function (error, results, fields) {
     if (error) throw error;
     res.send(results);
   });
@@ -166,7 +181,7 @@ app.get('/nutzer/:NutzerID', function (req, res) {
 app.get('/workspace/:WorkspaceID', function (req, res) {
   console.log('request body: '+ req.params.WorkspaceID); 
   const sql = 'SELECT * FROM Nutzer natural join Workspace WHERE WorkspaceID = ?';
-  connection.query( sql,req.params.WorkspaceID, function (error, results, fields) {
+  con.query( sql,req.params.WorkspaceID, function (error, results, fields) {
     res.send(results);
   });
 });
@@ -185,11 +200,11 @@ app.post('/nutzer', function (req, res) {
   const sql = "INSERT INTO Nutzer (Nutzername, Ganzername, Email, Passwort)" + "VALUES (?, ?, ?, ?)";
   const values = [Nutzername, GanzerName, Email, Passwort];
 
-  connection.query(sql, values, function(error, results, fields) {
+  con.query(sql, values, function(error, results, fields) {
     sql2 = "INSERT INTO Workspace (NutzerID, MotivationID)" + " VALUES (?, (SELECT FLOOR (RAND () * (100011-100001) + 100001)))"; 
     values2 = [results.insertId];
 
-    connection.query(sql2, values2, function(error, results, fields) {
+    con.query(sql2, values2, function(error, results, fields) {
         if (error) throw error; 
         res.send(results); 
     });
@@ -213,13 +228,13 @@ app.post('/eintragerstellen', function (req, res) {
   const sql1 = "INSERT INTO Eintrag (Datum, Titel, Untertitel, Text, Notiz, Anmerkung)" + "VALUES (?, ?, ?, ?, ?, ?)";
   const values1 = [Datum, Titel, Untertitel, Text, Notiz, Anmerkung];
   
-  connection.query(sql1, values1, function(error, results, fields) {
+  con.query(sql1, values1, function(error, results, fields) {
     console.log(results.insertId);
     if (Art == "Erinnerung" || Art == "Kalender"){
       console.log("!")
       const sql2 = "INSERT INTO " + Art + " (WorkspaceID, EintragID, Uhrzeit)" + "VALUES (?, ?, ?)";
       const values2 = [WorkspaceID, results.insertId, Uhrzeit];
-      connection.query(sql2, values2, function(error, results, fields) {
+      con.query(sql2, values2, function(error, results, fields) {
         if (error) throw error; 
         res.send(results); 
       });
@@ -227,7 +242,7 @@ app.post('/eintragerstellen', function (req, res) {
       console.log("?")
       const sql2 = "INSERT INTO "+ Art +" (WorkspaceID, EintragID)" + " VALUES (?, ?)" 
       const values2 = [WorkspaceID, results.insertId];
-      connection.query(sql2, values2, function(error, results, fields) {
+      con.query(sql2, values2, function(error, results, fields) {
         if (error) throw error; 
         res.send(results); 
       });
@@ -255,7 +270,7 @@ app.put('/eintragUpdate/:Art', function (req, res) {
   
   const values = [Datum, Titel, Untertitel, Text, Notiz, Anmerkung, EintragID];
 
-    connection.query(sql, values, function(error, results, fields) {   
+    con.query(sql, values, function(error, results, fields) {   
       if (error) throw error; 
       res.send(results); 
 
@@ -263,7 +278,7 @@ app.put('/eintragUpdate/:Art', function (req, res) {
         console.log(Art)
         const sql2 = "UPDATE " + Art + " SET Uhrzeit = ? WHERE EintragID = ?";
         const values2 = [Uhrzeit, EintragID];
-        connection.query(sql2, values2, function(error, results, fields) {
+        con.query(sql2, values2, function(error, results, fields) {
           if (error) throw error; 
           res.send(results); 
         });
@@ -277,8 +292,8 @@ app.delete('/zielDelete/:EintragID', function (req, res) {
   const sql = " DELETE FROM Ziel WHERE EintragID = ?";
   const sql2 = "DELETE FROM Eintrag WHERE EintragID = ?";
   const values =[req.params.EintragID];
-  connection.query(sql , values, function(error, results, fields) {});
-  connection.query(sql2, values, function(error, results, fields) {});
+  con.query(sql , values, function(error, results, fields) {});
+  con.query(sql2, values, function(error, results, fields) {});
   console.log("deleteZiel");
 }); 
 
@@ -286,8 +301,8 @@ app.delete('/kalenderDelete/:EintragID', function (req, res) {
   const sql = " DELETE FROM Kalender WHERE EintragID = ?";
   const sql2 = "DELETE FROM Eintrag WHERE EintragID = ?";
   const values =[req.params.EintragID];
-  connection.query(sql , values, function(error, results, fields) {});
-  connection.query(sql2, values, function(error, results, fields) {});
+  con.query(sql , values, function(error, results, fields) {});
+  con.query(sql2, values, function(error, results, fields) {});
   console.log("deleteKalender");
 }); 
 
@@ -295,8 +310,8 @@ app.delete('/tagebuchDelete/:EintragID', function (req, res) {
   const sql = " DELETE FROM Tagebuch WHERE EintragID = ?";
   const sql2 = "DELETE FROM Eintrag WHERE EintragID = ?";
   const values =[req.params.EintragID];
-  connection.query(sql , values, function(error, results, fields) {});
-  connection.query(sql2, values, function(error, results, fields) {});
+  con.query(sql , values, function(error, results, fields) {});
+  con.query(sql2, values, function(error, results, fields) {});
   console.log("deleteTagebuch");
 }); 
 
@@ -304,8 +319,8 @@ app.delete('/todoDelete/:EintragID', function (req, res) {
   const sql = " DELETE FROM ToDo WHERE EintragID = ?";
   const sql2 = "DELETE FROM Eintrag WHERE EintragID = ?";
   const values =[req.params.EintragID];
-  connection.query(sql , values, function(error, results, fields) {});
-  connection.query(sql2, values, function(error, results, fields) {});
+  con.query(sql , values, function(error, results, fields) {});
+  con.query(sql2, values, function(error, results, fields) {});
   console.log("deleteToDo");
 }); 
 
@@ -313,7 +328,7 @@ app.delete('/erinnerungDelete/:EintragID', function (req, res) {
   const sql = " DELETE FROM Erinnerung WHERE EintragID = ?";
   const sql2 = "DELETE FROM Eintrag WHERE EintragID = ?";
   const values =[req.params.EintragID];
-  connection.query(sql , values, function(error, results, fields) {});
-  connection.query(sql2, values, function(error, results, fields) {});
+  con.query(sql , values, function(error, results, fields) {});
+  con.query(sql2, values, function(error, results, fields) {});
   console.log("deleteErinnerung");
 }); 
