@@ -49,13 +49,22 @@ export class MainComponent implements OnInit {
   setupSocketConnection() {
     this.socket = io(SOCKET_ENDPOINT);
     console.log("socketauf");
-    this.socket.on('delete', (data: Todo) => {
+    
+    this.socket.on('my broadcast', (data: string) => {
+      this.getAllData();
+    });
+
+    
+
+    this.socket.on("delete", (data: Todo) => {
       console.log("socket");
       if(data){
         this.getAllData();
-        console.log("getAll");
+        console.log("getAllSOCKET");
       }
     });
+
+    
  }
   
   private getAllData(): void{
@@ -104,13 +113,15 @@ export class MainComponent implements OnInit {
   public deleteToDo(todoEintrag: Eintrag): void{
     console.log("de3let")
   
-    this.socket.emit("delete");
+    
     this.setupSocketConnection();
     this.mainService.deleteToDoEintrag(todoEintrag).subscribe();
     
     this.todos = this.mainService.getTodos(this.WorkspaceID);
     this.todos.subscribe(data => {});
 
+    // this.socket.emit("delete");
+    this.socket.emit('my message', 'Hello there from dfslkngakfdsny.');
     
   }
 

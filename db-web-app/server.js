@@ -19,7 +19,14 @@ io.on('connection', (socket) => {
   socket.on('disconnect', () => {
     console.log('user disconnected');
   });
+  socket.on('my message', (msg) => {
+    io.emit('my broadcast', `server: ${msg}`);
+  });
+  
 });
+
+
+
 http.listen(3000, () => {
   console.log('listening on *:3000');
 });
