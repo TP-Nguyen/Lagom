@@ -42,7 +42,7 @@ export class EintragErstellenComponent implements OnInit{
   
   title = 'db-web-app';
 
-  erstellungsTitel = "EINTRAG ERSTELLEN"
+  erstellungsTitel = "EINTRAG ERSTELLEN";
   socket;
   uhr = false;
 
@@ -76,6 +76,7 @@ export class EintragErstellenComponent implements OnInit{
     this.neuerEintrag.reset(); 
     console.log(newEintrag);
     console.log(eintragdaten.EintragArt);
+    this.datenBeibehalten(eintragdaten); 
   
         if(eintragdaten.EintragArt != "" && eintragdaten.EintragArt != null){
           if(eintragdaten.Datum != "" && eintragdaten.Datum != null){
@@ -95,6 +96,18 @@ export class EintragErstellenComponent implements OnInit{
         }
   }
 
+  datenBeibehalten(eintragdaten) {
+      this.neuerEintrag.EintragArt = eintragdaten.EintragArt; 
+      this.neuerEintrag.Datum = eintragdaten.Datum;  
+      this.neuerEintrag.Uhrzeit = eintragdaten.Uhrzeit;  
+      this.neuerEintrag.Titel = eintragdaten.Titel; 
+      this.neuerEintrag.Untertitel = eintragdaten.Untertitel;  
+      this.neuerEintrag.Text = eintragdaten.Text; 
+      this.neuerEintrag.Notiz = eintragdaten.Notiz; 
+      this.neuerEintrag.Anmerkung = eintragdaten.Anmerkung; 
+      console.log("daten wurden beibehalten"); 
+      console.log(this.neuerEintrag); 
+  }
   // showError() {
   //   this.nachricht = "Kategorie wurde nicht ausgewählt oder Datum oder Titel wurden nicht eingetragen!";
   //   console.warn('Kategorie wurde nicht ausgewählt oder Datum oder Titel wurden nicht eingetragen!'); 
