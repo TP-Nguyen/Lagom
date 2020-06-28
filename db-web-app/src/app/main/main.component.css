@@ -104,7 +104,7 @@ a:visited{
     height: 100%;
 }
 #Kalender .content .list{
-    height: 140px;
+    height: 180px;
     overflow: auto;
     width: 100%;
     box-sizing: border-box;
@@ -192,7 +192,7 @@ a:visited{
     grid-row: span 3;
 }
 #Erinnerung .list{
-    height: 200px;
+    height: 180px;
     overflow: auto;
     width: 100%;
     box-sizing: border-box;
@@ -203,8 +203,9 @@ a:visited{
     grid-column: span 1;
     grid-row: span 1;
 }
-#Galerie .field{ padding: 1px;}
-
+#Galerie .field{ 
+    padding: 1px;
+}
 #Galerie .content{
     height: 150px;
     width: 100%;
@@ -297,7 +298,6 @@ a:visited{
 #ToDo .content .list .do:hover{
     background-color:rgba(192,192,192,0.8);
 }
-
 .delete{
     background-color: dodgerblue;
     height: inherit;
@@ -310,7 +310,6 @@ a:visited{
     padding-top: 5px;
     margin: 5px;
 }
-
 .update{
     background-color: dodgerblue;
     height: inherit;
@@ -323,7 +322,6 @@ a:visited{
     padding-top: 5px;
     margin: 5px;
 }
-
 .add {
     width: 150px;
     height: 50px;
@@ -340,7 +338,6 @@ a:visited{
     cursor: pointer;
     background-color: dodgerblue;
 }
-
 .add span{
     margin: 5px;
 }
