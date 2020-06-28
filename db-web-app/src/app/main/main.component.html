@@ -4,9 +4,9 @@
 <body>
     <div id="navbar">
         <ul>
-            <li>Lagom </li>
+            <li style="font-weight: bold">Lagom </li>
                 <!-- <input id="submit" type="submit" value="zurück"> -->
-        <li *ngFor="let nutzer of nutzerdaten | async">{{nutzer.GanzerName}}</li>
+        <li style="color: dodgerblue ; font-size:'20px'"  *ngFor="let nutzer of nutzerdaten | async">{{nutzer.GanzerName}}</li>
         <a routerLink="/login">
             <li>Abmelden</li>
         </a>
@@ -42,7 +42,7 @@
         <div class="field" id="Kalender">
             <div class="content">
 
-            <ejs-calendar style="margin: auto; margin-bottom: 10px; background-color: #333; border: 0px; color: #fff"></ejs-calendar>
+            <ejs-calendar style="margin: auto; margin-bottom: 10px; background-color: transparent; border: 0px; color: #fff"></ejs-calendar>
               <!-- <ejs-calendar [value]='dateValue' [min]='minDate' [max]='maxDate'></ejs-calendar> -->
 
                 <!-- <h3>{{month}}</h3> -->                
