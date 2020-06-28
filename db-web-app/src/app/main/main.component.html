@@ -4,7 +4,7 @@
 <body>
     <div id="navbar">
         <ul>
-            <li style="font-weight: bold">Lagom </li>
+            <li style="font-weight: bold"><img style="height: 13px;" src="/assets/lagomIcon.png"> Lagom </li>
                 <!-- <input id="submit" type="submit" value="zurück"> -->
         <li style="color: dodgerblue ; font-size:'20px'"  *ngFor="let nutzer of nutzerdaten | async">{{nutzer.GanzerName}}</li>
         <a routerLink="/login">
