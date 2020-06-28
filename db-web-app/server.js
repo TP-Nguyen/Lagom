@@ -127,8 +127,8 @@ app.get('/motivation/:WorkspaceID', function (req, res) {
 });
 
 app.get('/galerie/:WorkspaceID', function (req, res) {
-  const sql = 
-  con.query('SELECT * FROM Galerie natural join Bild where WorkspaceID = ?', req.params.WorkspaceID, function (error, results, fields) {
+  const sql = "SELECT * FROM Bild ORDER BY RAND() LIMIT 3";
+  con.query(sql, req.params.WorkspaceID, function (error, results, fields) {
     if (error) throw error;
     res.send(results);
   });
