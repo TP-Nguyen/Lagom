@@ -125,14 +125,13 @@ export class MainService {
     }
     updateEintrag(eintraege: Eintrag): Observable<Eintrag> {
         const url = this.eintragUrl + "Update/" + eintraege.Art;
-
         return this.http.put<Eintrag>(url, eintraege, this.httpOptions); 
     }
 
-    updateToDo(todoEintrag: Todo) {
+    updateToDo(todoEintrag: Todo): Observable<Todo> {
         const url = this.eintragUrl + "UpdateTodo/";
-
-        return this.http.put<Eintrag>(url, todoEintrag, this.httpOptions); 
+        console.log(url); 
+        return this.http.put<Todo>(url, todoEintrag, this.httpOptions); 
     }
 
     deleteZielEintrag (zielEintrag: Eintrag): Observable<Eintrag> {

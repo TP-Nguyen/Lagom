@@ -294,19 +294,20 @@ app.put('/eintragUpdate/:Art', function (req, res) {
 }); 
 
 
-app.put('/eintragUpdateTodo/'), function (req, res) {
-  const EintragID = req.body[0].EintragID;
-  const Erledigt = req.body[0].Erledigt; 
+app.put('/eintragUpdateTodo/', function (req, res) {
+  const EintragID = req.body.EintragID;
+  console.log(EintragID); 
+  const Erledigt = req.body.Erledigt; 
   console.log(Erledigt); 
 
-  sql = 'UPDATE FROM ToDo SET Erledigt = ? WHERE EintragID = ?';
+  sql = 'UPDATE ToDo SET Erledigt = ? WHERE EintragID = "?"';
   values = [Erledigt, EintragID];
   
   con.query(sql , values, function(error, results, fields) { 
     if (error) throw error; 
     res.send(results); 
   });
-}
+}); 
 
 // DELETE-Methoden
 
