@@ -81,8 +81,6 @@ a:visited{
     color:whitesmoke;
 }
 #container .field:hover{
-/*        background: dodgerblue;*/
-/*         background-color:rgba(192,192,192,0.7);*/
     background: black;
     color: whitesmoke;
     opacity: 1;  
@@ -154,9 +152,7 @@ a:visited{
    align-items: center;
 }
 #Kalender .content .month .day:hover{
-/*         background:  dodgerblue;*/
     background-color:rgba(192,192,192,0.8);
-/*         background:  #333;*/
 }
 #Kalender .content .month .dayz{
     grid-column: span 1;
@@ -210,7 +206,6 @@ a:visited{
 #Galerie .field{ padding: 1px;}
 
 #Galerie .content{
-    /* height: 100%; */
     height: 150px;
     width: 100%;
     overflow-y: scroll;
@@ -224,8 +219,6 @@ a:visited{
     justify-content: center;
 }
 #Galerie img{
-    /* width: 100%;
-    height: auto; */
     width: auto;
     height: 150px;
 }
@@ -252,7 +245,6 @@ a:visited{
     margin: 3px;
 }
 #ToDo .content .list {
-    /* width: 460px; */
     overflow-x: hidden;
 }
 #ToDo .content .list .do input{
@@ -294,7 +286,6 @@ a:visited{
 } 
 #ToDo .content .list .do{
     height: auto;
-    /* max-width: 450px; */
     width: 455px;
     display: flex;
     clear: both;

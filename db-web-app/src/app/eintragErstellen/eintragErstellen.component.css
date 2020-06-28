@@ -1,6 +1,5 @@
 #overlay{
     z-index: 2;
-    /* background: rgba(255,255,255,.3); */
     height: 100vh;
     width: 100vw;    
     }
@@ -31,8 +30,7 @@
     background: dodgerblue;
     padding: 10px 20px;
     cursor: pointer;
-    border-radius: 5px;
-    
+    border-radius: 5px;  
 }
 .inputBox{
     position: relative;
