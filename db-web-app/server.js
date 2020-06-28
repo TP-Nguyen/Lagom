@@ -119,7 +119,7 @@ app.get('/tagebuch/:WorkspaceID', function (req, res) {
 });
 
 app.get('/motivation/:WorkspaceID', function (req, res) {
-  const sql = 'select * from Motivation where MotivationID = (SELECT MotivationID FROM Workspace where WorkspaceID ='+req.params.WorkspaceID +')';
+  const sql = 'SELECT * FROM Motivation ORDER BY RAND() LIMIT 1';
   con.query(sql, function (error, results, fields) {
     if (error) throw error;
     res.send(results);
