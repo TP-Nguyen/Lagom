@@ -28,8 +28,7 @@
                 <p>Tagebuch</p>
                 <div class="list">
                     <div class="listcontent" *ngFor="let tagebuch of tagebuch | async">
-                        <div class="delete" (click)="deleteTagebuch(tagebuch)"><img src="/assets/img/loeschen.png"
-                                height="25px"></div>
+                        <div class="delete" (click)="deleteTagebuch(tagebuch)"><img src="/assets/img/loeschen.png" height="25px"></div>
                         <a routerLink="/eintragBearbeiten/Tagebuch/{{tagebuch.EintragID}}">
                             <div class="update"><img src="/assets/img/bearbeiten.png" height="25px"></div>
                         </a>
@@ -50,8 +49,7 @@
                 </ejs-calendar>
                 <div class="list">
                     <div class="listcontent" *ngFor="let kalender of kalender | async">
-                        <div class="delete" (click)="deleteKalender(kalender)"><img src="/assets/img/loeschen.png"
-                                height="25px"></div>
+                        <div class="delete" (click)="deleteKalender(kalender)"><img src="/assets/img/loeschen.png" height="25px"></div>
                         <a routerLink="/eintragBearbeiten/Kalender/{{kalender.EintragID}}">
                             <div class="update"> <img src="/assets/img/bearbeiten.png" height="25px"></div>
                         </a>
@@ -72,8 +70,7 @@
                 <p>Ziele</p>
                 <div class="list">
                     <div class="listcontent" *ngFor="let ziel of ziele | async">
-                        <div class="delete" (click)="deleteZiel(ziel)"><img src="/assets/img/loeschen.png"
-                                height="25px"></div>
+                        <div class="delete" (click)="deleteZiel(ziel)"><img src="/assets/img/loeschen.png" height="25px"></div>
                         <a routerLink="/eintragBearbeiten/Ziel/{{ziel.EintragID}}">
                             <div class="update"><img src="/assets/img/bearbeiten.png" height="25px"></div>
                         </a>
@@ -96,16 +93,19 @@
                         <div style="width: 75%;">
                             <input type="checkbox" [checked]="todo.Erledigt" (click)="erledigt(todo)">
                             <span class="checkmark"></span>
-                            <label>{{todo.Datum | date : 'dd.MM.yyyy'}} </label>
-                            <label>{{todo.Titel}} </label>
-                            <label>{{todo.Untertitel}} </label>
-                            <label>{{todo.Text}} </label>
-                            <label>{{todo.Notiz}} </label>
-                            <label>{{todo.Anmerkung}} </label>
+                            <label>
+                                <ul style="margin: 0">
+                                    <li style="list-style: none">{{todo.Datum | date : 'dd.MM.yyyy'}} </li>
+                                    <li style="list-style: none">{{todo.Titel}}</li>
+                                    <li style="list-style: none">{{todo.Untertitel}}</li>
+                                    <li style="list-style: none">{{todo.Text}}</li>
+                                    <li style="list-style: none">{{todo.Notiz}}</li>
+                                    <li style="list-style: none">{{todo.Anmerkung}}</li>
+                                </ul>
+                            </label>
                         </div>
                         <div style="float: right;">
-                            <div class="delete" (click)="deleteToDo(todo)"><img src="/assets/img/loeschen.png"
-                                    height="25px"></div>
+                            <div class="delete" (click)="deleteToDo(todo)"><img src="/assets/img/loeschen.png" height="25px"></div>
                             <a routerLink="/eintragBearbeiten/ToDo/{{todo.EintragID}}">
                                 <div class="update"><img src="/assets/img/bearbeiten.png" height="25px"></div>
                             </a>
@@ -120,8 +120,7 @@
                 <p>Erinnerung</p>
                 <div class="list">
                     <div class="listcontent" *ngFor="let erinnerung of erinnerungen | async ">
-                        <div class="delete" (click)="deleteErinnerung(erinnerung)"><img src="/assets/img/loeschen.png"
-                                height="25px"></div>
+                        <div class="delete" (click)="deleteErinnerung(erinnerung)"><img src="/assets/img/loeschen.png" height="25px"></div>
                         <a routerLink="/eintragBearbeiten/Erinnerung/{{erinnerung.EintragID}}">
                             <div class="update"><img src="/assets/img/bearbeiten.png" height="25px"></div>
                         </a>

@@ -56,7 +56,6 @@ export class RegistrierungComponent implements OnInit {
   //Neuer Nutzer erstellen
   submit(nutzerdaten) {
     const newNutzer = new Nutzer(nutzerdaten.Nutzername, nutzerdaten.GanzerName, nutzerdaten.Email, nutzerdaten.Passwort);
-    this.neuerNutzer.reset();
     if (nutzerdaten.Nutzername != "" && nutzerdaten.GanzerName != "" && nutzerdaten.Email != "" && nutzerdaten.Passwort != "") {
       if (nutzerdaten.Nutzername != null && nutzerdaten.GanzerName != null && nutzerdaten.Email != null && nutzerdaten.Passwort != null) {
         this.mainService.addNutzer(newNutzer).subscribe(data => { });

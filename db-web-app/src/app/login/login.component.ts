@@ -53,7 +53,6 @@ export class LoginComponent implements OnInit {
   // Nutzerdaten werden überprüft
   submit(nutzerdaten) {
     const nutzerLogin = new Nutzer(nutzerdaten.Nutzername, nutzerdaten.GanzerName, nutzerdaten.Email, nutzerdaten.Passwort);
-    this.nutzerLogin.reset();
     console.log("login: " + nutzerLogin.Nutzername)
     if (nutzerdaten.Nutzername != "" && nutzerdaten.Passwort != "" && this.username) {
       if (nutzerdaten.Nutzername != null && nutzerdaten.Passwort != null && this.username) {
