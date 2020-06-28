@@ -126,9 +126,8 @@ export class MainService {
                 "WorkspaceID": WorkspaceID,
             }, this.httpOptions)
     }
-    
 
-    //Updaten von Daten mit neuen Daten an den Server
+    // Aktualisieren von Einträgen    
     updateEintrag(eintraege: Eintrag): Observable<Eintrag> {
         const url = this.eintragUrl + "Update/" + eintraege.Art;
         return this.http.put<Eintrag>(url, eintraege, this.httpOptions);

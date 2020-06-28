@@ -1,31 +1,25 @@
 <div class="box">
-
   <h2>{{loginTitel}}</h2>
-  <form [formGroup] ="nutzerLogin" (ngSubmit)="submit(nutzerLogin.value)">
-      <div class="inputBox">
-        <div class="field">
-          <div class="control">
-            <input type="text" required="" formControlName="Nutzername" (change)="changeNutzername($event.target.value)" >
-            <label>Nutzername: </label>
-          </div>
+  <form [formGroup]="nutzerLogin" (ngSubmit)="submit(nutzerLogin.value)">
+    <div class="inputBox">
+      <div class="field">
+        <div class="control">
+          <input type="text" required="" formControlName="Nutzername" (change)="changeNutzername($event.target.value)">
+          <label>Nutzername: </label>
         </div>
       </div>
-
-      <div class="inputBox">
-        <div class="field">
-          <div class="control">
-            <input type="password" required="" formControlName="Passwort">
-            <label>Passwort: </label>
-          </div>
+    </div>
+    <div class="inputBox">
+      <div class="field">
+        <div class="control">
+          <input style="margin:'0'" type="password" required="" formControlName="Passwort">
+          <label>Passwort: </label>
         </div>
       </div>
-
-      <div style="color: red" class="field has-text-danger">{{nachricht}}</div>
-
-       <!-- Button "Login bestätigen" -->
-      <input id="login" type="submit" value="bestätigen">
+    </div>
+    <div style="margin:'15px 0'; color: red" class="field has-text-danger">{{nachricht}}</div>
+    <input id="login" type="submit" value="bestätigen">
   </form>
-  <!--Button "registrieren"-->
   <a routerLink="/registrierung" float="right">
     <input id="registrieren" type="submit" value="registrieren">
   </a>
