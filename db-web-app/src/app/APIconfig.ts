@@ -1,4 +1,4 @@
 export const APIConfig = {
-    URL: 'http://localhost',
-    PORT: 8080
-  };
+  URL: 'http://localhost',
+  PORT: 8080
+};

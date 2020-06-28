@@ -1,8 +1,4 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-// import { AppComponent } from './app.component';
-// import { HttpClientModule }    from '@angular/common/http';
-import { HttpClient } from '@angular/common/http';
-import {Nutzer} from '../app/model/nutzer'; 
 import { MainService } from './service/main.service';
 
 @Component({
@@ -12,12 +8,13 @@ import { MainService } from './service/main.service';
 })
 
  export class AppComponent implements OnInit{
+  title(title: any) {
+    throw new Error("Method not implemented.");
+  }
   
   constructor(private mainService: MainService) {}
-
 
   ngOnInit() {
     this.mainService.setupSocketConnection();
   }
-
 }
