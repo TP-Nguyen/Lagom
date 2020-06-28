@@ -91,6 +91,12 @@ a:visited{
     grid-column: span 1;
     grid-row: span 6;
 }
+.e-day{
+    color:#fff;
+}
+
+
+
 #Kalender .content{
     width: 100%;
     height: 100%;

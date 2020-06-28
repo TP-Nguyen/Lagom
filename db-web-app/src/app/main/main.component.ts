@@ -12,6 +12,7 @@ import { Nutzer } from '../model/nutzer';
 import { Tagebuch } from '../model/tagebuch';
 import { Kalender } from '../model/kalender';
 import { Router } from '@angular/router';
+
 import { HttpClient } from '@angular/common/http';
 import * as io from 'socket.io-client';
 
@@ -24,7 +25,11 @@ const SOCKET_ENDPOINT = 'localhost:3000';
 
 export class MainComponent implements OnInit {
   socket;
-
+  public month: number = new Date().getMonth();
+  public fullYear: number = new Date().getFullYear();
+  public dateValue: Date = new Date(this.fullYear, this.month , 11);
+  public minDate: Date = new Date(this.fullYear, this.month , 9);
+  public maxDate: Date = new Date(this.fullYear, this.month, 15);
   constructor(private mainService: MainService,
     private router: Router,
     private readonly http: HttpClient,
@@ -117,7 +122,7 @@ export class MainComponent implements OnInit {
   }
 
   title = 'db-web-app';
-  month = "Juli";
+  // month = "Juli";
   days = [
     {
       number: "1"

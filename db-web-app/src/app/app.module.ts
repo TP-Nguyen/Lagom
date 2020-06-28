@@ -13,9 +13,11 @@ import { LoginComponent } from './login/login.component';
 import { RegistrierungComponent } from './registrierung/registrierung.component';
 import { EintragBearbeitenComponent } from "./eintragBearbeiten/eintragBearbeiten.component";
 import { EintragErstellenComponent } from './eintragErstellen/eintragErstellen.component';
-// import { CalendarModule } from '@progress/kendo-angular-dateinputs';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainService } from './service/main.service';
+
+import { CalendarModule } from '@syncfusion/ej2-angular-calendars';
+
+// import 'hammerjs';
 
 const routes: Routes = [
   { path: 'main', component: MainComponent},
@@ -41,8 +43,8 @@ const routes: Routes = [
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    // CalendarModule,
-    BrowserAnimationsModule
+    
+    CalendarModule //declaration of ej2-angular-calendars module into NgModule
   ],
 
   providers: [MainService], //[AuthService]

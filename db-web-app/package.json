@@ -26,6 +26,7 @@
     "@progress/kendo-angular-intl": "^2.0.2",
     "@progress/kendo-angular-l10n": "^2.0.2",
     "@progress/kendo-angular-popup": "^3.0.6",
+    "@syncfusion/ej2-angular-calendars": "^18.1.57",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
