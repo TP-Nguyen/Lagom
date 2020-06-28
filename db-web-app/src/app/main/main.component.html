@@ -89,7 +89,7 @@
                 <div class="list" >
                     <div class="do" *ngFor="let todo of todos | async ">
                         <div style="width: 75%;">
-                            <input type="checkbox">
+                            <input type="checkbox" [checked]="todo.Erledigt" (click)="erledigt(todo)">
                             <span class="checkmark"></span>
                             <label>{{todo.Datum | date : 'dd.MM.yyyy'}} </label>
                             <label>{{todo.Titel}} </label>

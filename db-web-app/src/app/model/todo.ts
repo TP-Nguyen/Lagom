@@ -8,4 +8,5 @@ export class Todo{
     Text : String;
     Notiz :String;
     Anmerkung :String;
+    Erledigt: Boolean; 
     }

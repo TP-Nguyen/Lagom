@@ -44,7 +44,7 @@ export class EintragErstellenComponent implements OnInit{
 
   erstellungsTitel = "EINTRAG ERSTELLEN";
   socket;
-  uhr = false;
+  uhr = 0;
 
   arten= [
     {value: 'Ziel', uhr: false },
@@ -55,9 +55,9 @@ export class EintragErstellenComponent implements OnInit{
   ];
   changeUhr(typ){
     if(typ == "Erinnerung" || typ == "Kalender"){
-      this.uhr = true;
+      this.uhr = 1;
     }else{
-      this.uhr = false;
+      this.uhr = 0;
     }
   }
   ngOnInit(): void {

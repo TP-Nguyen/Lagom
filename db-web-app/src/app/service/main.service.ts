@@ -128,6 +128,13 @@ export class MainService {
 
         return this.http.put<Eintrag>(url, eintraege, this.httpOptions); 
     }
+
+    updateToDo(todoEintrag: Todo) {
+        const url = this.eintragUrl + "UpdateTodo/";
+
+        return this.http.put<Eintrag>(url, todoEintrag, this.httpOptions); 
+    }
+
     deleteZielEintrag (zielEintrag: Eintrag): Observable<Eintrag> {
         const EintragID = typeof zielEintrag === 'number' ? zielEintrag : zielEintrag.EintragID; 
         const url = this.zielUrl +"Delete/"+ EintragID;

@@ -58,7 +58,7 @@ export class MainComponent implements OnInit {
     this.nutzerdaten.subscribe(data => {});
 
     this.todos = this.mainService.getTodos(this.WorkspaceID);
-    this.todos.subscribe(data => {});
+    this.todos.subscribe(data => {console.log(data)});
 
     this.ziele = this.mainService.getZiele(this.WorkspaceID);
     this.ziele.subscribe(data => {});
@@ -78,6 +78,14 @@ export class MainComponent implements OnInit {
     this.kalender = this.mainService.getKalender(this.WorkspaceID);
     this.kalender.subscribe(data => {});
   }
+
+  public erledigt(todoEintrag: Todo) : void{
+    todoEintrag.Erledigt = !todoEintrag.Erledigt; 
+    this.mainService.updateToDo(todoEintrag).subscribe(); 
+    this.socket.emit('refresh','refresh Page');
+    console.log(todoEintrag.Erledigt); 
+  }
+
   public deleteZiel(zielEintrag: Eintrag): void{
     this.mainService.deleteZielEintrag(zielEintrag).subscribe(); 
     this.socket.emit('refresh','refresh Page');
