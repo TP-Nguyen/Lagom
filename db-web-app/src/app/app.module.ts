@@ -14,14 +14,6 @@ import { EintragErstellenComponent } from './eintragErstellen/eintragErstellen.c
 import { MainService } from './service/main.service';
 import { CalendarModule } from '@syncfusion/ej2-angular-calendars';
 
-const routes: Routes = [
-  { path: 'main', component: MainComponent },
-  { path: 'eintragErstellen', component: EintragErstellenComponent },
-  { path: 'eintragBearbeiten', component: EintragBearbeitenComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'registierung', component: RegistrierungComponent },
-];
-
 @NgModule({
   declarations: [
     AppComponent,
