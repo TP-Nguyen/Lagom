@@ -120,10 +120,6 @@
           }
         }
       }
-    }
-  },
-  "defaultProject": "db-web-app",
-  "cli": {
-    "analytics": "536143ea-2d14-4350-b6cf-3151ca8429cf"
-  }
+    }},
+  "defaultProject": "db-web-app"
 }

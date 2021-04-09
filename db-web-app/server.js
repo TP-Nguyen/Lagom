@@ -12,12 +12,20 @@ const io = require('socket.io')(http);
 app.use(cors());
 
 //HOCHSCHUL SERVER
+// const con = mysql.createConnection({
+//     host: "195.37.176.178",
+//     port: "20133",
+//     user: "Gruppe5",
+//     password: "PlrROASg,'MPyp92yVN/Q00/Y\\?8g+1e",
+//     database: "20_Gruppe5_DB"
+// });
+//Localhost
 const con = mysql.createConnection({
-    host: "195.37.176.178",
-    port: "20133",
-    user: "Gruppe5",
-    password: "PlrROASg,'MPyp92yVN/Q00/Y\\?8g+1e",
-    database: "20_Gruppe5_DB"
+    host: "127.0.0.1",
+    port: "3306",
+    user: "root",
+    password: "My3qlP@ssword",
+    database: "20_gruppe5_db"
 });
 
 const server = app.listen(SERVER_PORT, function() {
